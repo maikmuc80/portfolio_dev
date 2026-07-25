@@ -1,0 +1,20 @@
+.skills {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.skill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 700px;
+  margin: 2rem auto 0;
+}
+
+.skill {
+  border: 2px solid #0d0d0d;
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+}

@@ -1,0 +1,13 @@
+<section class="skills">
+  <h2>My Skills</h2>
+
+  @if (skills.length > 0) {
+    <div class="skill-grid">
+      @for (skill of skills; track skill) {
+        <div class="skill">{{ skill }}</div>
+      }
+    </div>
+  } @else {
+    <p>Bald gibt's hier mehr zu sehen!</p>
+  }
+</section>
