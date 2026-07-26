@@ -14,7 +14,13 @@
 }
 
 .name {
-  color: #2fbfad;
+  color: var(--accent);
   font-size: 1.5rem;
   margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
 }
