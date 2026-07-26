@@ -6,10 +6,9 @@
   </button>
 
   @if (menuOpen()) {
-    <nav class="menu">
-      <a href="#">About</a>
-      <a href="#">Skills</a>
-      <a href="#">Portfolio</a>
-    </nav>
-  }
+  <nav class="menu">
+    <a routerLink="/" (click)="toggleMenu()">Home</a>
+    <a routerLink="/impressum" (click)="toggleMenu()">Impressum</a>
+  </nav>
+}
 </header>
