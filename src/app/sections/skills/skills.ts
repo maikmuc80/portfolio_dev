@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { SKILLS } from '../../core/portfolio-data';
 
 @Component({
   selector: 'app-skills',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './skills.scss',
 })
 export class Skills {
-  skills = ['Angular', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'SCSS', 'Firebase', 'Git', 'Rest-API', 'Wordpress'];
+  skills = SKILLS;
 }

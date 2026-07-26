@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PROFILE } from '../../core/portfolio-data';
 
 @Component({
   selector: 'app-hero',
@@ -7,8 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './hero.scss',
 })
 export class Hero {
-  name = 'Maik Radke';
-  email = 'maikmuc80@gmail.com';
-
-  
+  profile = PROFILE;
 }

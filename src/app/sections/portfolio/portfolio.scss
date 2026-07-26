@@ -1,0 +1,35 @@
+.portfolio {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.project-list {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project {
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.tags {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tags li {
+  font-size: 0.8rem;
+  border: 1px solid #999;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+}
