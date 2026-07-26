@@ -1,0 +1,15 @@
+<section class="contact">
+  <h2>Say Hi!</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Dein Name" [(ngModel)]="name" name="name" required />
+    <textarea placeholder="Deine Nachricht" [(ngModel)]="message" name="message" required></textarea>
+    <button type="submit">Senden</button>
+  </form>
+
+  <p class="live">Live-Vorschau: {{ name }}</p>
+
+  @if (sent()) {
+    <p class="ok">Danke, {{ name }}! (Test – noch ohne echten Versand)</p>
+  }
+</section>
