@@ -1,0 +1,15 @@
+<header class="header">
+  <a class="logo">MR</a>
+
+  <button class="burger" (click)="toggleMenu()">
+    @if (menuOpen()) { ✕ } @else { ☰ }
+  </button>
+
+  @if (menuOpen()) {
+    <nav class="menu">
+      <a href="#">About</a>
+      <a href="#">Skills</a>
+      <a href="#">Portfolio</a>
+    </nav>
+  }
+</header>
