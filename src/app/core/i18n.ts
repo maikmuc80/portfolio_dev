@@ -12,9 +12,9 @@ export type Lang = (typeof LANGS)[number];
 export const DEFAULT_LANG: Lang = 'de';
 
 const de = {
-  'meta.title': 'Maik Radke — Frontend Developer',
+  'meta.title': 'Maik Radke — Fullstack Developer',
   'meta.description':
-    'Portfolio von Maik Radke, Frontend Developer aus Berchtesgaden. Angular, TypeScript und moderne Web-Entwicklung.',
+    'Portfolio von Maik Radke, Fullstack Developer aus Berchtesgaden. Angular, TypeScript und moderne Web-Entwicklung.',
 
   'header.menu': 'Menü öffnen',
   'header.close': 'Menü schließen',
@@ -28,13 +28,13 @@ const de = {
   'nav.contact': 'Kontakt',
   'nav.home': 'Startseite',
 
-  'hero.line1': 'Frontend',
+  'hero.line1': 'Fullstack',
   'hero.line2': 'Developer',
   'hero.scroll': 'Nach unten scrollen',
 
   'about.title': 'Über mich',
   'about.text':
-    'Ich bin Frontend Developer und lerne aktuell an der Developer Akademie. Am Programmieren begeistert mich, aus einer Idee etwas zu bauen, das Menschen wirklich benutzen. Probleme gehe ich analytisch an: erst verstehen, dann zerlegen, dann sauber lösen. Was mich ausmacht: Ausdauer, Neugier auf neue Technologien und die Bereitschaft, im Team Verantwortung zu übernehmen.',
+    'Ich bin Fullstack Developer und lerne aktuell an der Developer Akademie. Am Programmieren begeistert mich, aus einer Idee etwas zu bauen, das Menschen wirklich benutzen. Probleme gehe ich analytisch an: erst verstehen, dann zerlegen, dann sauber lösen. Was mich ausmacht: Ausdauer, Neugier auf neue Technologien und die Bereitschaft, im Team Verantwortung zu übernehmen.',
   'about.photoAlt': 'Porträtfoto von Maik Radke',
   'about.location': 'Zu Hause in Berchtesgaden',
   'about.remote': 'Offen für Remote-Arbeit',
@@ -132,9 +132,9 @@ const de = {
 export type TranslationKey = keyof typeof de;
 
 const en: Record<TranslationKey, string> = {
-  'meta.title': 'Maik Radke — Frontend Developer',
+  'meta.title': 'Maik Radke — Fullstack Developer',
   'meta.description':
-    'Portfolio of Maik Radke, frontend developer based in Berchtesgaden, Germany. Angular, TypeScript and modern web development.',
+    'Portfolio of Maik Radke, fullstack developer based in Berchtesgaden, Germany. Angular, TypeScript and modern web development.',
 
   'header.menu': 'Open menu',
   'header.close': 'Close menu',
@@ -148,13 +148,13 @@ const en: Record<TranslationKey, string> = {
   'nav.contact': 'Contact',
   'nav.home': 'Home',
 
-  'hero.line1': 'Frontend',
+  'hero.line1': 'Fullstack',
   'hero.line2': 'Developer',
   'hero.scroll': 'Scroll down',
 
   'about.title': 'About me',
   'about.text':
-    "I'm a frontend developer, currently training at Developer Akademie. What draws me to coding is turning an idea into something people actually use. I approach problems analytically: understand first, break it down, then solve it cleanly. What defines me: persistence, curiosity about new technologies, and a willingness to take responsibility within a team.",
+    "I'm a fullstack developer, currently training at Developer Akademie. What draws me to coding is turning an idea into something people actually use. I approach problems analytically: understand first, break it down, then solve it cleanly. What defines me: persistence, curiosity about new technologies, and a willingness to take responsibility within a team.",
   'about.photoAlt': 'Portrait photo of Maik Radke',
   'about.location': 'Based in Berchtesgaden',
   'about.remote': 'Open to work remote',
