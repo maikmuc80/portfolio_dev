@@ -79,13 +79,13 @@ const de = {
   'contact.privacyLink': 'Datenschutzerklärung',
   'contact.privacyPost': 'gelesen und stimme der Verarbeitung meiner Daten zu.',
   'contact.send': 'Nachricht senden',
+  'contact.sending': 'Wird gesendet …',
   'contact.errorName': 'Bitte gib deinen Namen ein.',
   'contact.errorEmail': 'Bitte gib eine gültige E-Mail-Adresse ein.',
   'contact.errorMessage': 'Bitte schreib mir eine Nachricht.',
   'contact.errorPrivacy': 'Bitte akzeptiere die Datenschutzerklärung.',
   'contact.success': 'Danke! Deine Nachricht ist angekommen.',
-  'contact.demoHint':
-    'Hinweis: Das Formular versendet noch nichts — es fehlt die Anbindung an einen Mail-Dienst.',
+  'contact.error': 'Das hat leider nicht geklappt. Bitte versuch es später noch einmal.',
 
   'footer.legal': 'Impressum',
   'footer.privacy': 'Datenschutz',
@@ -173,13 +173,13 @@ const en: Record<TranslationKey, string> = {
   'contact.privacyLink': 'privacy policy',
   'contact.privacyPost': 'and agree to the processing of my data as outlined.',
   'contact.send': 'Send message',
+  'contact.sending': 'Sending …',
   'contact.errorName': 'Please enter your name.',
   'contact.errorEmail': 'Please enter a valid email address.',
   'contact.errorMessage': 'Please write me a message.',
   'contact.errorPrivacy': 'Please accept the privacy policy.',
   'contact.success': 'Thank you! Your message came through.',
-  'contact.demoHint':
-    "Note: the form doesn't send anything yet — it still needs to be wired to a mail service.",
+  'contact.error': "That didn't work, unfortunately. Please try again later.",
 
   'footer.legal': 'Legal notice',
   'footer.privacy': 'Privacy policy',

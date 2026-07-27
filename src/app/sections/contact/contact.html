@@ -6,7 +6,13 @@
       <p class="contact__lead">{{ t('contact.lead') }}</p>
       <p class="contact__sub">{{ t('contact.sub') }}</p>
 
-      <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+      <form
+        class="form"
+        #form="ngForm"
+        (ngSubmit)="onSubmit(form)"
+        (input)="dismissFeedback()"
+        novalidate
+      >
         <div class="field">
           <label class="field__label" for="contact-name">{{ t('contact.name') }}</label>
           <input
@@ -18,11 +24,14 @@
             placeholder=" "
             required
             [(ngModel)]="model.name"
+            [ngModelOptions]="{ updateOn: 'blur' }"
             #nameCtrl="ngModel"
           />
-          @if (nameCtrl.invalid && nameCtrl.touched) {
-            <p class="field__error">{{ t('contact.errorName') }}</p>
-          }
+          <p class="field__error">
+            @if (nameCtrl.invalid && nameCtrl.touched) {
+              {{ t('contact.errorName') }}
+            }
+          </p>
         </div>
 
         <div class="field">
@@ -37,11 +46,14 @@
             required
             email
             [(ngModel)]="model.email"
+            [ngModelOptions]="{ updateOn: 'blur' }"
             #emailCtrl="ngModel"
           />
-          @if (emailCtrl.invalid && emailCtrl.touched) {
-            <p class="field__error">{{ t('contact.errorEmail') }}</p>
-          }
+          <p class="field__error">
+            @if (emailCtrl.invalid && emailCtrl.touched) {
+              {{ t('contact.errorEmail') }}
+            }
+          </p>
         </div>
 
         <div class="field">
@@ -54,11 +66,14 @@
             placeholder=" "
             required
             [(ngModel)]="model.message"
+            [ngModelOptions]="{ updateOn: 'blur' }"
             #messageCtrl="ngModel"
           ></textarea>
-          @if (messageCtrl.invalid && messageCtrl.touched) {
-            <p class="field__error">{{ t('contact.errorMessage') }}</p>
-          }
+          <p class="field__error">
+            @if (messageCtrl.invalid && messageCtrl.touched) {
+              {{ t('contact.errorMessage') }}
+            }
+          </p>
         </div>
 
         <div class="field field--check">
@@ -78,18 +93,29 @@
               {{ t('contact.privacyPost') }}
             </span>
           </label>
-          @if (privacyCtrl.invalid && privacyCtrl.touched) {
-            <p class="field__error">{{ t('contact.errorPrivacy') }}</p>
-          }
+          <p class="field__error">
+            @if (privacyCtrl.invalid && privacyCtrl.touched) {
+              {{ t('contact.errorPrivacy') }}
+            }
+          </p>
         </div>
 
-        <button class="btn form__submit" type="submit">{{ t('contact.send') }}</button>
+        <button class="btn form__submit" type="submit" [disabled]="form.invalid || state() === 'sending'">
+          {{ state() === 'sending' ? t('contact.sending') : t('contact.send') }}
+        </button>
 
-        <p class="form__hint">{{ t('contact.demoHint') }}</p>
-
-        <p class="form__success" role="status">
-          @if (sent()) {
-            {{ t('contact.success') }}
+        <p
+          class="form__feedback"
+          [class.form__feedback--error]="state() === 'error'"
+          role="status"
+        >
+          @switch (state()) {
+            @case ('sent') {
+              {{ t('contact.success') }}
+            }
+            @case ('error') {
+              {{ t('contact.error') }}
+            }
           }
         </p>
       </form>
