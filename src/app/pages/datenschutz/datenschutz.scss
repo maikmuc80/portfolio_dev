@@ -3,10 +3,3 @@
 .legal {
   @include legal-page;
 }
-
-/* Deutlich als noch zu ersetzender Text markiert. */
-.legal__placeholder {
-  padding: var(--space-md);
-  border: 2px solid var(--error);
-  color: var(--error);
-}

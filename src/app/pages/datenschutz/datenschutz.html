@@ -1,15 +1,40 @@
 <section class="legal">
   <h1>{{ t('privacy.title') }}</h1>
 
-  <p class="legal__placeholder">{{ t('privacy.placeholder') }}</p>
+  <p>{{ t('privacy.intro.text') }}</p>
 
-  <h2>{{ t('legal.responsible') }}</h2>
+  <h2>{{ t('privacy.responsible.title') }}</h2>
   <p>Maik Radke<br />Buchenhöhe 1<br />83471 Berchtesgaden<br />Deutschland</p>
-
-  <h2>{{ t('legal.contact') }}</h2>
   <p>
     <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
   </p>
+
+  <h2>{{ t('privacy.hosting.title') }}</h2>
+  <p>{{ t('privacy.hosting.text') }}</p>
+
+  <h2>{{ t('privacy.ssl.title') }}</h2>
+  <p>{{ t('privacy.ssl.text') }}</p>
+
+  <h2>{{ t('privacy.form.title') }}</h2>
+  <p>{{ t('privacy.form.text') }}</p>
+
+  <h2>{{ t('privacy.mail.title') }}</h2>
+  <p>{{ t('privacy.mail.text') }}</p>
+
+  <h2>{{ t('privacy.storage.title') }}</h2>
+  <p>{{ t('privacy.storage.text') }}</p>
+
+  <h2>{{ t('privacy.fonts.title') }}</h2>
+  <p>{{ t('privacy.fonts.text') }}</p>
+
+  <h2>{{ t('privacy.rights.title') }}</h2>
+  <p>{{ t('privacy.rights.text') }}</p>
+
+  <h2>{{ t('privacy.complaint.title') }}</h2>
+  <p>{{ t('privacy.complaint.text') }}</p>
+
+  <h2>{{ t('privacy.updated.title') }}</h2>
+  <p>{{ t('privacy.updated.text') }}</p>
 
   <a class="legal__back" routerLink="/">← {{ t('privacy.back') }}</a>
 </section>

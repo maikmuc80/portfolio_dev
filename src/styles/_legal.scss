@@ -36,8 +36,7 @@
     line-height: 1.4;
   }
 
-  h1 + p,
-  h1 + .legal__placeholder {
+  h1 + p {
     margin-top: var(--space-xl);
   }
 
