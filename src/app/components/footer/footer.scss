@@ -1,0 +1,97 @@
+@use 'tokens' as *;
+
+/* Im Figma gehört der Footer optisch zum schwarzen Kontaktbereich. Damit er
+   auch auf Impressum und Datenschutz funktioniert, bringt er den Hintergrund
+   selbst mit — auf der Startseite geht er dadurch nahtlos in .contact über. */
+.footer {
+  padding-block: var(--space-xl);
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.footer__inner {
+  @include container;
+
+  display: grid;
+  gap: var(--space-lg);
+  align-items: end;
+}
+
+.footer__logo {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  text-decoration: none;
+}
+
+.footer__copy {
+  margin-top: var(--space-sm);
+  font-size: 22px;
+  line-height: 1.18;
+}
+
+.footer__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer__socials {
+  display: flex;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__socials img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s;
+}
+
+.footer__socials a:hover img,
+.footer__socials a:focus-visible img {
+  transform: translateY(-3px);
+}
+
+.footer__links {
+  display: flex;
+  gap: var(--space-md);
+  font-size: var(--fs-label);
+}
+
+.footer__links a {
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__links a:hover,
+.footer__links a:focus-visible {
+  color: var(--accent);
+}
+
+.footer__top img {
+  width: 42px;
+  height: auto;
+  transition: transform 0.2s;
+}
+
+.footer__top:hover img,
+.footer__top:focus-visible img {
+  transform: translateY(-4px);
+}
+
+@include from-tablet {
+  .footer__inner {
+    grid-template-columns: 1fr auto auto;
+    column-gap: var(--space-xl);
+  }
+
+  .footer__right {
+    align-items: flex-end;
+  }
+}

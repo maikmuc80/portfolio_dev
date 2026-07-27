@@ -1,0 +1,31 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <a class="footer__logo" routerLink="/" [attr.aria-label]="profile.name">
+        <span aria-hidden="true">[</span>{{ profile.initials }}<span aria-hidden="true">]</span>
+      </a>
+      <p class="footer__copy">© {{ profile.name }} {{ profile.copyrightYear }}</p>
+    </div>
+
+    <div class="footer__right">
+      <ul class="footer__socials">
+        @for (social of socials; track social.key) {
+          <li>
+            <a [href]="social.href" [attr.aria-label]="social.key" rel="noopener" target="_blank">
+              <img [src]="'assets/icons/' + social.icon + '.svg'" alt="" width="40" height="40" />
+            </a>
+          </li>
+        }
+      </ul>
+
+      <p class="footer__links">
+        <a routerLink="/impressum">{{ t('footer.legal') }}</a>
+        <a routerLink="/datenschutz">{{ t('footer.privacy') }}</a>
+      </p>
+    </div>
+
+    <a class="footer__top" href="#hero" [attr.aria-label]="t('footer.top')">
+      <img src="assets/icons/arrow-up.svg" alt="" width="42" height="58" />
+    </a>
+  </div>
+</footer>
