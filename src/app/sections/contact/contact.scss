@@ -98,6 +98,19 @@
   border-bottom-color: var(--accent);
 }
 
+/* Chrome und Safari malen ausgefüllte Felder hellblau mit dunkler Schrift —
+   auf dem schwarzen Grund unlesbar. Der Innenschatten überdeckt die Füllung,
+   die absurd lange Verzögerung verhindert das kurze Aufblitzen beim Laden. */
+.field__input:-webkit-autofill,
+.field__input:-webkit-autofill:hover,
+.field__input:-webkit-autofill:focus,
+.field__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--ink) inset;
+  -webkit-text-fill-color: var(--on-dark);
+  caret-color: var(--on-dark);
+  transition: background-color 600000s 0s;
+}
+
 /* Das Label steht im Markup vor dem Feld — daher :has() statt Geschwister-Selektor. */
 .field:focus-within .field__label,
 .field:has(.field__input:not(:placeholder-shown)) .field__label {
@@ -114,7 +127,10 @@
   outline-offset: 4px;
 }
 
+/* Die Zeile steht immer da, auch leer — sonst springt beim ersten Fehler
+   alles darunter nach unten. */
 .field__error {
+  min-height: 1.2em;
   margin-top: var(--space-xs);
   color: var(--error);
   font-size: var(--fs-small);
@@ -171,18 +187,15 @@
   min-width: 269px;
 }
 
-.form__hint {
-  color: var(--muted);
-  font-size: var(--fs-small);
-  line-height: 1.22;
-  text-align: center;
-}
-
-.form__success {
+.form__feedback {
   min-height: 1.2em;
   color: var(--accent);
   font-weight: 700;
   text-align: center;
+}
+
+.form__feedback--error {
+  color: var(--error);
 }
 
 @include from-tablet {
