@@ -1,59 +1,48 @@
-# PortfolioDev
+# Portfolio — Maik Radke
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
+Personal portfolio site built with Angular 22 (standalone components, zoneless
+change detection). The design follows the Developer Akademie Figma template,
+implemented for mobile and desktop.
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting started
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The dev server runs on `http://localhost:4200/`.
 
-```bash
-ng generate --help
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `npm start` | Dev server with live reload |
+| `npm run build` | Production build into `dist/portfolio_dev/` |
+| `npm test` | Unit tests (Vitest) |
+
+## Structure
+
+```
+src/
+├── app/
+│   ├── components/   header and footer, present on every page
+│   ├── core/         i18n dictionary, translation service, portfolio content
+│   ├── pages/        home, legal notice, privacy policy
+│   └── sections/     hero, about, skills, portfolio, references, contact
+├── styles/           shared SCSS tokens and mixins
+└── styles.scss       design tokens, reset, recurring building blocks
 ```
 
-## Building
+## Content
 
-To build the project run:
+All visible text lives in `src/app/core/i18n.ts` in German and English. The
+English keys are typed against the German ones, so a missing translation is a
+compile error. Everything language independent — names, image paths, links —
+lives in `src/app/core/portfolio-data.ts`.
 
-```bash
-ng build
-```
+## Deployment
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The build output in `dist/portfolio_dev/browser/` is static and can be uploaded
+as is. The contact form posts to `sendMail.php` in the web root, so that script
+has to sit next to `index.html` on the server.
