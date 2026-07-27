@@ -29,7 +29,19 @@
                 "input": "public"
               }
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "styles": [
+              "@fontsource/syne/600.css",
+              "@fontsource/syne/700.css",
+              "@fontsource/syne/800.css",
+              "@fontsource/overpass/300.css",
+              "@fontsource/overpass/400.css",
+              "@fontsource/overpass/700.css",
+              "@fontsource/overpass-mono/400.css",
               "src/styles.scss"
             ]
           },
