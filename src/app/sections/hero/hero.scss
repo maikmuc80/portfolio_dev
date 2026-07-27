@@ -1,8 +1,8 @@
 @use 'tokens' as *;
 
-/* Above the fold: die Sektion füllt den Viewport. svh statt vh, damit die
-   ein- und ausfahrende Adressleiste auf Mobilgeräten nicht dazwischenfunkt.
-   min-height statt height — bei sehr flachen Fenstern darf der Inhalt wachsen. */
+/* Above the fold: the section fills the viewport. svh rather than vh so the
+   address bar sliding in and out on mobile does not interfere. min-height
+   rather than height — on very short windows the content may grow. */
 .hero {
   display: flex;
   min-height: 100vh;
@@ -18,11 +18,11 @@
   flex-direction: column;
 }
 
-/* "Frontend" / "Developer" — Syne ExtraBold, 45px mobil bis 128px auf Desktop.
-   Beide Wörter sind unteilbar. "Developer" ist in Syne ExtraBold rund das
-   7.91-fache der Schriftgröße breit (nachgemessen), deshalb wird die
-   Design-Rampe zusätzlich auf die verfügbare Zeilenbreite gedeckelt —
-   sonst läuft die Headline auf schmalen Geräten über den Rand. */
+/* "Frontend" / "Developer" — Syne ExtraBold, 45px on mobile up to 128px on
+   desktop. Neither word can be broken. In Syne ExtraBold "Developer" measures
+   about 7.91 times the font size in width, so the design ramp is additionally
+   capped at the available line width — otherwise the headline runs over the
+   edge on narrow devices. */
 .hero__title {
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
   display: block;
 }
 
-/* Name in Grün, davor die waagerechte Linie aus dem Design. */
+/* Name in green, preceded by the horizontal rule from the design. */
 .hero__name {
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@
   background: var(--ink);
 }
 
-/* Sitzt am unteren Rand des Viewports, hält aber Mindestabstand zum Namen. */
+/* Sits at the bottom of the viewport but keeps a minimum gap to the name. */
 .hero__meta {
   display: flex;
   align-items: flex-end;
@@ -67,7 +67,7 @@
   padding-top: var(--section-gap);
 }
 
-/* Senkrecht laufende E-Mail-Adresse an der linken Kante. */
+/* Email address running vertically along the left edge. */
 .hero__email {
   font-weight: 300;
   font-size: var(--fs-body);

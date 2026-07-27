@@ -16,7 +16,7 @@ export class Header {
   protected readonly profile = PROFILE;
   protected readonly sections = SECTIONS;
 
-  /** Reihenfolge wie im Figma-Header: EN zuerst. */
+  /** Order as in the Figma header: EN first. */
   protected readonly langs: { code: Lang; label: string }[] = [
     { code: 'en', label: 'EN' },
     { code: 'de', label: 'DE' },
@@ -27,7 +27,7 @@ export class Header {
   private readonly document = inject(DOCUMENT);
 
   constructor() {
-    // Bei offenem Overlay soll die Seite dahinter nicht mitscrollen.
+    // While the overlay is open the page behind it must not scroll along.
     effect(() => {
       this.document.body.style.overflow = this.menuOpen() ? 'hidden' : '';
     });
@@ -41,7 +41,7 @@ export class Header {
     this.menuOpen.set(false);
   }
 
-  /** Anker-Name zum Übersetzungs-Key, z.B. 'about' -> 'nav.about'. */
+  /** Anchor name to translation key, e.g. 'about' -> 'nav.about'. */
   protected navKey(section: string): TranslationKey {
     return `nav.${section}` as TranslationKey;
   }

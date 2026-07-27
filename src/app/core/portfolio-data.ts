@@ -1,8 +1,8 @@
 /**
- * Strukturierte Inhalte des Portfolios.
+ * Structured portfolio content.
  *
- * Übersetzbare Texte stehen NICHT hier, sondern in i18n.ts — hier liegen nur
- * Daten, die in beiden Sprachen gleich sind (Namen, Pfade, Links, Tags).
+ * Translatable text does not live here but in i18n.ts — this file only holds
+ * data that is identical in both languages (names, paths, links, tags).
  */
 
 export interface Skill {
@@ -11,11 +11,11 @@ export interface Skill {
 }
 
 export interface Project {
-  /** Interner Schlüssel, zugleich Präfix der i18n-Keys. */
+  /** Internal key, also the prefix of the matching i18n keys. */
   key: string;
   title: string;
   tags: string[];
-  /** Basisname in public/assets/img/projects/ ohne Breiten-Suffix. */
+  /** Base name in public/assets/img/projects/ without the width suffix. */
   image: string;
   liveUrl: string;
   githubUrl: string;
@@ -34,7 +34,7 @@ export interface SocialLink {
 
 export const PROFILE = {
   name: 'Maik Radke',
-  /** Kürzel im Logo — im Figma steht dort [SE] für den Muster-Namen. */
+  /** Initials in the logo — Figma shows [SE] there for the sample name. */
   initials: 'MR',
   email: 'maikmuc80@gmail.com',
   copyrightYear: new Date().getFullYear(),
@@ -54,8 +54,8 @@ export const SKILLS: Skill[] = [
 ];
 
 /**
- * Leere Felder werden im Template übersprungen: ohne Bild kein Screenshot,
- * ohne URL kein Live- bzw. Github-Button.
+ * Empty fields are skipped by the template: no image means no screenshot,
+ * no URL means no live or Github button.
  */
 export const PROJECTS: Project[] = [
   {
@@ -68,11 +68,7 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-/**
- * PLATZHALTER: Die Figma-Vorlage enthält erfundene Zitate unter erfundenen
- * Namen. Die sind hier bewusst nicht übernommen — trag echte Rückmeldungen ein
- * (Name hier, Rolle und Zitat in i18n.ts unter `references.<key>.*`).
- */
+/** Name here, role and quote in i18n.ts under `references.<key>.*`. */
 export const REFERENCES: Reference[] = [
   { key: 'ref1', name: '—' },
   { key: 'ref2', name: '—' },
@@ -85,5 +81,5 @@ export const SOCIALS: SocialLink[] = [
   { key: 'linkedin', href: 'https://www.linkedin.com/', icon: 'linkedin' },
 ];
 
-/** Anker-Ziele der Navigation, in Reihenfolge der Seite. */
+/** Navigation anchor targets, in page order. */
 export const SECTIONS = ['about', 'skills', 'portfolio', 'references', 'contact'] as const;

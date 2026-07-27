@@ -8,7 +8,7 @@
   @include container;
 }
 
-/* Rahmen ohne Oberkante — die liefert .skills__head links und rechts des Titels. */
+/* Border without a top edge — .skills__head supplies it either side of the title. */
 .skills__box {
   border: 2px solid var(--ink);
   border-top: none;
@@ -18,10 +18,10 @@
 .skills__head {
   display: flex;
   align-items: center;
-  /* Auf schmalen Geräten füllt "Meine Skills" die Zeile fast komplett —
-     der Abstand zu den Linien muss klein bleiben, sonst läuft es über. */
+  /* On narrow devices "Meine Skills" nearly fills the line — the gap to the
+     rules has to stay small, otherwise it overflows. */
   gap: var(--space-xs);
-  /* Titel nach oben aus dem Kasten herausziehen, damit die Linie ihn schneidet. */
+  /* Pull the title up out of the box so the rule cuts through it. */
   margin: calc(var(--fs-section) * -0.5) calc(var(--space-md) * -1) 0;
 }
 
@@ -93,7 +93,7 @@
   width: clamp(90px, 11vw, 158px);
   height: auto;
   margin-top: var(--section-gap);
-  /* linksbündig, aber innerhalb der Inhaltsspalte */
+  /* flush left, but still inside the content column */
   margin-left: max(var(--gutter), (100% - var(--container)) / 2);
   margin-right: auto;
 }

@@ -1,7 +1,7 @@
 <a class="skip-link" href="#main">{{ t('header.skipToContent') }}</a>
 
-<!-- Bei offenem Menü wird der Hintergrund transparent, damit die schwarze
-     Overlay-Fläche bis unter den Header reicht und das Schließkreuz sichtbar ist. -->
+<!-- With the menu open the background turns transparent so the black overlay
+     reaches up behind the header and the close icon stays visible. -->
 <header class="header" [class.header--transparent]="menuOpen()">
   <div class="header__inner">
     <a class="logo" routerLink="/" (click)="closeMenu()" [attr.aria-label]="profile.name">

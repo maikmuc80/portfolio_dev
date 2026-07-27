@@ -15,7 +15,7 @@ export class Portfolio {
   protected readonly tp = this.i18n.tp;
   protected readonly projects = PROJECTS;
 
-  /** Zähler wie im Design: 01/04, 02/04, … */
+  /** Counter as in the design: 01/04, 02/04, … */
   protected counter(index: number): string {
     const pad = (n: number) => String(n).padStart(2, '0');
     return `${pad(index + 1)}/${pad(this.projects.length)}`;

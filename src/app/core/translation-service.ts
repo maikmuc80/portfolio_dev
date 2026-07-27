@@ -5,11 +5,11 @@ import { DEFAULT_LANG, LANGS, Lang, TRANSLATIONS, TranslationKey } from './i18n'
 const STORAGE_KEY = 'portfolio-lang';
 
 /**
- * Sprachumschaltung über ein Signal.
+ * Language switching through a signal.
  *
- * Die App läuft zoneless: `t()` liest `lang()` während des Template-Renderings,
- * dadurch registriert Angular die Abhängigkeit und rendert bei einem
- * Sprachwechsel automatisch neu — ohne Reload und ohne Pipe.
+ * The app runs zoneless: `t()` reads `lang()` while a template renders, so
+ * Angular picks up the dependency and re-renders on a language change by
+ * itself — no reload and no pipe needed.
  */
 @Injectable({ providedIn: 'root' })
 export class TranslationService {
@@ -30,12 +30,12 @@ export class TranslationService {
   }
 
   /**
-   * Als Arrow-Property definiert, damit Komponenten sie direkt ins Template
-   * hängen können: `protected readonly t = inject(TranslationService).t;`
+   * Defined as an arrow property so components can hand it straight to the
+   * template: `protected readonly t = inject(TranslationService).t;`
    */
   readonly t = (key: TranslationKey): string => TRANSLATIONS[this.lang()][key];
 
-  /** Wie `t`, ersetzt zusätzlich Platzhalter der Form `{{name}}`. */
+  /** Like `t`, but also replaces placeholders of the form `{{name}}`. */
   readonly tp = (key: TranslationKey, params: Record<string, string | number>): string =>
     this.t(key).replace(/\{\{(\w+)\}\}/g, (match, name: string) =>
       name in params ? String(params[name]) : match,
@@ -59,7 +59,7 @@ function writeStoredLang(lang: Lang): void {
   safeStorage()?.setItem(STORAGE_KEY, lang);
 }
 
-/** localStorage ist im privaten Modus mancher Browser gesperrt. */
+/** Some browsers block localStorage in private mode. */
 function safeStorage(): Storage | null {
   try {
     return localStorage;

@@ -1,7 +1,7 @@
 @use 'tokens' as *;
 
-/* Schwarze Fläche mit schräger Oberkante: im Figma fällt die Kante über die
-   volle Breite (1440px) um rund 170px ab. */
+/* Black area with a slanted top edge: in Figma that edge drops by roughly
+   170px across the full width (1440px). */
 .contact {
   --slant: clamp(30px, 11.8vw, 170px);
 
@@ -10,8 +10,8 @@
   padding-bottom: var(--space-xl);
   background: var(--ink);
   color: var(--on-dark);
-  /* Die antialiaste Unterkante des clip-path lässt sonst eine 1px-Naht
-     zum ebenfalls schwarzen Footer durchscheinen. */
+  /* Without this the antialiased bottom edge of the clip-path leaves a 1px
+     seam showing through to the equally black footer. */
   margin-bottom: -1px;
 }
 
@@ -53,17 +53,17 @@
   text-align: left;
 }
 
-/* Felder wie im Design: nur eine Unterlinie, Beschriftung liegt im Feld und
-   rutscht bei Eingabe oder Fokus nach oben. */
+/* Fields as in the design: an underline only, the label sits inside the field
+   and slides up on focus or input. */
 .field {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* Platz, in den das Label beim Fokus nach oben rutscht. */
+  /* Room for the label to slide up into on focus. */
   padding-top: 22px;
 }
 
-/* Ruhezustand: das Label liegt wie im Design als Platzhalter im Feld. */
+/* Resting state: the label sits inside the field as in the design. */
 .field__label {
   position: absolute;
   top: 22px;
@@ -98,9 +98,9 @@
   border-bottom-color: var(--accent);
 }
 
-/* Chrome und Safari malen ausgefüllte Felder hellblau mit dunkler Schrift —
-   auf dem schwarzen Grund unlesbar. Der Innenschatten überdeckt die Füllung,
-   die absurd lange Verzögerung verhindert das kurze Aufblitzen beim Laden. */
+/* Chrome and Safari paint autofilled fields pale blue with dark text, which is
+   unreadable on the black background. The inset shadow covers that fill, and
+   the absurdly long delay stops it flashing up while the page loads. */
 .field__input:-webkit-autofill,
 .field__input:-webkit-autofill:hover,
 .field__input:-webkit-autofill:focus,
@@ -111,7 +111,7 @@
   transition: background-color 600000s 0s;
 }
 
-/* Das Label steht im Markup vor dem Feld — daher :has() statt Geschwister-Selektor. */
+/* The label precedes the field in the markup, hence :has() over a sibling selector. */
 .field:focus-within .field__label,
 .field:has(.field__input:not(:placeholder-shown)) .field__label {
   transform: translateY(-22px) scale(0.8);
@@ -121,14 +121,14 @@
   color: var(--accent);
 }
 
-/* Der Fokusring gehört ans Feld, nicht an den unsichtbaren Rahmen. */
+/* The focus ring belongs on the field, not on the invisible wrapper. */
 .field__input:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 
-/* Die Zeile steht immer da, auch leer — sonst springt beim ersten Fehler
-   alles darunter nach unten. */
+/* The line is always present, even when empty — otherwise everything below it
+   jumps down as soon as the first error appears. */
 .field__error {
   min-height: 1.2em;
   margin-top: var(--space-xs);

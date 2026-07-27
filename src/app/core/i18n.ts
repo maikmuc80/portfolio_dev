@@ -1,9 +1,9 @@
 /**
- * Alle sichtbaren Texte in Deutsch und Englisch.
+ * Every visible text in German and English.
  *
- * Die englischen Fassungen sind die Originaltexte aus dem Figma-Design,
- * die deutschen die Übersetzung dazu. Zum Anpassen der Inhalte reicht es,
- * hier zu editieren — die Templates greifen ausschließlich über die Keys zu.
+ * The English versions are the original strings from the Figma design, the
+ * German ones the translation. Templates only ever reach for the keys, so
+ * content changes stay in this file.
  */
 
 export const LANGS = ['de', 'en'] as const;
@@ -128,7 +128,7 @@ const de = {
   'privacy.back': 'Zurück zur Startseite',
 } as const;
 
-/** Alle Keys, die es geben darf. */
+/** Every key that may exist. */
 export type TranslationKey = keyof typeof de;
 
 const en: Record<TranslationKey, string> = {

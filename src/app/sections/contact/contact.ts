@@ -16,7 +16,7 @@ export class Contact {
   private readonly http = inject(HttpClient);
   protected readonly t = inject(TranslationService).t;
 
-  /** Mail-Skript im Web-Root, gleiche Domain wie die Seite — kein CORS nötig. */
+  /** Mail script in the web root, same origin as the site — no CORS needed. */
   private readonly endpoint = 'sendMail.php';
 
   protected readonly model = {
@@ -36,7 +36,7 @@ export class Contact {
 
     this.state.set('sending');
 
-    // text statt json: das PHP-Skript antwortet mit einer schlichten Textzeile.
+    // text instead of json: the PHP script answers with a plain line of text.
     this.http
       .post(
         this.endpoint,
@@ -52,7 +52,7 @@ export class Contact {
       });
   }
 
-  /** Alte Rückmeldung verschwindet, sobald wieder getippt wird. */
+  /** An old response disappears as soon as the visitor types again. */
   dismissFeedback(): void {
     if (this.state() === 'sent' || this.state() === 'error') {
       this.state.set('idle');

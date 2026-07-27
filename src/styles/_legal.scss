@@ -1,8 +1,8 @@
 @use 'tokens' as *;
 
-// Gemeinsames Layout für Impressum und Datenschutzerklärung nach den
-// Figma-Frames 164356:2600 (Legal notice) und 164356:2763 (Privacy Policy):
-// zentrierte Überschrift, ~965px breite Textspalte, grüne Zwischentitel.
+// Shared layout for the legal notice and the privacy policy, following the
+// Figma frames 164356:2600 (Legal notice) and 164356:2763 (Privacy Policy):
+// centred heading, ~965px text column, green subheadings.
 @mixin legal-page {
   width: min(100% - 2 * var(--gutter), 965px);
   margin-inline: auto;
@@ -12,8 +12,8 @@
   h1 {
     font-family: var(--font-display);
     font-weight: 800;
-    // "Datenschutzerklärung" ist rund 18-mal so breit wie die Schriftgröße
-    // und würde bei vollen 78px aus der Spalte laufen.
+    // "Datenschutzerklärung" is about 18 times as wide as the font size and
+    // would run out of the column at the full 78px.
     font-size: min(var(--fs-section), 52px);
     line-height: 1.05;
     letter-spacing: var(--ls-wide);

@@ -1,8 +1,8 @@
 @use 'tokens' as *;
 
-/* Im Figma gehört der Footer optisch zum schwarzen Kontaktbereich. Damit er
-   auch auf Impressum und Datenschutz funktioniert, bringt er den Hintergrund
-   selbst mit — auf der Startseite geht er dadurch nahtlos in .contact über. */
+/* In Figma the footer visually belongs to the black contact area. So that it
+   also works on the legal pages it brings its own background — on the home
+   page that makes it blend seamlessly into .contact. */
 .footer {
   padding-block: var(--space-xl);
   background: var(--ink);

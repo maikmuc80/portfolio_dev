@@ -16,10 +16,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideRouter(
       routes,
-      // Beim Seitenwechsel nach oben springen, Anker-Links weiterhin anspringen.
+      // Jump to the top on navigation, but still honour anchor links.
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
     ),
-    // Früh instanziieren, damit <html lang>, Seitentitel und Meta-Description stehen.
+    // Instantiate early so <html lang>, page title and meta description are set.
     provideAppInitializer(() => {
       inject(TranslationService);
     }),

@@ -31,7 +31,7 @@
   gap: var(--space-md);
 }
 
-/* Zähler 01/04 — im Design Syne Bold, auf der dem Bild gegenüberliegenden Seite. */
+/* Counter 01/04 — Syne Bold in the design, on the side opposite the image. */
 .project__counter {
   font-family: var(--font-display);
   font-weight: 700;
@@ -43,7 +43,7 @@
   position: relative;
 }
 
-/* Im Design liegt hinter dem Screenshot ein schwarzer, versetzter Rahmen. */
+/* The design places an offset black frame behind the screenshot. */
 .project__media::before {
   content: '';
   position: absolute;
@@ -65,7 +65,7 @@
   filter: grayscale(0);
 }
 
-/* Runder Pfeil-Button, überlappt die rechte Bildkante wie im Figma. */
+/* Round arrow button, overlapping the right image edge as in Figma. */
 .project__open {
   position: absolute;
   right: -34px;
@@ -97,7 +97,7 @@
   letter-spacing: var(--ls-tight);
 }
 
-/* Tech-Stack als grüne Zeile mit grauen Trennstrichen — wie im Design. */
+/* Tech stack as a green line with grey separators — as in the design. */
 .project__tech {
   margin-top: var(--space-sm);
   color: var(--accent);
@@ -120,7 +120,7 @@
 }
 
 @include from-tablet {
-  /* Im Design wechseln Bild und Text pro Projekt die Seite. */
+  /* In the design image and text swap sides from project to project. */
   .project {
     grid-template-columns: minmax(0, 1fr) minmax(0, 620px);
     align-items: center;
@@ -157,7 +157,7 @@
     grid-column: 1;
   }
 
-  /* Gespiegelt: Rahmenversatz und Pfeil wandern auf die andere Seite. */
+  /* Mirrored: frame offset and arrow move over to the other side. */
   .project--flipped .project__media::before {
     inset: 12px 12px -12px -12px;
   }
