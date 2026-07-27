@@ -54,42 +54,17 @@ export const SKILLS: Skill[] = [
 ];
 
 /**
- * PLATZHALTER: Projekte und Screenshots stammen aus der Figma-Vorlage der
- * Developer Akademie. Titel, Beschreibung (i18n.ts unter `projects.<key>.desc`),
- * Links und Bild austauschen, sobald deine eigene Arbeit fertig ist.
+ * Leere Felder werden im Template übersprungen: ohne Bild kein Screenshot,
+ * ohne URL kein Live- bzw. Github-Button.
  */
 export const PROJECTS: Project[] = [
   {
-    key: 'join',
-    title: 'Join',
-    tags: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'],
-    image: 'join',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    key: 'sharkie',
-    title: 'Sharkie',
-    tags: ['JavaScript', 'HTML', 'CSS'],
-    image: 'sharkie',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    key: 'dabubble',
-    title: 'DABubble',
-    tags: ['Angular', 'TypeScript', 'Firebase'],
-    image: 'dabubble',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    key: 'pokedex',
-    title: 'Pokédex',
-    tags: ['JavaScript', 'HTML', 'CSS', 'API'],
-    image: 'pokedex',
-    liveUrl: '#',
-    githubUrl: '#',
+    key: 'elpoco',
+    title: 'Elpoco',
+    tags: [],
+    image: '',
+    liveUrl: '',
+    githubUrl: '',
   },
 ];
 

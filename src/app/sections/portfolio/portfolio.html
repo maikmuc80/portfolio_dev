@@ -11,29 +11,35 @@
           <p class="project__counter" aria-hidden="true">{{ counter(i) }}</p>
 
           <div class="project__media">
-            <img
-              [src]="'assets/img/projects/' + project.image + '-1240.webp'"
-              [srcset]="
-                'assets/img/projects/' +
-                project.image +
-                '-640.webp 640w, assets/img/projects/' +
-                project.image +
-                '-1240.webp 1240w'
-              "
-              sizes="(min-width: 768px) 620px, calc(100vw - 48px)"
-              width="620"
-              height="393"
-              [alt]="project.title"
-              loading="lazy"
-            />
+            @if (project.image) {
+              <img
+                [src]="'assets/img/projects/' + project.image + '-1240.webp'"
+                [srcset]="
+                  'assets/img/projects/' +
+                  project.image +
+                  '-640.webp 640w, assets/img/projects/' +
+                  project.image +
+                  '-1240.webp 1240w'
+                "
+                sizes="(min-width: 768px) 620px, calc(100vw - 48px)"
+                width="620"
+                height="393"
+                [alt]="project.title"
+                loading="lazy"
+              />
+            }
             <!-- Runder Pfeil-Button aus dem Design, überlappt die Bildkante. -->
-            <a
-              class="project__open"
-              [href]="project.liveUrl"
-              [attr.aria-label]="tp('portfolio.openLabel', { title: project.title })"
-            >
-              <img src="assets/icons/open-arrow.svg" alt="" width="76" height="76" />
-            </a>
+            @if (project.liveUrl) {
+              <a
+                class="project__open"
+                [href]="project.liveUrl"
+                [attr.aria-label]="tp('portfolio.openLabel', { title: project.title })"
+                rel="noopener"
+                target="_blank"
+              >
+                <img src="assets/icons/open-arrow.svg" alt="" width="76" height="76" />
+              </a>
+            }
           </div>
 
           <div class="project__body">
@@ -50,7 +56,15 @@
 
             <p class="project__desc">{{ t(descKey(project.key)) }}</p>
 
-            <a class="btn project__github" [href]="project.githubUrl">Github</a>
+            @if (project.githubUrl) {
+              <a
+                class="btn project__github"
+                [href]="project.githubUrl"
+                rel="noopener"
+                target="_blank"
+                >Github</a
+              >
+            }
           </div>
 
           <span class="visually-hidden">
