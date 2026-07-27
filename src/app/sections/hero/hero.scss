@@ -1,12 +1,21 @@
 @use 'tokens' as *;
 
+/* Above the fold: die Sektion füllt den Viewport. svh statt vh, damit die
+   ein- und ausfahrende Adressleiste auf Mobilgeräten nicht dazwischenfunkt.
+   min-height statt height — bei sehr flachen Fenstern darf der Inhalt wachsen. */
 .hero {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
   padding-top: calc(var(--header-h) + var(--space-lg));
   padding-bottom: var(--section-gap);
 }
 
 .hero__inner {
   @include container;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 /* "Frontend" / "Developer" — Syne ExtraBold, 45px mobil bis 128px auf Desktop.
@@ -49,11 +58,13 @@
   background: var(--ink);
 }
 
+/* Sitzt am unteren Rand des Viewports, hält aber Mindestabstand zum Namen. */
 .hero__meta {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: var(--section-gap);
+  margin-top: auto;
+  padding-top: var(--section-gap);
 }
 
 /* Senkrecht laufende E-Mail-Adresse an der linken Kante. */
