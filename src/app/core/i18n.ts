@@ -35,6 +35,7 @@ const de = {
   'about.title': 'Über mich',
   'about.text':
     'Ich bin Frontend Developer und lerne aktuell an der Developer Akademie. Am Programmieren begeistert mich, aus einer Idee etwas zu bauen, das Menschen wirklich benutzen. Probleme gehe ich analytisch an: erst verstehen, dann zerlegen, dann sauber lösen. Was mich ausmacht: Ausdauer, Neugier auf neue Technologien und die Bereitschaft, im Team Verantwortung zu übernehmen.',
+  'about.photoAlt': 'Porträtfoto von Maik Radke',
   'about.location': 'Zuhause in Berchtesgaden',
   'about.remote': 'Offen für Remote-Arbeit',
   'about.cta': 'Lass uns reden',
@@ -154,6 +155,7 @@ const en: Record<TranslationKey, string> = {
   'about.title': 'About me',
   'about.text':
     "I'm a frontend developer, currently training at Developer Akademie. What draws me to coding is turning an idea into something people actually use. I approach problems analytically: understand first, break it down, then solve it cleanly. What defines me: persistence, curiosity about new technologies, and a willingness to take responsibility within a team.",
+  'about.photoAlt': 'Portrait photo of Maik Radke',
   'about.location': 'Based in Berchtesgaden',
   'about.remote': 'Open to work remote',
   'about.cta': "Let's talk",

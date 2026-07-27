@@ -45,7 +45,7 @@
     <ul class="menu__list">
       @for (section of sections; track section) {
         <li>
-          <a class="menu__link" [href]="'#' + section" (click)="closeMenu()">
+          <a class="menu__link" routerLink="/" [fragment]="section" (click)="closeMenu()">
             {{ t(navKey(section)) }}
           </a>
         </li>

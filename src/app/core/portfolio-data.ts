@@ -37,7 +37,7 @@ export const PROFILE = {
   /** Kürzel im Logo — im Figma steht dort [SE] für den Muster-Namen. */
   initials: 'MR',
   email: 'maikmuc80@gmail.com',
-  copyrightYear: 2026,
+  copyrightYear: new Date().getFullYear(),
 };
 
 export const SKILLS: Skill[] = [
