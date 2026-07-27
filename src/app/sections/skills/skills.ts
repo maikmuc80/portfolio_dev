@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SKILLS } from '../../core/portfolio-data';
+import { TranslationService } from '../../core/translation-service';
 
 @Component({
   selector: 'app-skills',
@@ -8,5 +9,6 @@ import { SKILLS } from '../../core/portfolio-data';
   styleUrl: './skills.scss',
 })
 export class Skills {
-  skills = SKILLS;
+  protected readonly t = inject(TranslationService).t;
+  protected readonly skills = SKILLS;
 }

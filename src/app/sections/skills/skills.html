@@ -1,13 +1,39 @@
-<section class="skills">
-  <h2>My Skills</h2>
+<section class="skills" id="skills">
+  <div class="skills__inner">
+    <div class="skills__box">
+      <!-- Die Überschrift durchbricht die obere Rahmenlinie: die Linie besteht
+           deshalb aus zwei Segmenten links und rechts des Titels. -->
+      <div class="skills__head">
+        <span class="skills__rule" aria-hidden="true"></span>
+        <h2 class="section-title">{{ t('skills.title') }}</h2>
+        <span class="skills__rule" aria-hidden="true"></span>
+      </div>
 
-  @if (skills.length > 0) {
-    <div class="skill-grid">
-      @for (skill of skills; track skill) {
-        <div class="skill">{{ skill }}</div>
-      }
+      <ul class="skills__grid">
+        @for (skill of skills; track skill.name) {
+          <li class="skill">
+            <img
+              class="skill__icon"
+              [src]="'assets/icons/' + skill.icon + '.svg'"
+              alt=""
+              width="75"
+              height="75"
+            />
+            <span class="skill__name">{{ skill.name }}</span>
+          </li>
+        }
+      </ul>
+
+      <p class="skills__more">
+        <img src="assets/icons/learn.svg" alt="" width="75" height="75" />
+        <span>
+          {{ t('skills.question') }}
+          <a href="#contact">{{ t('skills.cta') }}</a>
+          {{ t('skills.closing') }}
+        </span>
+      </p>
     </div>
-  } @else {
-    <p>Bald gibt's hier mehr zu sehen!</p>
-  }
+  </div>
+
+  <img class="skills__arrow" src="assets/icons/arrow-right.svg" alt="" aria-hidden="true" />
 </section>

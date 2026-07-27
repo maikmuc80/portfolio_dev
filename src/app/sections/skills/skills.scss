@@ -1,20 +1,119 @@
+@use 'tokens' as *;
+
 .skills {
-  padding: 4rem 2rem;
+  padding-bottom: var(--section-gap);
+}
+
+.skills__inner {
+  @include container;
+}
+
+/* Rahmen ohne Oberkante — die liefert .skills__head links und rechts des Titels. */
+.skills__box {
+  border: 2px solid var(--ink);
+  border-top: none;
+  padding: 0 var(--space-md) var(--space-lg);
+}
+
+.skills__head {
+  display: flex;
+  align-items: center;
+  /* Auf schmalen Geräten füllt "Meine Skills" die Zeile fast komplett —
+     der Abstand zu den Linien muss klein bleiben, sonst läuft es über. */
+  gap: var(--space-xs);
+  /* Titel nach oben aus dem Kasten herausziehen, damit die Linie ihn schneidet. */
+  margin: calc(var(--fs-section) * -0.5) calc(var(--space-md) * -1) 0;
+}
+
+.skills__head .section-title {
+  flex-shrink: 0;
   text-align: center;
 }
 
-.skill-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  max-width: 700px;
-  margin: 2rem auto 0;
+.skills__rule {
+  flex: 1;
+  height: 2px;
+  background: var(--ink);
+}
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg) var(--space-md);
+  margin: var(--space-xl) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .skill {
-  border: 2px solid #0d0d0d;
-  border-radius: 999px;
-  padding: 0.6rem 1.4rem;
-  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.skill__icon {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+
+.skill__name {
+  font-weight: 700;
+  font-size: var(--fs-label);
+  line-height: 1.2;
+}
+
+.skills__more {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.skills__more img {
+  width: 75px;
+  height: 75px;
+  flex-shrink: 0;
+}
+
+.skills__more a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.skills__more a:hover,
+.skills__more a:focus-visible {
+  text-decoration: underline;
+}
+
+.skills__arrow {
+  display: block;
+  width: clamp(90px, 11vw, 158px);
+  height: auto;
+  margin-top: var(--section-gap);
+  /* linksbündig, aber innerhalb der Inhaltsspalte */
+  margin-left: max(var(--gutter), (100% - var(--container)) / 2);
+  margin-right: auto;
+}
+
+@include from-tablet {
+  .skills__box {
+    padding: 0 var(--space-xl) var(--space-xl);
+  }
+
+  .skills__head {
+    gap: var(--space-md);
+    margin-inline: calc(var(--space-xl) * -1);
+  }
+
+  .skills__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: var(--space-xl) var(--space-md);
+  }
+
+  .skills__more {
+    justify-content: center;
+  }
 }
