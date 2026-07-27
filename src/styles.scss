@@ -1,22 +1,173 @@
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/600.css';
-@import '@fontsource/poppins/800.css';
+@use 'tokens' as *;
+
+/* ---------------------------------------------------------------------------
+   Design-Tokens — alle Werte aus dem Figma-Frame "06_Version 3 - Desktop"
+   (Node 311:669) bzw. "07_Version 3_ Mobile" (Node 370:3422) ausgelesen.
+   --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #f4f3ee;
-  --ink: #0d0d0d;
-  --accent: #2fbfad;
-  --font: 'Poppins', system-ui, sans-serif;
+  /* Farben */
+  --bg: #fffcf3;
+  --ink: #000000;
+  --accent: #00bc8f;
+  --pattern: #f0dbc7;
+  --error: #e61c40;
+  --muted: #bbbbbb;
+  --grey: #d9d9d9;
+  --on-dark: #fffcf3;
+
+  /* Schriften */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'Overpass', system-ui, sans-serif;
+  --font-mono: 'Overpass Mono', ui-monospace, monospace;
+
+  /* Typo-Skala: linear zwischen 390px und 1440px Viewport-Breite.
+     Die clamp()-Grenzen sind exakt die Figma-Werte für Mobile und Desktop. */
+  --fs-hero: clamp(45px, 0.886rem + 7.905vw, 128px); /* 45 -> 128 */
+  --fs-section: clamp(36px, 1.275rem + 4vw, 78px); /*  36 ->  78 */
+  --fs-name: clamp(23px, 0.857rem + 2.381vw, 48px); /*  23 ->  48 */
+  --fs-counter: clamp(23px, 0.857rem + 2.381vw, 48px); /*  23 ->  48 */
+  --fs-sayhi: clamp(45px, 2.046rem + 3.143vw, 78px); /*  45 ->  78 */
+  --fs-body: clamp(20px, 1.204rem + 0.19vw, 22px); /*  20 ->  22 */
+  --fs-lead: 32px;
+  --fs-ref: 18px;
+  --fs-btn: 23px;
+  --fs-label: 16px;
+  --fs-small: 14px;
+
+  /* Laufweite — im Figma auf Mobile und Desktop identisch relativ zur Größe */
+  --ls-tight: -0.025em;
+  --ls-wide: 0.01em;
+
+  /* Layout */
+  --container: 1240px;
+  --gutter: 24px;
+  --header-h: 92px;
+
+  /* Abstände */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+  --section-gap: clamp(72px, 4rem + 6vw, 160px);
 }
 
-* {
+/* ---------------------------------------------------------------------------
+   Reset & Basis
+   --------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* Anker landen sonst unter dem fixierten Header. */
+  scroll-padding-top: var(--header-h);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
-  font-family: var(--font);
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--ink);
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.2;
+  /* Punktmuster: 3x3px Punkte im Raster 104x126px (Figma-Node 368:1998). */
+  background-image: radial-gradient(circle at 1.5px 1.5px, var(--pattern) 1.5px, transparent 1.6px);
+  background-size: 104px 126px;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+/* Tastaturbedienung — im Figma nicht vorgesehen, aber notwendig. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+   Wiederkehrende Bausteine
+   --------------------------------------------------------------------------- */
+
+.container {
+  @include container;
+}
+
+/* Section-Überschriften: "About me", "My skills", "Portfolio", "References" */
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-section);
+  line-height: 1;
+  letter-spacing: var(--ls-wide);
+}
+
+/* Umrandeter Button, z.B. "Let's talk" und "Send message" */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 68px;
+  padding: 0 var(--space-lg);
+  border: 2px solid currentcolor;
+  background: none;
+  font-size: var(--fs-btn);
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.btn:disabled {
+  border-color: var(--muted);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background: none;
+}
+
+.visually-hidden {
+  @include visually-hidden;
 }

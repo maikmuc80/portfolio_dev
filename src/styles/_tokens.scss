@@ -1,0 +1,47 @@
+// Geteilte SCSS-Tokens für Komponenten-Styles.
+// Farben und Typo-Skala liegen als CSS-Custom-Properties in src/styles.scss —
+// hier steht nur, was Sass zur Compile-Zeit braucht (Media Queries, Mixins).
+
+// Breakpoints. Die Figma-Frames sind 390 (mobil) und 1440 (Desktop) breit.
+$bp-mobile: 390px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-design: 1440px;
+
+// Ab Tablet: das zweispaltige Desktop-Layout greift.
+@mixin from-tablet {
+  @media (min-width: $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin from-desktop {
+  @media (min-width: $bp-desktop) {
+    @content;
+  }
+}
+
+@mixin until-tablet {
+  @media (max-width: #{$bp-tablet - 0.02px}) {
+    @content;
+  }
+}
+
+// Inhaltsspalte: 1240px breit, sonst 24px Rand — exakt wie in den Figma-Frames
+// (1440 - 1240) / 2 = 100px Rand auf Desktop, 24px auf Mobile.
+@mixin container {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+
+// Sichtbar nur für Screenreader.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

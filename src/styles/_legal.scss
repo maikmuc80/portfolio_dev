@@ -1,0 +1,62 @@
+@use 'tokens' as *;
+
+// Gemeinsames Layout für Impressum und Datenschutzerklärung nach den
+// Figma-Frames 164356:2600 (Legal notice) und 164356:2763 (Privacy Policy):
+// zentrierte Überschrift, ~965px breite Textspalte, grüne Zwischentitel.
+@mixin legal-page {
+  width: min(100% - 2 * var(--gutter), 965px);
+  margin-inline: auto;
+  padding-top: calc(var(--header-h) + var(--space-xl));
+  padding-bottom: var(--section-gap);
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    // "Datenschutzerklärung" ist rund 18-mal so breit wie die Schriftgröße
+    // und würde bei vollen 78px aus der Spalte laufen.
+    font-size: min(var(--fs-section), 52px);
+    line-height: 1.05;
+    letter-spacing: var(--ls-wide);
+    text-align: center;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  h2 {
+    margin-top: var(--space-lg);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: var(--fs-ref);
+    line-height: 1.2;
+  }
+
+  p {
+    margin-top: var(--space-xs);
+    font-size: var(--fs-label);
+    line-height: 1.4;
+  }
+
+  h1 + p,
+  h1 + .legal__placeholder {
+    margin-top: var(--space-xl);
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .legal__back {
+    display: inline-block;
+    margin-top: var(--space-xl);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+    font-size: var(--fs-label);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .legal__back:hover,
+  .legal__back:focus-visible {
+    color: var(--accent);
+  }
+}
