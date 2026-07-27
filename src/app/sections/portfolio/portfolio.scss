@@ -1,35 +1,184 @@
+@use 'tokens' as *;
+
 .portfolio {
-  padding: 4rem 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  padding-bottom: var(--section-gap);
+}
+
+.portfolio__inner {
+  @include container;
+}
+
+.portfolio__head {
   text-align: center;
 }
 
-.project-list {
-  display: grid;
-  gap: 2rem;
-  margin-top: 2rem;
+.portfolio__intro {
+  max-width: 620px;
+  margin: var(--space-md) auto 0;
+}
+
+.portfolio__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  margin: var(--section-gap) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
 .project {
-  border: 1px solid #ddd;
-  border-radius: 14px;
-  padding: 1.5rem;
-  text-align: left;
+  display: grid;
+  gap: var(--space-md);
 }
 
-.tags {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
+/* Zähler 01/04 — im Design Syne Bold, auf der dem Bild gegenüberliegenden Seite. */
+.project__counter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-counter);
+  line-height: 1.2;
 }
 
-.tags li {
-  font-size: 0.8rem;
-  border: 1px solid #999;
-  border-radius: 999px;
-  padding: 0.3rem 0.8rem;
+.project__media {
+  position: relative;
+}
+
+/* Im Design liegt hinter dem Screenshot ein schwarzer, versetzter Rahmen. */
+.project__media::before {
+  content: '';
+  position: absolute;
+  inset: 12px -12px -12px 12px;
+  border: 3px solid var(--ink);
+  pointer-events: none;
+}
+
+.project__media img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  filter: grayscale(1);
+  transition: filter 0.3s;
+}
+
+.project:hover .project__media img,
+.project:focus-within .project__media img {
+  filter: grayscale(0);
+}
+
+/* Runder Pfeil-Button, überlappt die rechte Bildkante wie im Figma. */
+.project__open {
+  position: absolute;
+  right: -34px;
+  top: 50%;
+  translate: 0 -50%;
+  display: block;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.project__open:hover,
+.project__open:focus-visible {
+  transform: scale(1.08);
+}
+
+.project__open img {
+  width: 100%;
+  height: 100%;
+  filter: none;
+}
+
+.project__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-name);
+  line-height: 1.1;
+  letter-spacing: var(--ls-tight);
+}
+
+/* Tech-Stack als grüne Zeile mit grauen Trennstrichen — wie im Design. */
+.project__tech {
+  margin-top: var(--space-sm);
+  color: var(--accent);
+  font-size: var(--fs-body);
+  line-height: 1.3;
+}
+
+.project__sep {
+  margin-inline: 6px;
+  color: var(--muted);
+}
+
+.project__desc {
+  margin-top: var(--space-sm);
+  color: var(--ink);
+}
+
+.project__github {
+  margin-top: var(--space-lg);
+}
+
+@include from-tablet {
+  /* Im Design wechseln Bild und Text pro Projekt die Seite. */
+  .project {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 620px);
+    align-items: center;
+    column-gap: calc(var(--space-xl) + 34px);
+  }
+
+  .project__counter {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .project__media {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .project__body {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .project--flipped {
+    grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+  }
+
+  .project--flipped .project__counter,
+  .project--flipped .project__body {
+    grid-column: 2;
+    text-align: right;
+  }
+
+  .project--flipped .project__media {
+    grid-column: 1;
+  }
+
+  /* Gespiegelt: Rahmenversatz und Pfeil wandern auf die andere Seite. */
+  .project--flipped .project__media::before {
+    inset: 12px 12px -12px -12px;
+  }
+
+  .project--flipped .project__open {
+    right: auto;
+    left: -34px;
+  }
+}
+
+@include until-tablet {
+  .project__open {
+    right: 8px;
+    top: auto;
+    bottom: -34px;
+    translate: none;
+    width: 56px;
+    height: 56px;
+  }
+
+  .project__media::before {
+    inset: 8px -8px -8px 8px;
+  }
 }

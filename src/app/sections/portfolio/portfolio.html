@@ -1,18 +1,63 @@
-<section class="portfolio">
-  <h2>Portfolio</h2>
+<section class="portfolio" id="portfolio">
+  <div class="portfolio__inner">
+    <header class="portfolio__head">
+      <h2 class="section-title">{{ t('portfolio.title') }}</h2>
+      <p class="portfolio__intro">{{ t('portfolio.intro') }}</p>
+    </header>
 
-  <div class="project-list">
-    @for (project of projects; track project.title) {
-      <article class="project">
-        <h3>{{ project.title }}</h3>
-        <p>{{ project.description }}</p>
+    <ol class="portfolio__list">
+      @for (project of projects; track project.key; let i = $index) {
+        <li class="project" [class.project--flipped]="i % 2 === 1">
+          <p class="project__counter" aria-hidden="true">{{ counter(i) }}</p>
 
-        <ul class="tags">
-          @for (tag of project.tags; track tag) {
-            <li>{{ tag }}</li>
-          }
-        </ul>
-      </article>
-    }
+          <div class="project__media">
+            <img
+              [src]="'assets/img/projects/' + project.image + '-1240.webp'"
+              [srcset]="
+                'assets/img/projects/' +
+                project.image +
+                '-640.webp 640w, assets/img/projects/' +
+                project.image +
+                '-1240.webp 1240w'
+              "
+              sizes="(min-width: 768px) 620px, calc(100vw - 48px)"
+              width="620"
+              height="393"
+              [alt]="project.title"
+              loading="lazy"
+            />
+            <!-- Runder Pfeil-Button aus dem Design, überlappt die Bildkante. -->
+            <a
+              class="project__open"
+              [href]="project.liveUrl"
+              [attr.aria-label]="tp('portfolio.openLabel', { title: project.title })"
+            >
+              <img src="assets/icons/open-arrow.svg" alt="" width="76" height="76" />
+            </a>
+          </div>
+
+          <div class="project__body">
+            <h3 class="project__title">{{ project.title }}</h3>
+
+            <p class="project__tech">
+              @for (tag of project.tags; track tag; let last = $last) {
+                <span>{{ tag }}</span>
+                @if (!last) {
+                  <span class="project__sep" aria-hidden="true">|</span>
+                }
+              }
+            </p>
+
+            <p class="project__desc">{{ t(descKey(project.key)) }}</p>
+
+            <a class="btn project__github" [href]="project.githubUrl">Github</a>
+          </div>
+
+          <span class="visually-hidden">
+            {{ tp('portfolio.counter', { n: i + 1, total: projects.length }) }}
+          </span>
+        </li>
+      }
+    </ol>
   </div>
 </section>
