@@ -18,9 +18,9 @@
   flex-direction: column;
 }
 
-/* "Frontend" / "Developer" — Syne ExtraBold, 45px on mobile up to 128px on
-   desktop. Neither word can be broken. In Syne ExtraBold "Developer" measures
-   about 7.91 times the font size in width, so the design ramp is additionally
+/* "Fullstack" / "Developer" — Syne ExtraBold, 45px on mobile up to 128px on
+   desktop. Neither word can be broken. "Developer" is the wider of the two and
+   measures about 7.91 times the font size, so the design ramp is additionally
    capped at the available line width — otherwise the headline runs over the
    edge on narrow devices. */
 .hero__title {
@@ -32,7 +32,7 @@
   font-size: min(var(--fs-hero), (100vw - 2 * var(--gutter)) / 7.91);
   line-height: 1;
   letter-spacing: var(--ls-tight);
-  text-align: right;
+  text-align: center;
 }
 
 .hero__line {
@@ -108,10 +108,6 @@
 }
 
 @include until-tablet {
-  .hero__title {
-    text-align: left;
-  }
-
   .hero__name {
     justify-content: flex-end;
     font-size: var(--fs-name);
