@@ -50,14 +50,7 @@ const de = {
   'portfolio.counter': 'Projekt {{n}} von {{total}}',
   'portfolio.openLabel': '{{title}} live ansehen',
 
-  'projects.join.desc':
-    'Aufgabenverwaltung nach dem Kanban-Prinzip. Aufgaben anlegen und organisieren, per Drag & Drop verschieben, Nutzer und Kategorien zuweisen.',
-  'projects.sharkie.desc':
-    'Ein einfaches Jump-and-Run auf objektorientierter Basis. Hilf Sharkie, Münzen und Giftflaschen zu sammeln, um gegen den Orca zu bestehen.',
-  'projects.dabubble.desc':
-    'Ein Slack-Klon: Teamkommunikation mit übersichtlicher Oberfläche, Nachrichten in Echtzeit und klar organisierten Channels.',
-  'projects.pokedex.desc':
-    'Auf Basis der PokéAPI — eine schlanke Bibliothek, die Pokémon-Informationen bereitstellt und katalogisiert.',
+  'projects.elpoco.desc': '',
 
   'references.title': 'Referenzen',
   'references.intro':
@@ -90,6 +83,10 @@ const de = {
   'footer.legal': 'Impressum',
   'footer.privacy': 'Datenschutz',
   'footer.top': 'Nach oben',
+
+  'social.github': 'GitHub-Profil',
+  'social.linkedin': 'LinkedIn-Profil',
+  'social.mail': 'E-Mail schreiben',
 
   'legal.title': 'Impressum',
   'legal.responsible': 'Angaben gemäß § 5 TMG',
@@ -172,14 +169,7 @@ const en: Record<TranslationKey, string> = {
   'portfolio.counter': 'Project {{n}} of {{total}}',
   'portfolio.openLabel': 'View {{title}} live',
 
-  'projects.join.desc':
-    'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
-  'projects.sharkie.desc':
-    'A simple Jump-and-Run game based on an object-oriented approach. Help sharkie to find coins and poison bottles to fight against the killer whale.',
-  'projects.dabubble.desc':
-    'This app is a Slack clone. It revolutionizes team communication and collaboration with its intuitive interface, real-time messaging, and robust channel organization.',
-  'projects.pokedex.desc':
-    'Based on the PokéAPI a simple library that provides and catalogues pokemon information.',
+  'projects.elpoco.desc': '',
 
   'references.title': 'References',
   'references.intro':
@@ -212,6 +202,10 @@ const en: Record<TranslationKey, string> = {
   'footer.legal': 'Legal notice',
   'footer.privacy': 'Privacy policy',
   'footer.top': 'Back to top',
+
+  'social.github': 'GitHub profile',
+  'social.linkedin': 'LinkedIn profile',
+  'social.mail': 'Write an email',
 
   'legal.title': 'Legal notice',
   'legal.responsible': 'Information according to § 5 TMG',

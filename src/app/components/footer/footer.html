@@ -11,7 +11,12 @@
       <ul class="footer__socials">
         @for (social of socials; track social.key) {
           <li>
-            <a [href]="social.href" [attr.aria-label]="social.key" rel="noopener" target="_blank">
+            <a
+              [href]="social.href"
+              [attr.aria-label]="t(socialKey(social.key))"
+              rel="noopener"
+              target="_blank"
+            >
               <img [src]="'assets/icons/' + social.icon + '.svg'" alt="" width="40" height="40" />
             </a>
           </li>
