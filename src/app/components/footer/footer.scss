@@ -18,13 +18,20 @@
 }
 
 .footer__logo {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 30px;
   line-height: 1;
-  letter-spacing: var(--ls-tight);
   text-decoration: none;
+}
+
+/* Same treatment as the header logo, see header.scss. */
+.footer__initials {
+  margin-right: 0.16em;
+  transform: skewX(-14deg);
+  letter-spacing: -0.16em;
 }
 
 .footer__copy {

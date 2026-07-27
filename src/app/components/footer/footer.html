@@ -2,7 +2,9 @@
   <div class="footer__inner">
     <div class="footer__brand">
       <a class="footer__logo" routerLink="/" [attr.aria-label]="profile.name">
-        <span aria-hidden="true">[</span>{{ profile.initials }}<span aria-hidden="true">]</span>
+        <span aria-hidden="true">[</span
+        ><span class="footer__initials">{{ profile.initials }}</span
+        ><span aria-hidden="true">]</span>
       </a>
       <p class="footer__copy">© {{ profile.name }} {{ profile.copyrightYear }}</p>
     </div>

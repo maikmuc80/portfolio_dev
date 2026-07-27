@@ -43,12 +43,22 @@
 /* Logo — a drawn [SE] in Figma; set as Syne text here so it follows the
    initials from portfolio-data.ts and scales cleanly. */
 .logo {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 30px;
   line-height: 1;
-  letter-spacing: var(--ls-tight);
   text-decoration: none;
+}
+
+/* The brackets stay upright while the initials lean and nest into each other,
+   the way the mark is drawn in the design. The right margin cancels the
+   letter-spacing that CSS also applies behind the last character. */
+.logo__initials {
+  margin-right: 0.16em;
+  transform: skewX(-14deg);
+  letter-spacing: -0.16em;
 }
 
 .header__actions {

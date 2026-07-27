@@ -5,7 +5,9 @@
 <header class="header" [class.header--transparent]="menuOpen()">
   <div class="header__inner">
     <a class="logo" routerLink="/" (click)="closeMenu()" [attr.aria-label]="profile.name">
-      <span aria-hidden="true">[</span>{{ profile.initials }}<span aria-hidden="true">]</span>
+      <span aria-hidden="true">[</span
+      ><span class="logo__initials">{{ profile.initials }}</span
+      ><span aria-hidden="true">]</span>
     </a>
 
     <div class="header__actions">
