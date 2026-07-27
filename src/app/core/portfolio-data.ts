@@ -36,7 +36,7 @@ export const PROFILE = {
   name: 'Maik Radke',
   /** Initials in the logo — Figma shows [SE] there for the sample name. */
   initials: 'MR',
-  email: 'maikmuc80@gmail.com',
+  email: 'kontakt@maik-radke.de',
   copyrightYear: new Date().getFullYear(),
 };
 
