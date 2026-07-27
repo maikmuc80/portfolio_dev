@@ -1,0 +1,33 @@
+<section class="references" id="references">
+  <div class="references__inner">
+    <header class="references__head">
+      <h2 class="section-title">{{ t('references.title') }}</h2>
+      <p class="references__intro">{{ t('references.intro') }}</p>
+    </header>
+
+    <ul class="references__list">
+      @for (reference of references; track reference.key) {
+        <li>
+          <figure class="reference">
+            <img
+              class="reference__quote"
+              src="assets/icons/quote.svg"
+              alt=""
+              width="29"
+              height="20"
+            />
+            <figcaption class="reference__person">
+              <span class="reference__name">{{ reference.name }}</span>
+              <span class="reference__role">{{ t(refKey(reference.key, 'role')) }}</span>
+            </figcaption>
+            <blockquote class="reference__text">
+              {{ t(refKey(reference.key, 'text')) }}
+            </blockquote>
+          </figure>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <img class="references__arrow" src="assets/icons/arrow-left.svg" alt="" aria-hidden="true" />
+</section>
