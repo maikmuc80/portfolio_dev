@@ -1,0 +1,34 @@
+<section class="about" id="about">
+  <div class="about__inner">
+    <div class="about__text">
+      <h2 class="section-title">{{ t('about.title') }}</h2>
+
+      <p class="about__body">{{ t('about.text') }}</p>
+
+      <ul class="about__facts">
+        <li>
+          <img src="assets/icons/house.svg" alt="" width="37" height="29" />
+          <span>{{ t('about.location') }}</span>
+        </li>
+        <li>
+          <img src="assets/icons/laptop.svg" alt="" width="40" height="29" />
+          <span>{{ t('about.remote') }}</span>
+        </li>
+      </ul>
+
+      <a class="btn about__cta" href="#contact">{{ t('about.cta') }}</a>
+    </div>
+
+    <img
+      class="about__photo"
+      src="assets/img/portrait-1066.webp"
+      srcset="assets/img/portrait-533.webp 533w, assets/img/portrait-1066.webp 1066w"
+      sizes="(min-width: 768px) 533px, calc(100vw - 48px)"
+      width="533"
+      height="533"
+      alt=""
+    />
+  </div>
+
+  <img class="about__arrow" src="assets/icons/arrow-left.svg" alt="" aria-hidden="true" />
+</section>

@@ -1,0 +1,82 @@
+@use 'tokens' as *;
+
+.about {
+  padding-bottom: var(--section-gap);
+}
+
+.about__inner {
+  @include container;
+
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.about__body {
+  margin-top: var(--space-lg);
+}
+
+.about__facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about__facts li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.about__facts img {
+  width: 40px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.about__cta {
+  margin-top: var(--space-lg);
+}
+
+.about__photo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Dekorativer Diagonalpfeil, der im Design zur nächsten Section überleitet. */
+.about__arrow {
+  display: block;
+  width: clamp(90px, 11vw, 158px);
+  height: auto;
+  margin-top: var(--section-gap);
+  /* rechtsbündig, aber innerhalb der Inhaltsspalte */
+  margin-left: auto;
+  margin-right: max(var(--gutter), (100% - var(--container)) / 2);
+}
+
+@include from-tablet {
+  .about__inner {
+    grid-template-columns: minmax(0, 619fr) minmax(0, 533fr);
+    align-items: start;
+    column-gap: var(--space-xl);
+  }
+
+  .about__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about__cta {
+    align-self: center;
+  }
+
+  .about__photo {
+    width: 533px;
+    max-width: 100%;
+    justify-self: end;
+  }
+}
