@@ -36,7 +36,7 @@ const de = {
   'about.text':
     'Ich bin Frontend Developer und lerne aktuell an der Developer Akademie. Am Programmieren begeistert mich, aus einer Idee etwas zu bauen, das Menschen wirklich benutzen. Probleme gehe ich analytisch an: erst verstehen, dann zerlegen, dann sauber lösen. Was mich ausmacht: Ausdauer, Neugier auf neue Technologien und die Bereitschaft, im Team Verantwortung zu übernehmen.',
   'about.photoAlt': 'Porträtfoto von Maik Radke',
-  'about.location': 'Zuhause in Berchtesgaden',
+  'about.location': 'Zu Hause in Berchtesgaden',
   'about.remote': 'Offen für Remote-Arbeit',
   'about.cta': 'Lass uns reden',
 
@@ -104,7 +104,7 @@ const de = {
     'Die Website wird bei einem externen Hosting-Anbieter betrieben, mit dem ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO besteht. Beim Aufruf der Seite erfasst der Server automatisch Zugriffsdaten in Logfiles: aufgerufene Seite, Datum und Uhrzeit, übertragene Datenmenge, Browsertyp, Betriebssystem und IP-Adresse. Diese Daten dienen ausschließlich dem sicheren und stabilen Betrieb der Website. Rechtsgrundlage ist das berechtigte Interesse nach Art. 6 Abs. 1 lit. f DSGVO. Die Logfiles werden nach spätestens sieben Tagen gelöscht.',
   'privacy.ssl.title': 'SSL-/TLS-Verschlüsselung',
   'privacy.ssl.text':
-    'Diese Seite nutzt aus Sicherheitsgründen eine SSL- beziehungsweise TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers mit „https://" beginnt und ein Schloss-Symbol zeigt. Ist die Verschlüsselung aktiv, können Dritte die Daten, die Sie an mich übermitteln, nicht mitlesen.',
+    'Diese Seite nutzt aus Sicherheitsgründen eine SSL- beziehungsweise TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers mit „https://“ beginnt und ein Schloss-Symbol zeigt. Ist die Verschlüsselung aktiv, können Dritte die Daten, die Sie an mich übermitteln, nicht mitlesen.',
   'privacy.form.title': 'Kontaktformular',
   'privacy.form.text':
     'Wenn Sie mir über das Kontaktformular schreiben, werden Ihr Name, Ihre E-Mail-Adresse und Ihr Nachrichtentext an meine E-Mail-Adresse weitergeleitet. Ich verwende diese Angaben ausschließlich, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit einem Vertrag zusammenhängt, andernfalls das berechtigte Interesse an der Beantwortung nach Art. 6 Abs. 1 lit. f DSGVO. Eine Weitergabe an Dritte findet nicht statt. Ich lösche die Daten, sobald Ihre Anfrage erledigt ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.',
@@ -224,13 +224,13 @@ const en: Record<TranslationKey, string> = {
     'This website runs with an external hosting provider, with whom a data processing agreement under Art. 28 GDPR is in place. Whenever the site is opened, the server automatically records access data in log files: the page requested, date and time, amount of data transferred, browser type, operating system and IP address. This data serves the secure and stable operation of the website only. The legal basis is legitimate interest under Art. 6(1)(f) GDPR. Log files are deleted after seven days at the latest.',
   'privacy.ssl.title': 'SSL/TLS encryption',
   'privacy.ssl.text':
-    'For security reasons this site uses SSL or TLS encryption. You can recognise an encrypted connection by the browser address bar starting with "https://" and showing a padlock icon. While encryption is active, the data you send me cannot be read by third parties.',
+    'For security reasons this site uses SSL or TLS encryption. You can recognize an encrypted connection by the browser address bar starting with “https://” and showing a padlock icon. While encryption is active, the data you send me cannot be read by third parties.',
   'privacy.form.title': 'Contact form',
   'privacy.form.text':
-    'When you write to me through the contact form, your name, email address and message are forwarded to my email address. I use these details solely to answer your enquiry. The legal basis is Art. 6(1)(b) GDPR where your enquiry relates to a contract, otherwise the legitimate interest in responding under Art. 6(1)(f) GDPR. The data is not passed on to third parties. I delete it as soon as your enquiry has been dealt with and no statutory retention periods apply.',
+    'When you write to me through the contact form, your name, email address and message are forwarded to my email address. I use these details solely to answer your inquiry. The legal basis is Art. 6(1)(b) GDPR where your inquiry relates to a contract, otherwise the legitimate interest in responding under Art. 6(1)(f) GDPR. The data is not passed on to third parties. I delete it as soon as your inquiry has been dealt with and no statutory retention periods apply.',
   'privacy.mail.title': 'Contact by email',
   'privacy.mail.text':
-    'If you email me directly, the same applies: your details are stored only to handle your enquiry and are deleted afterwards.',
+    'If you email me directly, the same applies: your details are stored only to handle your request and are deleted once it has been dealt with.',
   'privacy.storage.title': 'Language setting in your browser',
   'privacy.storage.text':
     'The site stores your chosen language in your browser’s local storage so that your choice is kept for your next visit. This is a purely technical entry with no personal reference; it is transmitted neither to me nor to third parties. You can delete it at any time through your browser settings.',
