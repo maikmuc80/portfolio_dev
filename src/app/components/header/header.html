@@ -1,14 +1,69 @@
-<header class="header">
-  <a class="logo">MR</a>
+<a class="skip-link" href="#main">{{ t('header.skipToContent') }}</a>
 
-  <button class="burger" (click)="toggleMenu()">
-    @if (menuOpen()) { ✕ } @else { ☰ }
-  </button>
+<!-- Bei offenem Menü wird der Hintergrund transparent, damit die schwarze
+     Overlay-Fläche bis unter den Header reicht und das Schließkreuz sichtbar ist. -->
+<header class="header" [class.header--transparent]="menuOpen()">
+  <div class="header__inner">
+    <a class="logo" routerLink="/" (click)="closeMenu()" [attr.aria-label]="profile.name">
+      <span aria-hidden="true">[</span>{{ profile.initials }}<span aria-hidden="true">]</span>
+    </a>
 
-  @if (menuOpen()) {
-  <nav class="menu">
-    <a routerLink="/" (click)="toggleMenu()">Home</a>
-    <a routerLink="/impressum" (click)="toggleMenu()">Impressum</a>
+    <div class="header__actions">
+      <div class="lang" role="group" [attr.aria-label]="t('header.langLabel')">
+        @for (lang of langs; track lang.code) {
+          <button
+            type="button"
+            class="lang__option"
+            [class.lang__option--active]="i18n.lang() === lang.code"
+            [attr.aria-pressed]="i18n.lang() === lang.code"
+            (click)="i18n.setLang(lang.code)"
+          >
+            {{ lang.label }}
+          </button>
+        }
+      </div>
+
+      <button
+        type="button"
+        class="burger"
+        [class.burger--open]="menuOpen()"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="menuOpen() ? t('header.close') : t('header.menu')"
+        aria-controls="main-menu"
+        (click)="toggleMenu()"
+      >
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+@if (menuOpen()) {
+  <nav id="main-menu" class="menu" (keydown.escape)="closeMenu()">
+    <ul class="menu__list">
+      @for (section of sections; track section) {
+        <li>
+          <a class="menu__link" [href]="'#' + section" (click)="closeMenu()">
+            {{ t(navKey(section)) }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="lang lang--in-menu" role="group" [attr.aria-label]="t('header.langLabel')">
+      @for (lang of langs; track lang.code) {
+        <button
+          type="button"
+          class="lang__option"
+          [class.lang__option--active]="i18n.lang() === lang.code"
+          [attr.aria-pressed]="i18n.lang() === lang.code"
+          (click)="i18n.setLang(lang.code)"
+        >
+          {{ lang.label }}
+        </button>
+      }
+    </div>
   </nav>
 }
-</header>

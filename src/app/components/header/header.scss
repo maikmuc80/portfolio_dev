@@ -1,43 +1,176 @@
+@use 'tokens' as *;
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 40;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-label);
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus-visible {
+  top: var(--space-sm);
+}
+
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0 0 auto;
+  z-index: 30;
+  height: var(--header-h);
+  background: var(--bg);
+}
+
+/* Menü offen: das Overlay soll bis unter den Header durchscheinen. */
+.header--transparent {
+  background: none;
+  color: var(--on-dark);
+}
+
+.header__inner {
+  @include container;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background: #f4f3ee;
-  z-index: 10;
+  height: 100%;
 }
 
+/* Logo — im Figma ein gezeichnetes [SE]; hier als Text in Syne, damit es
+   mit den Initialen aus portfolio-data.ts mitgeht und sauber skaliert. */
 .logo {
+  font-family: var(--font-display);
   font-weight: 800;
-  border: 2px solid #0d0d0d;
-  border-radius: 8px;
-  padding: 0.3rem 0.6rem;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  text-decoration: none;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.lang__option {
+  padding: 4px 8px;
+  border: 2px solid transparent;
+  background: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-label);
+  line-height: 1.2;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.lang__option--active {
+  border-color: var(--accent);
+}
+
+.lang__option:hover:not(.lang__option--active) {
+  color: var(--accent);
+}
+
+/* Mobil zeigt das Figma nur Logo und Burger — die Sprachwahl wandert ins Menü. */
+@include until-tablet {
+  .header__actions > .lang {
+    display: none;
+  }
+}
+
+.lang--in-menu {
+  justify-content: center;
+  margin-top: var(--space-xl);
+  color: var(--on-dark);
+}
+
+@include from-tablet {
+  .lang--in-menu {
+    display: none;
+  }
 }
 
 .burger {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.menu {
-  position: absolute;
-  top: 100%;
-  right: 2rem;
-  background: #0d0d0d;
-  padding: 1rem 2rem;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  justify-content: space-between;
+  width: 40px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  background: none;
 }
 
-.menu a {
-  color: #f4f3ee;
+.burger__bar {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: currentcolor;
+  transition:
+    transform 0.25s,
+    opacity 0.2s;
+}
+
+.burger--open .burger__bar:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
+.burger--open .burger__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger--open .burger__bar:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Overlay-Menü. Im Figma gibt es für Version 3 keinen eigenen Frame dafür —
+   Gestaltung übernommen aus dem Kontakt-Bereich (schwarz, Syne, Grün als Hover). */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--on-dark);
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.menu__link {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-section);
+  line-height: 1;
+  letter-spacing: var(--ls-wide);
   text-decoration: none;
+  transition: color 0.2s;
+}
+
+.menu__link:hover,
+.menu__link:focus-visible {
+  color: var(--accent);
 }
