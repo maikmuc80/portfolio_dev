@@ -1,5 +1,22 @@
-<section class="hero">
-  <h1>Fullstack<br />Developer</h1>
-  <p class="name">{{ profile.name }}</p>
-  <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+<section class="hero" id="hero">
+  <div class="hero__inner">
+    <h1 class="hero__title">
+      <span class="hero__line">{{ t('hero.line1') }}</span>
+      <span class="hero__line">{{ t('hero.line2') }}</span>
+    </h1>
+
+    <p class="hero__name">
+      <span class="hero__rule" aria-hidden="true"></span>
+      <span>{{ profile.name }}</span>
+    </p>
+
+    <div class="hero__meta">
+      <a class="hero__email" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+
+      <a class="hero__scroll" href="#about">
+        <img src="assets/icons/arrow-down.svg" alt="" width="56" height="98" />
+        <span>{{ t('hero.scroll') }}</span>
+      </a>
+    </div>
+  </div>
 </section>

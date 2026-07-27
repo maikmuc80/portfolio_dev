@@ -1,26 +1,108 @@
+@use 'tokens' as *;
+
 .hero {
-  min-height: 100vh;
+  padding-top: calc(var(--header-h) + var(--space-lg));
+  padding-bottom: var(--section-gap);
+}
+
+.hero__inner {
+  @include container;
+}
+
+/* "Frontend" / "Developer" — Syne ExtraBold, 45px mobil bis 128px auf Desktop.
+   Beide Wörter sind unteilbar. "Developer" ist in Syne ExtraBold rund das
+   7.91-fache der Schriftgröße breit (nachgemessen), deshalb wird die
+   Design-Rampe zusätzlich auf die verfügbare Zeilenbreite gedeckelt —
+   sonst läuft die Headline auf schmalen Geräten über den Rand. */
+.hero__title {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: min(var(--fs-hero), (100vw - 2 * var(--gutter)) / 7.91);
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  text-align: right;
+}
+
+.hero__line {
+  display: block;
+}
+
+/* Name in Grün, davor die waagerechte Linie aus dem Design. */
+.hero__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: var(--fs-name);
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+}
+
+.hero__rule {
+  flex: 1;
+  height: 2px;
+  background: var(--ink);
+}
+
+.hero__meta {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: var(--section-gap);
+}
+
+/* Senkrecht laufende E-Mail-Adresse an der linken Kante. */
+.hero__email {
+  font-weight: 300;
+  font-size: var(--fs-body);
+  line-height: 1;
+  letter-spacing: var(--ls-tight);
+  text-decoration: none;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  transition: color 0.2s;
+}
+
+.hero__email:hover,
+.hero__email:focus-visible {
+  color: var(--accent);
+}
+
+.hero__scroll {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: var(--space-xs);
+  font-weight: 300;
+  font-size: var(--fs-body);
+  line-height: 1.2;
   text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s;
 }
 
-.hero h1 {
-  font-size: 5rem;
-  line-height: 1;
-  margin: 0;
+.hero__scroll:hover,
+.hero__scroll:focus-visible {
+  transform: translateY(4px);
 }
 
-.name {
-  color: var(--accent);
-  font-size: 1.5rem;
-  margin-top: 1rem;
+.hero__scroll img {
+  width: clamp(38px, 4vw, 56px);
+  height: auto;
 }
 
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 3rem;
+@include until-tablet {
+  .hero__title {
+    text-align: left;
+  }
+
+  .hero__name {
+    justify-content: flex-end;
+    font-size: var(--fs-name);
   }
 }
