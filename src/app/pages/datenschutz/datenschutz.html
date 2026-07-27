@@ -1,5 +1,7 @@
 <section class="legal">
-  <h1>{{ t('legal.title') }}</h1>
+  <h1>{{ t('privacy.title') }}</h1>
+
+  <p class="legal__placeholder">{{ t('privacy.placeholder') }}</p>
 
   <h2>{{ t('legal.responsible') }}</h2>
   <p>Maik Radke<br />Buchenhöhe 1<br />83471 Berchtesgaden<br />Deutschland</p>
@@ -9,5 +11,5 @@
     <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
   </p>
 
-  <a class="legal__back" routerLink="/">← {{ t('legal.back') }}</a>
+  <a class="legal__back" routerLink="/">← {{ t('privacy.back') }}</a>
 </section>

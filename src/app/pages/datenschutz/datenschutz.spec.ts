@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { Impressum } from './impressum';
+import { Datenschutz } from './datenschutz';
 
-describe('Impressum', () => {
-  let component: Impressum;
-  let fixture: ComponentFixture<Impressum>;
+describe('Datenschutz', () => {
+  let component: Datenschutz;
+  let fixture: ComponentFixture<Datenschutz>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Impressum],
+      imports: [Datenschutz],
       providers: [provideRouter([])],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Impressum);
+    fixture = TestBed.createComponent(Datenschutz);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

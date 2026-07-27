@@ -4,12 +4,12 @@ import { PROFILE } from '../../core/portfolio-data';
 import { TranslationService } from '../../core/translation-service';
 
 @Component({
-  selector: 'app-impressum',
+  selector: 'app-datenschutz',
   imports: [RouterLink],
-  templateUrl: './impressum.html',
-  styleUrl: './impressum.scss',
+  templateUrl: './datenschutz.html',
+  styleUrl: './datenschutz.scss',
 })
-export class Impressum {
+export class Datenschutz {
   protected readonly t = inject(TranslationService).t;
   protected readonly profile = PROFILE;
 }

@@ -1,0 +1,5 @@
+@use 'legal' as *;
+
+.legal {
+  @include legal-page;
+}
