@@ -1,36 +1,192 @@
+@use 'tokens' as *;
+
+/* Schwarze Fläche mit schräger Oberkante: im Figma fällt die Kante über die
+   volle Breite (1440px) um rund 170px ab. */
 .contact {
-  padding: 4rem 2rem;
-  max-width: 500px;
-  margin: 0 auto;
+  --slant: clamp(30px, 11.8vw, 170px);
+
+  clip-path: polygon(0 0, 100% var(--slant), 100% 100%, 0 100%);
+  padding-top: calc(var(--slant) + var(--space-xl));
+  padding-bottom: var(--space-xl);
+  background: var(--ink);
+  color: var(--on-dark);
+  /* Die antialiaste Unterkante des clip-path lässt sonst eine 1px-Naht
+     zum ebenfalls schwarzen Footer durchscheinen. */
+  margin-bottom: -1px;
+}
+
+.contact__inner {
+  @include container;
+}
+
+.contact__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-sayhi);
+  line-height: 1;
+  letter-spacing: var(--ls-wide);
+}
+
+.contact__body {
+  margin-top: var(--space-xl);
   text-align: center;
 }
 
-form {
+.contact__lead {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: var(--fs-lead);
+  line-height: 1.2;
+}
+
+.contact__sub {
+  margin-top: var(--space-sm);
+}
+
+.form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: var(--space-lg);
+  max-width: 617px;
+  margin: var(--space-xl) auto 0;
+  text-align: left;
 }
 
-input,
-textarea {
-  padding: 0.8rem;
-  border: 1px solid #999;
-  border-radius: 8px;
-  font: inherit;
+/* Felder wie im Design: nur eine Unterlinie, Beschriftung liegt im Feld und
+   rutscht bei Eingabe oder Fokus nach oben. */
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Platz, in den das Label beim Fokus nach oben rutscht. */
+  padding-top: 22px;
 }
 
-button {
-  padding: 0.8rem;
+/* Ruhezustand: das Label liegt wie im Design als Platzhalter im Feld. */
+.field__label {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  font-size: var(--fs-label);
+  line-height: 1.2;
+  pointer-events: none;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+  transform-origin: left top;
+}
+
+.field__input {
+  width: 100%;
+  padding: 0 0 10px;
   border: none;
-  border-radius: 999px;
-  background: #0d0d0d;
-  color: #f4f3ee;
-  font-weight: 600;
+  border-bottom: 2px solid var(--on-dark);
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--fs-label);
+}
+
+.field__input--area {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.field__input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+/* Das Label steht im Markup vor dem Feld — daher :has() statt Geschwister-Selektor. */
+.field:focus-within .field__label,
+.field:has(.field__input:not(:placeholder-shown)) .field__label {
+  transform: translateY(-22px) scale(0.8);
+}
+
+.field:focus-within .field__label {
+  color: var(--accent);
+}
+
+/* Der Fokusring gehört ans Feld, nicht an den unsichtbaren Rahmen. */
+.field__input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.field__error {
+  margin-top: var(--space-xs);
+  color: var(--error);
+  font-size: var(--fs-small);
+  line-height: 1.2;
+}
+
+.field--check {
+  gap: var(--space-xs);
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--fs-small);
+  line-height: 1.22;
   cursor: pointer;
 }
 
-.ok {
-  color: #2fbfad;
-  font-weight: 600;
+.check__input {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.check__box {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--on-dark);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.check__input:checked + .check__box {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.check__input:focus-visible + .check__box {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.check__text a {
+  color: var(--accent);
+}
+
+.form__submit {
+  align-self: center;
+  min-width: 269px;
+}
+
+.form__hint {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.22;
+  text-align: center;
+}
+
+.form__success {
+  min-height: 1.2em;
+  color: var(--accent);
+  font-weight: 700;
+  text-align: center;
+}
+
+@include from-tablet {
+  .contact {
+    padding-bottom: var(--space-xl);
+  }
 }
