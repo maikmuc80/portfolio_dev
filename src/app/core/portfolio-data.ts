@@ -76,9 +76,13 @@ export const REFERENCES: Reference[] = [
 ];
 
 export const SOCIALS: SocialLink[] = [
-  { key: 'github', href: 'https://github.com/', icon: 'github' },
+  { key: 'github', href: 'https://github.com/maikmuc80', icon: 'github' },
   { key: 'mail', href: `mailto:${PROFILE.email}`, icon: 'mail' },
-  { key: 'linkedin', href: 'https://www.linkedin.com/', icon: 'linkedin' },
+  {
+    key: 'linkedin',
+    href: 'https://www.linkedin.com/in/maik-radke-396bb7158/',
+    icon: 'linkedin',
+  },
 ];
 
 /** Navigation anchor targets, in page order. */
