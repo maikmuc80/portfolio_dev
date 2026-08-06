@@ -85,5 +85,8 @@ export const SOCIALS: SocialLink[] = [
   },
 ];
 
-/** Navigation anchor targets, in page order. */
-export const SECTIONS = ['about', 'skills', 'portfolio', 'references', 'contact'] as const;
+/**
+ * Navigation anchor targets, in page order. 'references' is left out while
+ * that section is hidden — see home.html.
+ */
+export const SECTIONS = ['about', 'skills', 'portfolio', 'contact'] as const;
