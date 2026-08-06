@@ -2,9 +2,14 @@
 
 /* Above the fold: the section fills the viewport. svh rather than vh so the
    address bar sliding in and out on mobile does not interfere. min-height
-   rather than height — on very short windows the content may grow. */
+   rather than height — on very short windows the content may grow.
+
+   Column direction matters: it puts the main axis vertically, so the flex: 1
+   on .hero__inner stretches it in height. As a row it would instead override
+   the container width and the hero would run edge to edge. */
 .hero {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   min-height: 100svh;
   padding-top: calc(var(--header-h) + var(--space-lg));
