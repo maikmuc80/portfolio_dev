@@ -1,12 +1,13 @@
 import { DOCUMENT, Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Logo } from '../logo/logo';
 import { PROFILE, SECTIONS } from '../../core/portfolio-data';
 import { Lang, TranslationKey } from '../../core/i18n';
 import { TranslationService } from '../../core/translation-service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink, Logo],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })

@@ -1,0 +1,11 @@
+/* The mark is sized through font-size on the parent, the way the previous
+   [MR] text logo was — so header and footer keep their existing 30px rule. */
+:host {
+  display: inline-flex;
+}
+
+svg {
+  display: block;
+  width: auto;
+  height: 1em;
+}
