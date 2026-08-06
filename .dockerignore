@@ -1,0 +1,14 @@
+# Keep the build context small and make the image reproducible: everything the
+# build needs comes from package-lock.json and src, not from local artefacts.
+node_modules
+dist
+.angular
+out-tsc
+.git
+.gitignore
+.vscode
+.idea
+*.log
+.DS_Store
+Dockerfile
+.dockerignore
