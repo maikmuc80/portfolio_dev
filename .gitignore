@@ -31,6 +31,11 @@ yarn-error.log
 
 # Secrets
 .figma-token
+# The repository is public: a local .env with SMTP credentials must never be
+# committed. Real values live in Coolify's Environment Variables, not here.
+.env
+.env.*
+!.env.example
 
 # Miscellaneous
 /.angular/cache
