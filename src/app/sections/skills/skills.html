@@ -32,7 +32,9 @@
         <img src="assets/icons/learn.svg" alt="" width="75" height="75" />
         <span>
           {{ t('skills.question') }}
-          <a href="#contact">{{ t('skills.cta') }}</a>
+          <a href="#contact" appSmoothAnchor="contact" [scrollDuration]="100">{{
+            t('skills.cta')
+          }}</a>
           {{ t('skills.closing') }}
         </span>
       </p>

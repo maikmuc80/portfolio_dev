@@ -119,17 +119,16 @@
   margin: 0;
 }
 
+/* No scroll-behavior: smooth — it has no settable duration or curve, and it
+   would also smooth the per-frame scrollTo calls in SmoothAnchor into mush.
+   In-page anchors run through that directive with the prototype's own
+   SCROLL_ANIMATE timings instead. */
 html {
-  scroll-behavior: smooth;
   /* Otherwise anchors end up hidden underneath the fixed header. */
   scroll-padding-top: var(--header-h);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {

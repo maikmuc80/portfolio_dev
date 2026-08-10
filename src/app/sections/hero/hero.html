@@ -13,7 +13,7 @@
     <div class="hero__meta">
       <a class="hero__email" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
 
-      <a class="hero__scroll" href="#about">
+      <a class="hero__scroll" href="#about" appSmoothAnchor="about" [scrollDuration]="100">
         <!-- Figma "15. arrow" (328:1450) clips the arrow inside the component
              box while it travels downwards, so it needs its own window. -->
         <span class="hero__scroll-window" aria-hidden="true">

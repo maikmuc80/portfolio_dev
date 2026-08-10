@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
+import { SmoothAnchor } from '../../core/smooth-anchor';
 import { TranslationService } from '../../core/translation-service';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [SmoothAnchor],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })

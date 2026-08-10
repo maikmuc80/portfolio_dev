@@ -16,7 +16,9 @@
         </li>
       </ul>
 
-      <a class="btn about__cta" href="#contact">{{ t('about.cta') }}</a>
+      <a class="btn about__cta" href="#contact" appSmoothAnchor="contact" [scrollDuration]="100">{{
+        t('about.cta')
+      }}</a>
     </div>
 
     <!-- The offset frame from Figma "16.photo interaction" appears on hover,
