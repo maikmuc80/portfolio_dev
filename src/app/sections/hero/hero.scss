@@ -81,7 +81,7 @@
   text-decoration: none;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  transition: color 0.2s;
+  transition: color var(--dur-100) var(--ease-in-out);
 }
 
 .hero__email:hover,
@@ -99,7 +99,7 @@
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  transition: transform 0.2s;
+  transition: transform var(--dur-100) var(--ease-in-out);
 }
 
 .hero__scroll:hover,

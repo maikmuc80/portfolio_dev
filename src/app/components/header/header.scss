@@ -10,7 +10,7 @@
   color: var(--bg);
   font-size: var(--fs-label);
   text-decoration: none;
-  transition: top 0.2s;
+  transition: top var(--dur-100) var(--ease-out);
 }
 
 .skip-link:focus-visible {
@@ -71,9 +71,11 @@
   font-weight: 700;
   font-size: var(--fs-label);
   line-height: 1.2;
+  /* Figma's language component switches without a transition. Nothing to match
+     1:1 here, so it stays on the shared 100ms rather than snapping. */
   transition:
-    border-color 0.2s,
-    color 0.2s;
+    border-color var(--dur-100) var(--ease-in-out),
+    color var(--dur-100) var(--ease-in-out);
 }
 
 .lang__option--active {

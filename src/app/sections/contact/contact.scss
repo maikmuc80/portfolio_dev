@@ -76,8 +76,8 @@
   line-height: 1.2;
   pointer-events: none;
   transition:
-    transform 0.2s,
-    color 0.2s;
+    transform var(--dur-100) var(--ease-in-out),
+    color var(--dur-100) var(--ease-in-out);
   transform-origin: left top;
 }
 
@@ -90,6 +90,8 @@
   color: inherit;
   font: inherit;
   font-size: var(--fs-label);
+  /* The label right next to it animates; without this the underline snapped. */
+  transition: border-bottom-color var(--dur-100) var(--ease-in-out);
 }
 
 .field__input--area {
@@ -168,8 +170,8 @@
   height: 20px;
   border: 2px solid var(--on-dark);
   transition:
-    background-color 0.2s,
-    border-color 0.2s;
+    background-color var(--dur-100) var(--ease-in-out),
+    border-color var(--dur-100) var(--ease-in-out);
 }
 
 .check__input:checked + .check__box {
