@@ -53,16 +53,73 @@
   text-align: center;
 }
 
+/* ---------------------------------------------------------------------------
+   Icon hover — Figma "19. Icon + Name s3" (314:1079), six variants at 50ms
+   EASE_IN_BACK a step. The icon leaves the 100px frame to the right, comes
+   back in from the left and settles; the label turns accent along the way.
+
+   Icon centres in Figma (frame is 100 wide, icon 71): 49.5 -> 82.5 -> 100 ->
+   -1 -> 19.5 -> 50.5, with the width dropping to 54 at both extremes — that
+   is cos(40deg) of 71, so the icon is turning as it passes. Offsets below are
+   those centres as a share of the icon's own width.
+   --------------------------------------------------------------------------- */
+
+.skill__figure {
+  display: block;
+  width: 100px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
 .skill__icon {
+  display: block;
   width: 75px;
   height: 75px;
+  margin: 0 auto;
   object-fit: contain;
+}
+
+.skill:hover .skill__icon,
+.skill:focus-within .skill__icon {
+  animation: skill-turn 250ms both;
+}
+
+@keyframes skill-turn {
+  0% {
+    transform: translateX(0) scaleX(1);
+    animation-timing-function: var(--ease-in-back);
+  }
+  20% {
+    transform: translateX(46.5%) scaleX(1);
+    animation-timing-function: var(--ease-in-back);
+  }
+  40% {
+    transform: translateX(71.1%) scaleX(0.7606);
+    animation-timing-function: var(--ease-in-back);
+  }
+  60% {
+    transform: translateX(-71.1%) scaleX(0.7606);
+    animation-timing-function: var(--ease-in-back);
+  }
+  80% {
+    transform: translateX(-42.3%) scaleX(1);
+    animation-timing-function: var(--ease-in-back);
+  }
+  100% {
+    transform: translateX(1.4%) scaleX(1);
+  }
 }
 
 .skill__name {
   font-weight: 700;
   font-size: var(--fs-label);
   line-height: 1.2;
+  transition: color var(--dur-50) var(--ease-in-back);
+}
+
+.skill:hover .skill__name,
+.skill:focus-within .skill__name {
+  color: var(--accent);
 }
 
 .skills__more {
