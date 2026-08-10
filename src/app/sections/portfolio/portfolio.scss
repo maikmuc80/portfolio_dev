@@ -39,17 +39,67 @@
   line-height: 1.2;
 }
 
+/* ---------------------------------------------------------------------------
+   Hover chain, taken 1:1 from the Figma variant sets "30. join buton left s3"
+   (314:1131) and its three siblings. Four states:
+
+     DEfault      -> Hover        ON_HOVER      50ms  EASE_IN
+     Hover        -> Transition1  timeout 1ms   80ms  LINEAR
+     Transition1  -> end          timeout 1ms  150ms  LINEAR
+     end          -> DEfault      MOUSE_LEAVE  120ms  BOUNCY
+
+   In = 280ms as one animation with per-segment easing; the keyframe stops are
+   50/280 = 17.857% and 130/280 = 46.4286%. Out is a plain transition, which
+   starts from the animated value because the removed animation is still part
+   of the before-change style.
+   --------------------------------------------------------------------------- */
+
+$in-hover: 17.857%;
+$in-trans1: 46.4286%;
+$in-dur: 280ms;
+
 .project__media {
   position: relative;
 }
 
-/* The design places an offset black frame behind the screenshot. */
-.project__media::before {
+/* Figma "Rectangle 7": 4px ink stroke, offset +20/+20 from the image, growing
+   out of a 4x4 dot anchored at its own top-left corner. Bound to :has(img) —
+   a project without a screenshot has a zero-height media box, and the frame
+   would otherwise collapse into a stray line. */
+.project__media:has(img)::before {
   content: '';
   position: absolute;
-  inset: 12px -12px -12px 12px;
-  border: 3px solid var(--ink);
+  inset: 20px -20px -20px 20px;
+  border: 4px solid var(--ink);
   pointer-events: none;
+  transform: scale(0);
+  transform-origin: top left;
+  transition: transform var(--dur-120) var(--ease-bouncy);
+}
+
+.project:hover .project__media:has(img)::before,
+.project:focus-within .project__media:has(img)::before {
+  transform: scale(1);
+  animation: project-frame $in-dur both;
+}
+
+@keyframes project-frame {
+  0% {
+    transform: scale(0);
+    animation-timing-function: var(--ease-in);
+  }
+  #{$in-hover} {
+    /* 4x4 against a 620x393 image */
+    transform: scale(0.006452, 0.010178);
+    animation-timing-function: linear;
+  }
+  #{$in-trans1} {
+    transform: scale(1);
+    animation-timing-function: linear;
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .project__media img {
@@ -57,30 +107,74 @@
   width: 100%;
   height: auto;
   filter: grayscale(1);
-  transition: filter 0.3s;
+  transition: filter var(--dur-120) var(--ease-bouncy);
 }
 
+/* The image reaches full colour within the first 50ms step. */
 .project:hover .project__media img,
 .project:focus-within .project__media img {
   filter: grayscale(0);
+  animation: project-photo $in-dur both;
 }
 
-/* Round arrow button, overlapping the right image edge as in Figma. */
+@keyframes project-photo {
+  0% {
+    filter: grayscale(1);
+    animation-timing-function: var(--ease-in);
+  }
+  #{$in-hover},
+  100% {
+    filter: grayscale(0);
+  }
+}
+
+/* Round arrow button. Figma: 5x5 at 10% opacity -> 68x68 -> 76x76, centred
+   19px past the image edge. The dot starts 18.5px closer to the image. */
 .project__open {
+  --arrow-nudge: -18.5px;
+
   position: absolute;
-  right: -34px;
+  right: -57px;
   top: 50%;
   translate: 0 -50%;
   display: block;
-  width: 68px;
-  height: 68px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  transition: transform 0.2s;
+  opacity: 0;
+  transform: scale(0);
+  transition:
+    transform var(--dur-120) var(--ease-bouncy),
+    opacity var(--dur-120) var(--ease-bouncy);
 }
 
-.project__open:hover,
-.project__open:focus-visible {
-  transform: scale(1.08);
+.project:hover .project__open,
+.project:focus-within .project__open {
+  opacity: 1;
+  transform: scale(1);
+  animation: project-arrow $in-dur both;
+}
+
+@keyframes project-arrow {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    animation-timing-function: var(--ease-in);
+  }
+  #{$in-hover} {
+    opacity: 0.1;
+    transform: translateX(var(--arrow-nudge)) scale(0.065789);
+    animation-timing-function: linear;
+  }
+  #{$in-trans1} {
+    opacity: 1;
+    transform: scale(0.894737);
+    animation-timing-function: linear;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .project__open img {
@@ -117,6 +211,38 @@
 
 .project__github {
   margin-top: var(--space-lg);
+}
+
+/* Figma "Joindercription" clips its contents (clipsContent: true) while
+   "descrip 1" slides across from x 193 to x 760 — 567px against a 475px
+   content width, i.e. 119.4% of its own width. The slide happens entirely in
+   the last 150ms step, so the copy holds off-window until then. */
+.project__body {
+  overflow: hidden;
+}
+
+.project__reveal {
+  --reveal-from: 119.4%;
+
+  transform: translateX(var(--reveal-from));
+  transition: transform var(--dur-120) var(--ease-bouncy);
+}
+
+.project:hover .project__reveal,
+.project:focus-within .project__reveal {
+  transform: translateX(0);
+  animation: project-copy $in-dur both;
+}
+
+@keyframes project-copy {
+  0%,
+  #{$in-trans1} {
+    transform: translateX(var(--reveal-from));
+    animation-timing-function: linear;
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @include from-tablet {
@@ -157,14 +283,21 @@
     grid-column: 1;
   }
 
-  /* Mirrored: frame offset and arrow move over to the other side. */
-  .project--flipped .project__media::before {
-    inset: 12px 12px -12px -12px;
+  /* Mirrored: frame offset, arrow and the direction the copy slides in from
+     all move to the other side, so the copy always enters from the image. */
+  .project--flipped .project__media:has(img)::before {
+    inset: 20px 20px -20px -20px;
   }
 
   .project--flipped .project__open {
+    --arrow-nudge: 18.5px;
+
     right: auto;
-    left: -34px;
+    left: -57px;
+  }
+
+  .project--flipped .project__reveal {
+    --reveal-from: -119.4%;
   }
 }
 

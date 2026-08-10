@@ -42,29 +42,33 @@
             }
           </div>
 
+          <!-- Figma "Joindercription" clips its contents while they slide in
+               from the image side, so the copy needs a clipping wrapper. -->
           <div class="project__body">
-            <h3 class="project__title">{{ project.title }}</h3>
+            <div class="project__reveal">
+              <h3 class="project__title">{{ project.title }}</h3>
 
-            <p class="project__tech">
-              @for (tag of project.tags; track tag; let last = $last) {
-                <span>{{ tag }}</span>
-                @if (!last) {
-                  <span class="project__sep" aria-hidden="true">|</span>
+              <p class="project__tech">
+                @for (tag of project.tags; track tag; let last = $last) {
+                  <span>{{ tag }}</span>
+                  @if (!last) {
+                    <span class="project__sep" aria-hidden="true">|</span>
+                  }
                 }
+              </p>
+
+              <p class="project__desc">{{ t(descKey(project.key)) }}</p>
+
+              @if (project.githubUrl) {
+                <a
+                  class="btn project__github"
+                  [href]="project.githubUrl"
+                  rel="noopener"
+                  target="_blank"
+                  >Github</a
+                >
               }
-            </p>
-
-            <p class="project__desc">{{ t(descKey(project.key)) }}</p>
-
-            @if (project.githubUrl) {
-              <a
-                class="btn project__github"
-                [href]="project.githubUrl"
-                rel="noopener"
-                target="_blank"
-                >Github</a
-              >
-            }
+            </div>
           </div>
 
           <span class="visually-hidden">
