@@ -19,15 +19,19 @@
       <a class="btn about__cta" href="#contact">{{ t('about.cta') }}</a>
     </div>
 
-    <img
-      class="about__photo"
-      src="assets/img/portrait-832.webp"
-      srcset="assets/img/portrait-533.webp 533w, assets/img/portrait-832.webp 832w"
-      sizes="(min-width: 768px) 533px, calc(100vw - 48px)"
-      width="533"
-      height="656"
-      [alt]="t('about.photoAlt')"
-    />
+    <!-- The offset frame from Figma "16.photo interaction" appears on hover,
+         so the photo needs a positioned wrapper to hang it off. -->
+    <div class="about__figure">
+      <img
+        class="about__photo"
+        src="assets/img/portrait-832.webp"
+        srcset="assets/img/portrait-533.webp 533w, assets/img/portrait-832.webp 832w"
+        sizes="(min-width: 768px) 533px, calc(100vw - 48px)"
+        width="533"
+        height="656"
+        [alt]="t('about.photoAlt')"
+      />
+    </div>
   </div>
 
   <img class="about__arrow" src="assets/icons/arrow-left.svg" alt="" aria-hidden="true" />
