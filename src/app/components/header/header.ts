@@ -25,6 +25,13 @@ export class Header {
 
   readonly menuOpen = signal(false);
 
+  /**
+   * The burger plays its Figma chain backwards on close. That closing
+   * animation must not run on first paint, so it is only armed once the menu
+   * has actually been toggled.
+   */
+  readonly burgerUsed = signal(false);
+
   private readonly document = inject(DOCUMENT);
 
   constructor() {
@@ -35,6 +42,7 @@ export class Header {
   }
 
   toggleMenu(): void {
+    this.burgerUsed.set(true);
     this.menuOpen.update((open) => !open);
   }
 

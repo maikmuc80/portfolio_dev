@@ -27,6 +27,7 @@
         type="button"
         class="burger"
         [class.burger--open]="menuOpen()"
+        [class.burger--used]="burgerUsed()"
         [attr.aria-expanded]="menuOpen()"
         [attr.aria-label]="menuOpen() ? t('header.close') : t('header.menu')"
         aria-controls="main-menu"
