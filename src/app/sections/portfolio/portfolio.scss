@@ -311,7 +311,37 @@ $in-dur: 280ms;
     height: 56px;
   }
 
-  .project__media::before {
+  .project__media:has(img)::before {
     inset: 8px -8px -8px 8px;
+  }
+
+  /* Touch has no hover, so Figma plays the same chain by itself: the mobile
+     sets "56."–"59. … buton left s3 mobile" fire AFTER_TIMEOUT at 4s, 6s, 8s
+     and 10s and stay in the end state — there is no MOUSE_LEAVE on mobile. */
+  .project__media:has(img)::before {
+    animation: project-frame $in-dur both;
+  }
+
+  .project__media img {
+    animation: project-photo $in-dur both;
+  }
+
+  .project__open {
+    animation: project-arrow $in-dur both;
+  }
+
+  .project__reveal {
+    animation: project-copy $in-dur both;
+  }
+
+  @for $i from 1 through 4 {
+    .project:nth-child(#{$i}) {
+      .project__media:has(img)::before,
+      .project__media img,
+      .project__open,
+      .project__reveal {
+        animation-delay: #{2 + 2 * $i}s;
+      }
+    }
   }
 }
