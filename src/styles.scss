@@ -129,7 +129,22 @@ html {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    /* Without this the looping hero arrow would keep cycling at 0.01ms a
+       lap — a flicker, which is worse than the motion it replaces. */
+    animation-iteration-count: 1 !important;
+    animation-delay: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+
+  /* The autofill cover in contact.scss relies on a 600000s transition to keep
+     the browser's pale-blue fill off a black field. The blanket reset above
+     would undo it, so it is exempt. */
+  .field__input:-webkit-autofill,
+  .field__input:-webkit-autofill:hover,
+  .field__input:-webkit-autofill:focus,
+  .field__input:-webkit-autofill:active {
+    transition-duration: 600000s !important;
   }
 }
 
