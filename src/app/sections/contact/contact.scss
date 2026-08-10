@@ -4,6 +4,10 @@
    170px across the full width (1440px). */
 .contact {
   --slant: clamp(30px, 11.8vw, 170px);
+  /* Dark ground, so the button inverts the other way round — Figma
+     "2. Button secondary" (347:796) is the primary button mirrored. */
+  --btn-ink: var(--on-dark);
+  --btn-paper: var(--ink);
 
   clip-path: polygon(0 0, 100% var(--slant), 100% 100%, 0 100%);
   padding-top: calc(var(--slant) + var(--space-xl));

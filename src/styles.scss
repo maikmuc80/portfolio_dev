@@ -70,6 +70,11 @@
   --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
   --ease-in-back: cubic-bezier(0.36, 0, 0.66, -0.56);
 
+  /* Button ink/paper pair. Sections on a dark ground (.contact) swap these, so
+     the pressed state inverts against the right background. */
+  --btn-ink: var(--ink);
+  --btn-paper: var(--bg);
+
   /* Figma's BOUNCY is a spring. The REST API exposes only the name, not the
      mass/stiffness/damping, so the curve below is a damped spring sampled at
      24 steps (~30% overshoot) rather than a reading of the original. This is
@@ -206,38 +211,59 @@ a {
   color: var(--accent);
 }
 
-/* Outlined button, e.g. "Let's talk" and "Send message" */
+/* Outlined button, e.g. "Let's talk" and "Send message".
+   Figma "1. Button primary" (314:716) — three states:
+     Default   164x68, 4px ink border, text box at x 60 -> 60px side padding
+     Variant4  207x68, same border,     text box at x 80 -> 80px  (hover)
+     Variant3  204x68, ink fill, cream text                       (pressed)
+   Mobile ("45. Button primary s3 mobile") uses 40px -> 60px instead. */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 68px;
-  padding: 0 var(--space-lg);
-  border: 2px solid currentcolor;
+  padding: 0 60px;
+  border: 4px solid var(--btn-ink);
   background: none;
+  color: var(--btn-ink);
   font-size: var(--fs-btn);
   line-height: 1.2;
   text-decoration: none;
   transition:
-    background-color 0.2s,
-    color 0.2s;
+    padding var(--dur-100) var(--ease-in-out),
+    background-color var(--dur-100) var(--ease-in-out),
+    color var(--dur-100) var(--ease-in-out);
 }
 
-.btn:hover,
-.btn:focus-visible {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
+@include until-tablet {
+  .btn {
+    padding: 0 40px;
+  }
+}
+
+/* Hover widens the button; it does not fill. */
+.btn:hover:not(:disabled),
+.btn:focus-visible:not(:disabled) {
+  padding: 0 80px;
+}
+
+@include until-tablet {
+  .btn:hover:not(:disabled),
+  .btn:focus-visible:not(:disabled) {
+    padding: 0 60px;
+  }
+}
+
+/* Pressed inverts against whatever ground the button sits on. */
+.btn:active:not(:disabled) {
+  background-color: var(--btn-ink);
+  color: var(--btn-paper);
 }
 
 .btn:disabled {
   border-color: var(--muted);
   color: var(--muted);
   cursor: not-allowed;
-}
-
-.btn:disabled:hover {
-  background: none;
 }
 
 .visually-hidden {
