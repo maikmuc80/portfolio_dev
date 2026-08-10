@@ -34,7 +34,7 @@ const de = {
 
   'about.title': 'Über mich',
   'about.text':
-    'Ich bin Fullstack Developer und lerne aktuell an der Developer Akademie. Am Programmieren begeistert mich, aus einer Idee etwas zu bauen, das Menschen wirklich benutzen. Probleme gehe ich analytisch an: erst verstehen, dann zerlegen, dann sauber lösen. Was mich ausmacht: Ausdauer, Neugier auf neue Technologien und die Bereitschaft, im Team Verantwortung zu übernehmen.',
+    '25 Jahre Kfz-Handwerk: Mechaniker, Meister, Betriebswirt (HWK), TÜV-zertifizierter Sachverständiger für Fahrzeuge und für Boote. 13 Jahre davon als Geschäftsführer und Gesellschafter zweier GmbHs — verantwortlich für Team, Kunden und Ergebnis. Heute baue ich Software, aktuell in der Ausbildung an der Developer Akademie. Der Kern der Arbeit ist derselbe geblieben: ein Problem verstehen, es zerlegen, sauber lösen und für das Ergebnis geradestehen. Neu sind nur die Werkzeuge.',
   'about.photoAlt': 'Porträtfoto von Maik Radke',
   'about.location': 'Zu Hause in Berchtesgaden',
   'about.remote': 'Offen für Remote-Arbeit',
@@ -155,7 +155,7 @@ const en: Record<TranslationKey, string> = {
 
   'about.title': 'About me',
   'about.text':
-    "I'm a fullstack developer, currently training at Developer Akademie. What draws me to coding is turning an idea into something people actually use. I approach problems analytically: understand first, break it down, then solve it cleanly. What defines me: persistence, curiosity about new technologies, and a willingness to take responsibility within a team.",
+    '25 years in the automotive trade: mechanic, master craftsman, business economist (HWK), TÜV-certified expert for vehicles and for boats. Thirteen of those years as managing director and shareholder of two companies — answerable for the team, the clients and the result. Today I build software, currently training at Developer Akademie. The core of the work has not changed: understand a problem, break it down, solve it cleanly and stand behind the outcome. Only the tools are new.',
   'about.photoAlt': 'Portrait photo of Maik Radke',
   'about.location': 'Based in Berchtesgaden',
   'about.remote': 'Open to work remote',

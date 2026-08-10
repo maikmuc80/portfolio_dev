@@ -51,6 +51,7 @@ export const SKILLS: Skill[] = [
   { name: 'Scrum', icon: 'scrum' },
   { name: 'REST-API', icon: 'rest-api' },
   { name: 'Material Design', icon: 'material-design' },
+  { name: 'WordPress', icon: 'wordpress' },
 ];
 
 /**
