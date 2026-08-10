@@ -51,6 +51,56 @@
   --space-lg: 40px;
   --space-xl: 64px;
   --section-gap: clamp(72px, 4rem + 6vw, 160px);
+
+  /* Motion — durations are the prototype's own values, not rounded.
+     Every animation in this file uses one of these; no ad-hoc timings. */
+  --dur-40: 40ms; /* burger, menu overlay          */
+  --dur-50: 50ms; /* skill icons, project card in  */
+  --dur-70: 70ms; /* hero mail anchor scroll       */
+  --dur-80: 80ms; /* project card, step 2          */
+  --dur-100: 100ms; /* most hovers                   */
+  --dur-120: 120ms; /* project card, mouse leave     */
+  --dur-150: 150ms; /* project card, step 3          */
+  --dur-160: 160ms; /* burger chain: 4 steps x 40ms  */
+  --dur-300: 300ms; /* footer arrow                  */
+
+  /* Figma's named easings translated to their CSS equivalents. */
+  --ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+  --ease-in-back: cubic-bezier(0.36, 0, 0.66, -0.56);
+
+  /* Figma's BOUNCY is a spring. The REST API exposes only the name, not the
+     mass/stiffness/damping, so the curve below is a damped spring sampled at
+     24 steps (~30% overshoot) rather than a reading of the original. This is
+     the one timing in the file that approximates instead of matching. */
+  --ease-bouncy: linear(
+    0,
+    0.0558,
+    0.2006,
+    0.3998,
+    0.62,
+    0.8332,
+    1.018,
+    1.1608,
+    1.2554,
+    1.3021,
+    1.3063,
+    1.2767,
+    1.2239,
+    1.1586,
+    1.0904,
+    1.0274,
+    0.9751,
+    0.9368,
+    0.9135,
+    0.9046,
+    0.9079,
+    0.9203,
+    0.9386,
+    0.9594,
+    1
+  );
 }
 
 /* ---------------------------------------------------------------------------
