@@ -197,6 +197,13 @@ a {
   font-size: var(--fs-section);
   line-height: 1;
   letter-spacing: var(--ls-wide);
+  transition: color var(--dur-100) var(--ease-in-out);
+}
+
+/* Figma "17. Tittle interaction" / "35. Tittle interaction neg": the heading
+   turns accent on hover. Same component drives "Say Hi!" in the footer. */
+.section-title:hover {
+  color: var(--accent);
 }
 
 /* Outlined button, e.g. "Let's talk" and "Send message" */
