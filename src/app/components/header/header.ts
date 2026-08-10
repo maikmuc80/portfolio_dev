@@ -1,7 +1,7 @@
 import { DOCUMENT, Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Logo } from '../logo/logo';
-import { PROFILE, SECTIONS } from '../../core/portfolio-data';
+import { PROFILE, SECTIONS, SOCIALS } from '../../core/portfolio-data';
 import { Lang, TranslationKey } from '../../core/i18n';
 import { TranslationService } from '../../core/translation-service';
 
@@ -16,6 +16,14 @@ export class Header {
   protected readonly t = this.i18n.t;
   protected readonly profile = PROFILE;
   protected readonly sections = SECTIONS;
+  protected readonly socials = SOCIALS;
+
+  /**
+   * Figma's menu ("14. Header and menu", 334:873) lists three entries and
+   * puts contact in the black band at the bottom as "Say Hi!", so contact is
+   * filtered out of the list here.
+   */
+  protected readonly navSections = SECTIONS.filter((section) => section !== 'contact');
 
   /** Order as in the Figma header: EN first. */
   protected readonly langs: { code: Lang; label: string }[] = [

@@ -25,10 +25,11 @@
   background: var(--bg);
 }
 
-/* Menu open: the overlay should show through underneath the header. */
+/* Menu open: the overlay shows through underneath the header. The panel is
+   cream, so logo and burger stay ink — Figma's menu header is unchanged. */
 .header--transparent {
   background: none;
-  color: var(--on-dark);
+  color: var(--ink);
 }
 
 .header__inner {
@@ -113,8 +114,8 @@
    keyframes reversed.
 
    The open shape is not an X: the middle bar becomes a 40px line at +40deg
-   and the outer two 20px lines at -40deg. Bar centres sit 17px apart,
-   matching Figma's y = -1 / 16 / 33.
+   and the outer two 20px lines at -40deg, which reads as an arrow. Bar
+   centres sit 17px apart, matching Figma's y = -1 / 16 / 33.
    --------------------------------------------------------------------------- */
 
 .burger {
@@ -233,41 +234,200 @@
   }
 }
 
-/* Overlay menu. Figma has no dedicated frame for it in version 3 — styling
-   taken from the contact area (black, Syne, green on hover). */
+/* ---------------------------------------------------------------------------
+   Overlay menu — Figma "14. Header and menu" (334:873), state "click".
+
+   A cream panel, not a black one: the black is a wedge at the bottom
+   ("Rectangle 5", path M0 0 L1588 181 L1632 348 L0 348 Z, so the top edge
+   drops 181px over 1588px = 11.4%) holding "Say Hi!", the address and the
+   social icons. The three nav entries sit in "Frame 63" at x 430 / y 93.
+
+   Opening runs default -> transition1 -> click at 40ms EASE_OUT a step: the
+   wedge slides up from y 840 to y 651 while the entries appear. Closing is
+   the "transition out" state — the panel fades.
+   --------------------------------------------------------------------------- */
+
 .menu {
+  --menu-slant: clamp(30px, 11.4vw, 164px);
+
   position: fixed;
   inset: 0;
   z-index: 25;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  color: var(--on-dark);
+  justify-content: space-between;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 .menu__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
   margin: 0;
-  padding: 0;
+  padding: calc(var(--header-h) + var(--space-xs)) var(--gutter) 0;
   list-style: none;
-  text-align: center;
+}
+
+@include from-tablet {
+  .menu__list {
+    /* Frame 63 sits at x 430 of 1440. */
+    padding-left: 29.9%;
+  }
 }
 
 .menu__link {
+  position: relative;
+  display: block;
+  padding: 36px 0 35px 39px;
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: var(--fs-section);
+  font-weight: 700;
+  font-size: clamp(36px, 6.667vw, 96px);
   line-height: 1;
   letter-spacing: var(--ls-wide);
   text-decoration: none;
-  transition: color 0.2s;
 }
 
-.menu__link:hover,
-.menu__link:focus-visible {
+/* Resting marker: Figma "Rectangle 7", a 39x52 bracket at the bottom left. */
+.menu__mark {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 39px;
+  height: 52px;
+  border-left: 4px solid currentcolor;
+  border-bottom: 4px solid currentcolor;
+}
+
+/* Hover swaps the bracket for a full box that wipes in from the right:
+   "Rectangle 6" goes from x 336 w 244 to x 0 w 580. */
+.menu__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 4px solid currentcolor;
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path var(--dur-100) var(--ease-in);
+}
+
+.menu__link:hover::after,
+.menu__link:focus-visible::after {
+  clip-path: inset(0);
+}
+
+.menu__link:hover .menu__mark,
+.menu__link:focus-visible .menu__mark {
+  opacity: 0;
+}
+
+.menu__foot {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+  /* Only a little headroom: the wedge is already black at the left edge, and
+     the panel has to stay inside the viewport. */
+  padding: var(--space-lg) var(--gutter) var(--space-lg);
+  color: var(--on-dark);
+}
+
+.menu__foot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% var(--menu-slant), 100% 100%, 0 100%);
+}
+
+.menu__sayhi {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-sayhi);
+  line-height: 1;
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  transition: color var(--dur-100) var(--ease-in-out);
+}
+
+.menu__sayhi:hover,
+.menu__sayhi:focus-visible {
   color: var(--accent);
+}
+
+.menu__mail {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  font-weight: 300;
+  font-size: var(--fs-btn);
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+/* The wedge only turns black further down on the right, so the icons sit low. */
+.menu__socials {
+  display: flex;
+  align-self: flex-end;
+  gap: 42px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu__socials img {
+  width: 30px;
+  height: 30px;
+  transition: transform var(--dur-100) var(--ease-out);
+}
+
+/* Figma "4. Github button s3": the icon lifts from y 11 to y 0 on hover. */
+.menu__socials a:hover img,
+.menu__socials a:focus-visible img {
+  transform: translateY(-11px);
+}
+
+/* Enter: the wedge slides up 189px (840 -> 651) while the panel appears. */
+.menu--entering {
+  animation: menu-enter var(--dur-80) var(--ease-out) both;
+}
+
+.menu--entering .menu__foot {
+  animation: menu-band var(--dur-80) var(--ease-out) both;
+}
+
+.menu--leaving {
+  animation: menu-leave var(--dur-40) var(--ease-out) both;
+}
+
+@keyframes menu-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menu-band {
+  from {
+    transform: translateY(189px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-leave {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
 }

@@ -42,29 +42,57 @@
 </header>
 
 @if (menuOpen()) {
-  <nav id="main-menu" class="menu" (keydown.escape)="closeMenu()">
+  <nav
+    id="main-menu"
+    class="menu"
+    animate.enter="menu--entering"
+    animate.leave="menu--leaving"
+    (keydown.escape)="closeMenu()"
+  >
     <ul class="menu__list">
-      @for (section of sections; track section) {
-        <li>
+      @for (section of navSections; track section) {
+        <li class="menu__item">
           <a class="menu__link" routerLink="/" [fragment]="section" (click)="closeMenu()">
-            {{ t(navKey(section)) }}
+            <span class="menu__mark" aria-hidden="true"></span>
+            <span class="menu__label">{{ t(navKey(section)) }}</span>
           </a>
         </li>
       }
     </ul>
 
-    <div class="lang lang--in-menu" role="group" [attr.aria-label]="t('header.langLabel')">
-      @for (lang of langs; track lang.code) {
-        <button
-          type="button"
-          class="lang__option"
-          [class.lang__option--active]="i18n.lang() === lang.code"
-          [attr.aria-pressed]="i18n.lang() === lang.code"
-          (click)="i18n.setLang(lang.code)"
-        >
-          {{ lang.label }}
-        </button>
-      }
+    <!-- Black wedge at the bottom of the overlay: "Say Hi!", the address and
+         the social icons, exactly as in Figma's "click" state. -->
+    <div class="menu__foot">
+      <div class="menu__contact">
+        <a class="menu__sayhi" routerLink="/" fragment="contact" (click)="closeMenu()">
+          {{ t('nav.contact') }}
+        </a>
+        <a class="menu__mail" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+      </div>
+
+      <ul class="menu__socials">
+        @for (social of socials; track social.key) {
+          <li>
+            <a [href]="social.href" rel="noopener" [attr.aria-label]="social.key">
+              <img [src]="'assets/icons/' + social.icon + '.svg'" alt="" width="30" height="30" />
+            </a>
+          </li>
+        }
+      </ul>
+
+      <div class="lang lang--in-menu" role="group" [attr.aria-label]="t('header.langLabel')">
+        @for (lang of langs; track lang.code) {
+          <button
+            type="button"
+            class="lang__option"
+            [class.lang__option--active]="i18n.lang() === lang.code"
+            [attr.aria-pressed]="i18n.lang() === lang.code"
+            (click)="i18n.setLang(lang.code)"
+          >
+            {{ lang.label }}
+          </button>
+        }
+      </div>
     </div>
   </nav>
 }
