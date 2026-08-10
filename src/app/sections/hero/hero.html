@@ -14,7 +14,11 @@
       <a class="hero__email" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
 
       <a class="hero__scroll" href="#about">
-        <img src="assets/icons/arrow-down.svg" alt="" width="56" height="98" />
+        <!-- Figma "15. arrow" (328:1450) clips the arrow inside the component
+             box while it travels downwards, so it needs its own window. -->
+        <span class="hero__scroll-window" aria-hidden="true">
+          <img src="assets/icons/arrow-down.svg" alt="" width="56" height="98" />
+        </span>
         <span>{{ t('hero.scroll') }}</span>
       </a>
     </div>

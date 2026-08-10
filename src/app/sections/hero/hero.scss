@@ -90,6 +90,8 @@
 }
 
 .hero__scroll {
+  --arrow-w: clamp(38px, 4vw, 56px);
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,9 +109,90 @@
   transform: translateY(4px);
 }
 
+/* ---------------------------------------------------------------------------
+   Scroll-down arrow — Figma "15. arrow" (328:1450), seven variants.
+
+   The component box (116x180) clips; the arrow (50x92) travels through it in
+   Y: -140, -50, 0, 78, 127, 160, 200, then wraps back to the top. Each step is
+   a 20ms hold followed by a 100ms EASE_IN move, so one lap is 7 x 120 = 840ms.
+
+   Expressed against the arrow's own size: the window is 3.6x the arrow width
+   tall, and the stops are percentages of the arrow's height (92px in Figma).
+   --------------------------------------------------------------------------- */
+
+.hero__scroll-window {
+  display: block;
+  width: var(--arrow-w);
+  height: calc(var(--arrow-w) * 3.6);
+  overflow: hidden;
+}
+
 .hero__scroll img {
-  width: clamp(38px, 4vw, 56px);
+  width: var(--arrow-w);
   height: auto;
+  animation: hero-arrow 840ms infinite;
+}
+
+@keyframes hero-arrow {
+  0% {
+    transform: translateY(-152.2%);
+    animation-timing-function: linear;
+  }
+  2.381% {
+    transform: translateY(-152.2%);
+    animation-timing-function: var(--ease-in);
+  }
+  14.286% {
+    transform: translateY(-54.3%);
+    animation-timing-function: linear;
+  }
+  16.667% {
+    transform: translateY(-54.3%);
+    animation-timing-function: var(--ease-in);
+  }
+  28.571% {
+    transform: translateY(0%);
+    animation-timing-function: linear;
+  }
+  30.952% {
+    transform: translateY(0%);
+    animation-timing-function: var(--ease-in);
+  }
+  42.857% {
+    transform: translateY(84.8%);
+    animation-timing-function: linear;
+  }
+  45.238% {
+    transform: translateY(84.8%);
+    animation-timing-function: var(--ease-in);
+  }
+  57.143% {
+    transform: translateY(138%);
+    animation-timing-function: linear;
+  }
+  59.524% {
+    transform: translateY(138%);
+    animation-timing-function: var(--ease-in);
+  }
+  71.429% {
+    transform: translateY(173.9%);
+    animation-timing-function: linear;
+  }
+  73.81% {
+    transform: translateY(173.9%);
+    animation-timing-function: var(--ease-in);
+  }
+  85.714% {
+    transform: translateY(217.4%);
+    animation-timing-function: linear;
+  }
+  88.095% {
+    transform: translateY(217.4%);
+    animation-timing-function: var(--ease-in);
+  }
+  100% {
+    transform: translateY(-152.2%);
+  }
 }
 
 @include until-tablet {
