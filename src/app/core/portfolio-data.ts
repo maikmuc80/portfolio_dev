@@ -59,12 +59,13 @@ export const SKILLS: Skill[] = [
  */
 export const PROJECTS: Project[] = [
   {
-    key: 'elpoco',
-    title: 'Elpoco',
-    tags: [],
-    image: '',
+    key: 'elpolloloco',
+    title: 'El Pollo Loco',
+    tags: ['JavaScript', 'HTML', 'CSS', 'Canvas'],
+    image: 'elpolloloco',
+    /* No live URL yet — GitHub Pages is switched off for the repository. */
     liveUrl: '',
-    githubUrl: '',
+    githubUrl: 'https://github.com/maikmuc80/elpolloloco',
   },
 ];
 

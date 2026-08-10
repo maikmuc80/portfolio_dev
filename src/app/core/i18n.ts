@@ -51,7 +51,8 @@ const de = {
   'portfolio.counter': 'Projekt {{n}} von {{total}}',
   'portfolio.openLabel': '{{title}} live ansehen',
 
-  'projects.elpoco.desc': '',
+  'projects.elpolloloco.desc':
+    'Ein 2D-Jump-and-Run in der mexikanischen Wüste: Pepe sammelt Münzen und Salsa-Flaschen, erledigt verrückte Hühner und stellt sich am Ende dem Boss. Objektorientiert mit der Canvas-API gebaut — ganz ohne Framework.',
 
   'references.title': 'Referenzen',
   'references.intro':
@@ -171,7 +172,8 @@ const en: Record<TranslationKey, string> = {
   'portfolio.counter': 'Project {{n}} of {{total}}',
   'portfolio.openLabel': 'View {{title}} live',
 
-  'projects.elpoco.desc': '',
+  'projects.elpolloloco.desc':
+    'A 2D jump-and-run set in a Mexican desert: Pepe collects coins and salsa bottles, takes on crazy chickens and finally faces the end boss. Built with object-oriented JavaScript and the Canvas API — no frameworks.',
 
   'references.title': 'References',
   'references.intro':
