@@ -49,14 +49,29 @@ if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
 // IPv4 address is reversible by running through all ~4.3 billion of them, so
 // an unsalted digest is pseudonymous data, not anonymous. With the salt the
 // counter name cannot be traced back to a visitor.
-$salt = (string) (getenv('RATE_LIMIT_SALT') ?: '');
-if ($salt === '') {
-    error_log('sendMail: RATE_LIMIT_SALT is unset — refusing to key the rate limit with a bare hash');
-    fail(500, 'Mail is not configured');
+// The salt normally comes from the environment. When it does not — mod_php
+// does not always see what the entrypoint exported — PHP makes its own and
+// keeps it in a file. Earlier this refused to send without the variable, which
+// turned a spam-guard detail into a dead contact form.
+$salt     = (string) (getenv('RATE_LIMIT_SALT') ?: '');
+$saltFile = sys_get_temp_dir() . '/contact-salt';
+
+if ($salt === '' && is_readable($saltFile)) {
+    $salt = trim((string) file_get_contents($saltFile));
 }
 
-$ip         = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
-$prefix     = sys_get_temp_dir() . '/contact-';
+if ($salt === '') {
+    $salt = bin2hex(random_bytes(32));
+    if (@file_put_contents($saltFile, $salt, LOCK_EX) !== false) {
+        @chmod($saltFile, 0600);
+    }
+}
+
+$ip = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+
+// Distinct from the salt file, so the sweep below cannot delete the salt and
+// silently reset every counter.
+$prefix     = sys_get_temp_dir() . '/contact-rl-';
 $counter    = $prefix . hash_hmac('sha256', $ip, $salt);
 $timestamps = [];
 
