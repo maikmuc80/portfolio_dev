@@ -17,21 +17,14 @@
   align-items: end;
 }
 
+/* The MR brand mark (app-logo), same as the header. font-size drives its
+   height; the colour comes from the footer, which is on the dark ground. */
 .footer__logo {
   display: inline-flex;
   align-items: center;
-  font-family: var(--font-display);
-  font-weight: 800;
   font-size: 30px;
   line-height: 1;
   text-decoration: none;
-}
-
-/* Same treatment as the header logo, see header.scss. */
-.footer__initials {
-  margin-right: 0.16em;
-  transform: skewX(-14deg);
-  letter-spacing: -0.16em;
 }
 
 .footer__copy {

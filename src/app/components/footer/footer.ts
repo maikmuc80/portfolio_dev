@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Logo } from '../logo/logo';
 import { PROFILE, SOCIALS } from '../../core/portfolio-data';
 import { TranslationKey } from '../../core/i18n';
 import { TranslationService } from '../../core/translation-service';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
+  imports: [RouterLink, Logo],
   templateUrl: './footer.html',
   styleUrl: './footer.scss',
 })
