@@ -20,6 +20,15 @@ if [ -n "$missing" ]; then
   exit 1
 fi
 
+# Salt for the contact form's rate-limit keys. Generated here when it is not
+# supplied, so no deployment silently falls back to a bare hash of the visitor's
+# IP. A fresh salt per container start only resets the counters, which is the
+# harmless direction to fail in.
+if [ -z "${RATE_LIMIT_SALT:-}" ]; then
+  RATE_LIMIT_SALT=$(head -c 32 /dev/urandom | od -An -tx1 | tr -d ' \n')
+fi
+export RATE_LIMIT_SALT
+
 cat > /etc/msmtprc <<EOF
 defaults
 auth           on

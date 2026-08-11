@@ -43,10 +43,31 @@ if (!filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
 
 // --- rate limit -------------------------------------------------------------
 // A public mail endpoint is found by bots within days. File-based is enough
-// here; the IP is hashed so the counter files hold no personal data.
-$ip        = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
-$counter   = sys_get_temp_dir() . '/contact-' . hash('sha256', $ip);
+// here.
+//
+// The IP is keyed with a secret salt, not hashed bare: a plain SHA-256 of an
+// IPv4 address is reversible by running through all ~4.3 billion of them, so
+// an unsalted digest is pseudonymous data, not anonymous. With the salt the
+// counter name cannot be traced back to a visitor.
+$salt = (string) (getenv('RATE_LIMIT_SALT') ?: '');
+if ($salt === '') {
+    error_log('sendMail: RATE_LIMIT_SALT is unset — refusing to key the rate limit with a bare hash');
+    fail(500, 'Mail is not configured');
+}
+
+$ip         = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+$prefix     = sys_get_temp_dir() . '/contact-';
+$counter    = $prefix . hash_hmac('sha256', $ip, $salt);
 $timestamps = [];
+
+// Sweep expired counters. Without this the files pile up in the temp directory
+// for as long as the container lives, which contradicts the one-hour retention
+// the privacy policy states.
+foreach (glob($prefix . '*') ?: [] as $stale) {
+    if (@filemtime($stale) < time() - RATE_WINDOW) {
+        @unlink($stale);
+    }
+}
 
 if (is_readable($counter)) {
     $decoded = json_decode((string) file_get_contents($counter), true);

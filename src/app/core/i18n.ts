@@ -72,7 +72,7 @@ const de = {
   'contact.message': 'Deine Nachricht',
   'contact.privacyPre': 'Ich habe die',
   'contact.privacyLink': 'Datenschutzerklärung',
-  'contact.privacyPost': 'gelesen und stimme der Verarbeitung meiner Daten zu.',
+  'contact.privacyPost': 'gelesen und zur Kenntnis genommen.',
   'contact.send': 'Nachricht senden',
   'contact.sending': 'Wird gesendet …',
   'contact.errorName': 'Bitte gib deinen Namen ein.',
@@ -91,7 +91,7 @@ const de = {
   'social.mail': 'E-Mail schreiben',
 
   'legal.title': 'Impressum',
-  'legal.responsible': 'Angaben gemäß § 5 TMG',
+  'legal.responsible': 'Angaben gemäß § 5 DDG',
   'legal.contact': 'Kontakt',
   'legal.back': 'Zurück zur Startseite',
 
@@ -102,13 +102,16 @@ const de = {
   'privacy.responsible.title': 'Verantwortlicher',
   'privacy.hosting.title': 'Hosting und Server-Logfiles',
   'privacy.hosting.text':
-    'Die Website wird bei einem externen Hosting-Anbieter betrieben, mit dem ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO besteht. Beim Aufruf der Seite erfasst der Server automatisch Zugriffsdaten in Logfiles: aufgerufene Seite, Datum und Uhrzeit, übertragene Datenmenge, Browsertyp, Betriebssystem und IP-Adresse. Diese Daten dienen ausschließlich dem sicheren und stabilen Betrieb der Website. Rechtsgrundlage ist das berechtigte Interesse nach Art. 6 Abs. 1 lit. f DSGVO. Die Logfiles werden nach spätestens sieben Tagen gelöscht.',
+    'Die Website wird bei einem externen Hosting-Anbieter betrieben, mit dem ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO besteht. Beim Aufruf der Seite erfasst der Server automatisch Zugriffsdaten: aufgerufene Seite, Datum und Uhrzeit, übertragene Datenmenge, Browsertyp und Betriebssystem. Ihre IP-Adresse wird dabei nicht in das Zugriffsprotokoll dieser Anwendung geschrieben. Diese Daten dienen ausschließlich dem sicheren und stabilen Betrieb der Website. Rechtsgrundlage ist das berechtigte Interesse nach Art. 6 Abs. 1 lit. f DSGVO.',
   'privacy.ssl.title': 'SSL-/TLS-Verschlüsselung',
   'privacy.ssl.text':
     'Diese Seite nutzt aus Sicherheitsgründen eine SSL- beziehungsweise TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers mit „https://“ beginnt und ein Schloss-Symbol zeigt. Ist die Verschlüsselung aktiv, können Dritte die Daten, die Sie an mich übermitteln, nicht mitlesen.',
   'privacy.form.title': 'Kontaktformular',
   'privacy.form.text':
-    'Wenn Sie mir über das Kontaktformular schreiben, werden Ihr Name, Ihre E-Mail-Adresse und Ihr Nachrichtentext an meine E-Mail-Adresse weitergeleitet. Ich verwende diese Angaben ausschließlich, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit einem Vertrag zusammenhängt, andernfalls das berechtigte Interesse an der Beantwortung nach Art. 6 Abs. 1 lit. f DSGVO. Eine Weitergabe an Dritte findet nicht statt. Ich lösche die Daten, sobald Ihre Anfrage erledigt ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.',
+    'Wenn Sie mir über das Kontaktformular schreiben, werden Ihr Name, Ihre E-Mail-Adresse und Ihr Nachrichtentext per E-Mail an mich zugestellt. Für Versand und Postfach nutze ich die IONOS SE, Elgendorfer Straße 57, 56410 Montabaur, die die Daten als Auftragsverarbeiterin nach Art. 28 DSGVO in meinem Auftrag verarbeitet. Darüber hinaus gebe ich Ihre Angaben nicht weiter. Ich verwende sie ausschließlich, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit einem Vertrag zusammenhängt, andernfalls das berechtigte Interesse an der Beantwortung nach Art. 6 Abs. 1 lit. f DSGVO. Ich lösche die Daten, sobald Ihre Anfrage erledigt ist und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.',
+  'privacy.spam.title': 'Spam-Schutz des Kontaktformulars',
+  'privacy.spam.text':
+    'Um Missbrauch des Formulars zu verhindern, ist die Zahl der Nachrichten pro Absender begrenzt. Dazu wird Ihre IP-Adresse beim Absenden mit einem geheimen Zusatzwert zu einem Prüfwert umgerechnet. Gespeichert wird nur dieser Prüfwert zusammen mit dem Zeitpunkt, und zwar für eine Stunde; danach wird der Eintrag automatisch gelöscht. Die IP-Adresse selbst wird nicht gespeichert. Rechtsgrundlage ist das berechtigte Interesse an der Abwehr von Spam nach Art. 6 Abs. 1 lit. f DSGVO.',
   'privacy.mail.title': 'Kontakt per E-Mail',
   'privacy.mail.text':
     'Schreiben Sie mir direkt per E-Mail, gilt dasselbe: Ihre Angaben werden nur zur Bearbeitung Ihres Anliegens gespeichert und anschließend gelöscht.',
@@ -125,7 +128,7 @@ const de = {
   'privacy.complaint.text':
     'Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer Daten gegen die DSGVO verstößt, können Sie sich bei einer Aufsichtsbehörde beschweren. Zuständig ist das Bayerische Landesamt für Datenschutzaufsicht, Promenade 18, 91522 Ansbach.',
   'privacy.updated.title': 'Stand',
-  'privacy.updated.text': 'Juli 2026',
+  'privacy.updated.text': 'August 2026',
   'privacy.back': 'Zurück zur Startseite',
 } as const;
 
@@ -193,7 +196,7 @@ const en: Record<TranslationKey, string> = {
   'contact.message': 'Your message',
   'contact.privacyPre': "I've read the",
   'contact.privacyLink': 'privacy policy',
-  'contact.privacyPost': 'and agree to the processing of my data as outlined.',
+  'contact.privacyPost': 'and taken note of it.',
   'contact.send': 'Send message',
   'contact.sending': 'Sending …',
   'contact.errorName': 'Please enter your name.',
@@ -212,7 +215,7 @@ const en: Record<TranslationKey, string> = {
   'social.mail': 'Write an email',
 
   'legal.title': 'Legal notice',
-  'legal.responsible': 'Information according to § 5 TMG',
+  'legal.responsible': 'Information according to § 5 DDG',
   'legal.contact': 'Contact',
   'legal.back': 'Back to home',
 
@@ -223,13 +226,16 @@ const en: Record<TranslationKey, string> = {
   'privacy.responsible.title': 'Controller',
   'privacy.hosting.title': 'Hosting and server log files',
   'privacy.hosting.text':
-    'This website runs with an external hosting provider, with whom a data processing agreement under Art. 28 GDPR is in place. Whenever the site is opened, the server automatically records access data in log files: the page requested, date and time, amount of data transferred, browser type, operating system and IP address. This data serves the secure and stable operation of the website only. The legal basis is legitimate interest under Art. 6(1)(f) GDPR. Log files are deleted after seven days at the latest.',
+    'This website runs with an external hosting provider, with whom a data processing agreement under Art. 28 GDPR is in place. Whenever the site is opened, the server automatically records access data: the page requested, date and time, amount of data transferred, browser type and operating system. Your IP address is not written to this application’s access log. This data serves the secure and stable operation of the website only. The legal basis is legitimate interest under Art. 6(1)(f) GDPR.',
   'privacy.ssl.title': 'SSL/TLS encryption',
   'privacy.ssl.text':
     'For security reasons this site uses SSL or TLS encryption. You can recognize an encrypted connection by the browser address bar starting with “https://” and showing a padlock icon. While encryption is active, the data you send me cannot be read by third parties.',
   'privacy.form.title': 'Contact form',
   'privacy.form.text':
-    'When you write to me through the contact form, your name, email address and message are forwarded to my email address. I use these details solely to answer your inquiry. The legal basis is Art. 6(1)(b) GDPR where your inquiry relates to a contract, otherwise the legitimate interest in responding under Art. 6(1)(f) GDPR. The data is not passed on to third parties. I delete it as soon as your inquiry has been dealt with and no statutory retention periods apply.',
+    'When you write to me through the contact form, your name, email address and message are delivered to me by email. Sending and mailbox are handled by IONOS SE, Elgendorfer Straße 57, 56410 Montabaur, Germany, which processes the data on my behalf as a processor under Art. 28 GDPR. Beyond that I do not pass your details on. I use them solely to answer your inquiry. The legal basis is Art. 6(1)(b) GDPR where your inquiry relates to a contract, otherwise the legitimate interest in responding under Art. 6(1)(f) GDPR. I delete the data as soon as your inquiry has been dealt with and no statutory retention periods apply.',
+  'privacy.spam.title': 'Spam protection on the contact form',
+  'privacy.spam.text':
+    'To prevent abuse of the form, the number of messages per sender is limited. Your IP address is combined with a secret value and converted into a check value when you submit. Only that check value is stored, together with the time, and only for one hour; the entry is then deleted automatically. The IP address itself is not stored. The legal basis is legitimate interest in preventing spam under Art. 6(1)(f) GDPR.',
   'privacy.mail.title': 'Contact by email',
   'privacy.mail.text':
     'If you email me directly, the same applies: your details are stored only to handle your request and are deleted once it has been dealt with.',
@@ -246,7 +252,7 @@ const en: Record<TranslationKey, string> = {
   'privacy.complaint.text':
     'If you believe that the processing of your data infringes the GDPR, you may lodge a complaint with a supervisory authority. The competent authority is the Bavarian Data Protection Authority (Bayerisches Landesamt für Datenschutzaufsicht), Promenade 18, 91522 Ansbach, Germany.',
   'privacy.updated.title': 'Last updated',
-  'privacy.updated.text': 'July 2026',
+  'privacy.updated.text': 'August 2026',
   'privacy.back': 'Back to home',
 };
 
