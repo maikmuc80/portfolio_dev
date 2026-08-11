@@ -127,10 +127,23 @@ $body = "<strong>Name:</strong> {$safeName}<br>\n"
 // $email already passed FILTER_VALIDATE_EMAIL, which rejects newlines — so it
 // cannot smuggle extra headers in through Reply-To. The envelope sender is set
 // by msmtp from its own config, so no additional_params are needed here.
+// The From header has to name the mailbox we authenticate as, not the one we
+// deliver to. IONOS — like most providers — refuses a message whose sender is
+// a different address than the SMTP account, which surfaces here as mail()
+// returning false. SMTP_FROM also feeds msmtp's envelope sender, so both agree.
+$sender = (string) (getenv('SMTP_FROM') ?: '');
+if (!filter_var($sender, FILTER_VALIDATE_EMAIL)) {
+    $sender = (string) (getenv('SMTP_USER') ?: '');
+}
+if (!filter_var($sender, FILTER_VALIDATE_EMAIL)) {
+    $sender = $recipient;
+}
+
 $headers = implode("\r\n", [
     'MIME-Version: 1.0',
     'Content-Type: text/html; charset=utf-8',
-    'From: Website Kontakt <' . $recipient . '>',
+    'From: Website Kontakt <' . $sender . '>',
+    // Hitting reply answers the visitor, not our own send-only mailbox.
     'Reply-To: ' . $email,
 ]);
 

@@ -40,7 +40,7 @@ logfile        -
 account        default
 host           ${SMTP_HOST}
 port           ${SMTP_PORT}
-from           ${SMTP_FROM:-$CONTACT_EMAIL}
+from           ${SMTP_FROM:-$SMTP_USER}
 user           ${SMTP_USER}
 password       ${SMTP_PASS}
 EOF
