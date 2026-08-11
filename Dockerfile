@@ -40,6 +40,12 @@ RUN a2enconf spa
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# Apache in this image listens on 80, not on Coolify's default of 3000. Stated
+# here so the port the container really serves is visible in the source — the
+# reverse proxy routes to whatever "Ports Exposes" says, and a mismatch answers
+# every request with a gateway error while the container itself looks fine.
+EXPOSE 80
+
 # Checks that Apache actually answers, not merely that the process is alive.
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD php -r 'exit(@file_get_contents("http://127.0.0.1/index.html") === false ? 1 : 0);'
