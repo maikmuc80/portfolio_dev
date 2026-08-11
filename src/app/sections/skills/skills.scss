@@ -76,12 +76,18 @@
   width: 75px;
   height: 75px;
   margin: 0 auto;
-  object-fit: contain;
+  background-color: var(--ink);
+  -webkit-mask: var(--skill-icon) center / contain no-repeat;
+  mask: var(--skill-icon) center / contain no-repeat;
+  transition: background-color var(--dur-50) var(--ease-in-back);
 }
 
+/* Not in Figma — there only the label turns accent and the icon stays black.
+   Added on request, and it keeps icon and label reading as one element. */
 .skill:hover .skill__icon,
 .skill:focus-within .skill__icon {
-  animation: skill-turn 250ms both;
+  background-color: var(--accent);
+  animation: skill-turn var(--dur-skill) both;
 }
 
 @keyframes skill-turn {

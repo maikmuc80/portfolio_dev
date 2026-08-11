@@ -52,17 +52,30 @@
   --space-xl: 64px;
   --section-gap: clamp(72px, 4rem + 6vw, 160px);
 
-  /* Motion — durations are the prototype's own values, not rounded.
-     Every animation in this file uses one of these; no ad-hoc timings. */
-  --dur-40: 40ms; /* burger, menu overlay          */
-  --dur-50: 50ms; /* skill icons, project card in  */
-  --dur-70: 70ms; /* hero mail anchor scroll       */
-  --dur-80: 80ms; /* project card, step 2          */
-  --dur-100: 100ms; /* most hovers                   */
-  --dur-120: 120ms; /* project card, mouse leave     */
-  --dur-150: 150ms; /* project card, step 3          */
-  --dur-160: 160ms; /* burger chain: 4 steps x 40ms  */
-  --dur-300: 300ms; /* footer arrow                  */
+  /* Motion — the base numbers are the prototype's own values, not rounded.
+     Every animation in this file uses one of these; no ad-hoc timings.
+
+     Figma's timings are state swaps in a prototype, not continuous CSS
+     transitions: taken literally, 40–50ms reads as a snap rather than a move.
+     --motion-scale stretches all of them at once, so the whole site keeps the
+     prototype's proportions while running at a speed that is actually
+     readable. Set it to 1 for the raw Figma values. */
+  --motion-scale: 2;
+
+  --dur-40: calc(40ms * var(--motion-scale)); /* burger, menu overlay         */
+  --dur-50: calc(50ms * var(--motion-scale)); /* skill icons, card step 1     */
+  --dur-70: calc(70ms * var(--motion-scale)); /* hero mail anchor scroll      */
+  --dur-80: calc(80ms * var(--motion-scale)); /* project card, step 2         */
+  --dur-100: calc(100ms * var(--motion-scale)); /* most hovers                  */
+  --dur-120: calc(120ms * var(--motion-scale)); /* project card, mouse leave    */
+  --dur-150: calc(150ms * var(--motion-scale)); /* project card, step 3         */
+  --dur-300: calc(300ms * var(--motion-scale)); /* footer arrow                 */
+
+  /* Chain totals, so the keyframe percentages stay meaningful. */
+  --dur-burger: calc(160ms * var(--motion-scale)); /* 4 x 40ms              */
+  --dur-skill: calc(250ms * var(--motion-scale)); /* 5 x 50ms              */
+  --dur-card: calc(280ms * var(--motion-scale)); /* 50 + 80 + 150ms       */
+  --dur-hero-lap: calc(840ms * var(--motion-scale)); /* 7 x (20ms + 100ms)    */
 
   /* Figma's named easings translated to their CSS equivalents. */
   --ease-in: cubic-bezier(0.42, 0, 1, 1);

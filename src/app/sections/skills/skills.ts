@@ -12,4 +12,9 @@ import { TranslationService } from '../../core/translation-service';
 export class Skills {
   protected readonly t = inject(TranslationService).t;
   protected readonly skills = SKILLS;
+
+  /** Mask source for a skill icon — see the comment on .skill__icon. */
+  protected iconUrl(icon: string): string {
+    return `url(assets/icons/${icon}.svg)`;
+  }
 }

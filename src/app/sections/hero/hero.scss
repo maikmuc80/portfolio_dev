@@ -130,7 +130,7 @@
 .hero__scroll img {
   width: var(--arrow-w);
   height: auto;
-  animation: hero-arrow 840ms infinite;
+  animation: hero-arrow var(--dur-hero-lap) infinite;
 }
 
 @keyframes hero-arrow {

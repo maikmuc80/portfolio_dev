@@ -56,7 +56,7 @@
 
 $in-hover: 17.857%;
 $in-trans1: 46.4286%;
-$in-dur: 280ms;
+$in-dur: var(--dur-card);
 
 .project__media {
   position: relative;

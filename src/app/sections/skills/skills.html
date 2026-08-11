@@ -13,15 +13,11 @@
         @for (skill of skills; track skill.name) {
           <li class="skill">
             <!-- The icon travels out of its 100px frame and back in on hover,
-                 so it needs a window to disappear into. -->
+                 so it needs a window to disappear into. It is painted as a
+                 mask rather than an <img> so it can take the accent colour —
+                 an image cannot be recoloured from CSS. -->
             <span class="skill__figure" aria-hidden="true">
-              <img
-                class="skill__icon"
-                [src]="'assets/icons/' + skill.icon + '.svg'"
-                alt=""
-                width="75"
-                height="75"
-              />
+              <span class="skill__icon" [style.--skill-icon]="iconUrl(skill.icon)"></span>
             </span>
             <span class="skill__name">{{ skill.name }}</span>
           </li>
