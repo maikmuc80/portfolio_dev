@@ -67,6 +67,9 @@ if ($salt === '') {
     }
 }
 
+// This is the visitor's address, not the reverse proxy's, because mod_remoteip
+// rewrites it from X-Forwarded-For before PHP runs (see docker/spa.conf). Drop
+// that configuration and every visitor shares one counter.
 $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
 
 // Distinct from the salt file, so the sweep below cannot delete the salt and

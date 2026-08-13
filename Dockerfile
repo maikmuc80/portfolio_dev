@@ -26,7 +26,7 @@ RUN apt-get update \
 
 # -C points at the config the entrypoint writes; -t makes msmtp read the
 # recipient from the message headers, which is what mail() produces.
-RUN a2enmod rewrite headers \
+RUN a2enmod rewrite headers remoteip \
  && printf 'sendmail_path = "/usr/bin/msmtp -C /etc/msmtprc -t"\n' \
       > /usr/local/etc/php/conf.d/mail.ini
 
