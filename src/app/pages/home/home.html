@@ -2,8 +2,9 @@
 <app-about />
 <app-skills />
 <app-portfolio />
-<!-- References are hidden until real quotes exist — publishing the placeholder
-     text would read as fake testimonials. To bring the section back, restore
-     <app-references /> here, its import in home.ts and 'references' in
-     SECTIONS (portfolio-data.ts). Component, data and translations are kept. -->
+<!-- Local preview only — the quotes are examples, not real references. See the
+     comment on showExampleReferences in home.ts. -->
+@if (showExampleReferences) {
+  <app-references />
+}
 <app-contact />

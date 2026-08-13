@@ -57,12 +57,20 @@ const de = {
   'references.title': 'Referenzen',
   'references.intro':
     'Ich arbeite gern eigenständig und genauso gern im Team. Das sagen Kolleginnen und Kollegen über die Zusammenarbeit mit mir.',
+  // Beispieltexte, keine echten Aussagen. Sie werden nur in der lokalen
+  // Entwicklung gerendert (siehe home.ts) — die Länge entspricht ungefähr dem
+  // Figma-Entwurf, damit die Vorschau das echte Layout zeigt. Die Rollen bleiben
+  // realistisch, weil ihre Länge das Layout beeinflusst; erkennbar ist die
+  // Vorschau am Namen und am ersten Wort des Zitats.
   'references.ref1.role': 'Team-Partner:in',
-  'references.ref1.text': 'Platzhalter — hier kommt eine echte Rückmeldung aus deinem Team hin.',
+  'references.ref1.text':
+    'Beispieltext für die Layout-Vorschau. Hier steht später eine echte Rückmeldung aus dem Team — etwa dazu, wie die Zusammenarbeit im gemeinsamen Projekt lief.',
   'references.ref2.role': 'Team-Partner:in',
-  'references.ref2.text': 'Platzhalter — hier kommt eine echte Rückmeldung aus deinem Team hin.',
+  'references.ref2.text':
+    'Beispieltext für die Layout-Vorschau. Dieser Absatz ist bewusst kürzer, damit sichtbar wird, wie unterschiedlich lange Zitate nebeneinander wirken.',
   'references.ref3.role': 'Frontend Engineer',
-  'references.ref3.text': 'Platzhalter — hier kommt eine echte Rückmeldung aus deinem Team hin.',
+  'references.ref3.text':
+    'Beispieltext für die Layout-Vorschau. Er ersetzt kein echtes Zitat und wird vor der Veröffentlichung durch eine namentliche Rückmeldung ausgetauscht.',
 
   'contact.title': 'Sag Hallo!',
   'contact.lead': 'Lust auf ein neues Projekt?',
@@ -181,12 +189,16 @@ const en: Record<TranslationKey, string> = {
   'references.title': 'References',
   'references.intro':
     'I thrive both independently and as part of a team. Here is what my colleagues have to say about working with me.',
+  // Example copy, not real statements — see the German block above.
   'references.ref1.role': 'Team partner',
-  'references.ref1.text': 'Placeholder — a real quote from your team goes here.',
+  'references.ref1.text':
+    'Example copy for the layout preview. A real quote from the team goes here later — about how working together on the shared project went.',
   'references.ref2.role': 'Team partner',
-  'references.ref2.text': 'Placeholder — a real quote from your team goes here.',
+  'references.ref2.text':
+    'Example copy for the layout preview. This paragraph is deliberately shorter, so it shows how quotes of differing length sit next to each other.',
   'references.ref3.role': 'Frontend Engineer',
-  'references.ref3.text': 'Placeholder — a real quote from your team goes here.',
+  'references.ref3.text':
+    'Example copy for the layout preview. It stands in for no real quote and gets replaced by an attributed one before publication.',
 
   'contact.title': 'Say Hi!',
   'contact.lead': 'Want to discuss a new project?',

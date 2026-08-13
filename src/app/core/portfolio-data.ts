@@ -68,11 +68,18 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-/** Name here, role and quote in i18n.ts under `references.<key>.*`. */
+/**
+ * Name here, role and quote in i18n.ts under `references.<key>.*`.
+ *
+ * Placeholders, and named so that nobody can mistake them for real people: the
+ * section is only rendered in local development (see home.ts) because invented
+ * testimonials on a public portfolio read as genuine endorsements. Replacing
+ * these three names with real ones is what turns the section live.
+ */
 export const REFERENCES: Reference[] = [
-  { key: 'ref1', name: '—' },
-  { key: 'ref2', name: '—' },
-  { key: 'ref3', name: '—' },
+  { key: 'ref1', name: 'Beispiel A' },
+  { key: 'ref2', name: 'Beispiel B' },
+  { key: 'ref3', name: 'Beispiel C' },
 ];
 
 export const SOCIALS: SocialLink[] = [
