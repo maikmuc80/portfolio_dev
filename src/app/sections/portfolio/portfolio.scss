@@ -62,14 +62,21 @@ $in-dur: var(--dur-card);
   position: relative;
 }
 
-/* Figma "Rectangle 7": 4px ink stroke, offset +20/+20 from the image, growing
-   out of a 4x4 dot anchored at its own top-left corner. Bound to :has(img) —
-   a project without a screenshot has a zero-height media box, and the frame
-   would otherwise collapse into a stray line. */
+/* Figma "Rectangle 7": 4px ink stroke, same size as the image, offset -20/+20
+   from it, growing out of a 4x4 dot anchored at its own top-left corner.
+   Bound to :has(img) — a project without a screenshot has a zero-height media
+   box, and the frame would otherwise collapse into a stray line.
+   The offset goes towards the copy, never away from it: on "32. sharkie buton
+   rigth s3" (353:1055), where the image sits right, the frame is at x -20; on
+   "30. join buton left s3" (314:1131) it mirrors to +20. The flipped rules
+   further down do that swap. */
 .project__media:has(img)::before {
   content: '';
   position: absolute;
-  inset: 20px -20px -20px 20px;
+  inset: 20px 20px -20px -20px;
+  /* Figma draws photo, then frame, then arrow — so the frame crosses over the
+     picture. Without this the image, being positioned, would cover it. */
+  z-index: 1;
   border: 4px solid var(--ink);
   pointer-events: none;
   transform: scale(0);
@@ -129,14 +136,17 @@ $in-dur: var(--dur-card);
 }
 
 /* Round arrow button. Figma: 5x5 at 10% opacity -> 68x68 -> 76x76, centred
-   19px past the image edge. The dot starts 18.5px closer to the image. */
+   about 20px past the image edge on the copy's side. The dot starts 18.5px
+   closer to the image, so it appears to fly out of the picture. */
 .project__open {
-  --arrow-nudge: -18.5px;
+  --arrow-nudge: 18.5px;
 
   position: absolute;
-  right: -57px;
+  left: -58px;
   top: 50%;
   translate: 0 -50%;
+  /* Above the picture, like the frame. */
+  z-index: 2;
   display: block;
   width: 76px;
   height: 76px;
@@ -177,10 +187,35 @@ $in-dur: var(--dur-card);
   }
 }
 
+/* The glyph turns while the button grows: Figma's "Transition1" holds an arrow
+   pointing straight down, "end" the diagonal one that this file ships. 135deg
+   puts the shipped arrow on its head, and unwinding to 0 takes it down ->
+   right -> up-right. Only the last step of the chain turns, so the button
+   spends its growth as a down arrow and rights itself at the end.
+   The disc is part of the same SVG, but it is a circle — rotating it shows. */
 .project__open img {
   width: 100%;
   height: 100%;
+  transform: rotate(135deg);
   filter: none;
+  transition: transform var(--dur-120) var(--ease-bouncy);
+}
+
+.project:hover .project__open img,
+.project:focus-within .project__open img {
+  transform: rotate(0deg);
+  animation: project-arrow-turn $in-dur both;
+}
+
+@keyframes project-arrow-turn {
+  0%,
+  #{$in-trans1} {
+    transform: rotate(135deg);
+    animation-timing-function: linear;
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 .project__title {
@@ -286,14 +321,14 @@ $in-dur: var(--dur-card);
   /* Mirrored: frame offset, arrow and the direction the copy slides in from
      all move to the other side, so the copy always enters from the image. */
   .project--flipped .project__media:has(img)::before {
-    inset: 20px 20px -20px -20px;
+    inset: 20px -20px -20px 20px;
   }
 
   .project--flipped .project__open {
-    --arrow-nudge: 18.5px;
+    --arrow-nudge: -18.5px;
 
-    right: auto;
-    left: -57px;
+    right: -57px;
+    left: auto;
   }
 
   .project--flipped .project__reveal {
@@ -302,8 +337,13 @@ $in-dur: var(--dur-card);
 }
 
 @include until-tablet {
+  /* One column, so there is no copy side to lean towards: the arrow drops to
+     the bottom right corner and the frame offsets the way it did before. The
+     `left: auto` is load-bearing — the desktop rule anchors the arrow left, and
+     with both edges set the left one would win. */
   .project__open {
     right: 8px;
+    left: auto;
     top: auto;
     bottom: -34px;
     translate: none;
@@ -330,6 +370,10 @@ $in-dur: var(--dur-card);
     animation: project-arrow $in-dur both;
   }
 
+  .project__open img {
+    animation: project-arrow-turn $in-dur both;
+  }
+
   .project__reveal {
     animation: project-copy $in-dur both;
   }
@@ -339,6 +383,7 @@ $in-dur: var(--dur-card);
       .project__media:has(img)::before,
       .project__media img,
       .project__open,
+      .project__open img,
       .project__reveal {
         animation-delay: #{2 + 2 * $i}s;
       }
