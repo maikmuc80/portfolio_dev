@@ -255,11 +255,21 @@
   min-width: 269px;
 }
 
+/* Both children share one grid cell: the hidden sizer sets the height, the
+   real message lies on top of it. */
 .form__feedback {
-  min-height: 1.2em;
+  display: grid;
   color: var(--accent);
   font-weight: 700;
   text-align: center;
+}
+
+.form__feedback > * {
+  grid-area: 1 / 1;
+}
+
+.form__feedback-sizer {
+  visibility: hidden;
 }
 
 .form__feedback--error {
