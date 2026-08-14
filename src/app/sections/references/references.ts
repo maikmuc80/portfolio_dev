@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
+import { InView } from '../../core/in-view';
 import { REFERENCES } from '../../core/portfolio-data';
 import { TranslationKey } from '../../core/i18n';
 import { TranslationService } from '../../core/translation-service';
 
 @Component({
   selector: 'app-references',
-  imports: [],
+  imports: [InView],
   templateUrl: './references.html',
   styleUrl: './references.scss',
 })

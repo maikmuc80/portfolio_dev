@@ -76,6 +76,7 @@
   --dur-skill: calc(250ms * var(--motion-scale)); /* 5 x 50ms              */
   --dur-card: calc(280ms * var(--motion-scale)); /* 50 + 80 + 150ms       */
   --dur-hero-lap: calc(840ms * var(--motion-scale)); /* 7 x (20ms + 100ms)    */
+  --dur-arrow: calc(170ms * var(--motion-scale)); /* 100 + 70ms            */
 
   /* Figma's named easings translated to their CSS equivalents. */
   --ease-in: cubic-bezier(0.42, 0, 1, 1);
@@ -163,6 +164,43 @@ html {
   .field__input:-webkit-autofill:active {
     transition-duration: 600000s !important;
   }
+}
+
+/* The arrows between the sections take off once, travel about 30px towards
+   what they point at, and stay there — so scrolling past leaves the page a
+   little further along than it was.
+   Both icons are 45 degree diagonals, so 30px of travel splits into 21px per
+   axis (30 / sqrt(2)). Each arrow sets its own direction below; the movement
+   uses the `translate` property rather than `transform`, which leaves any
+   transform free for other purposes.
+   Timing is Figma's own arrow chain, "11. ARROW LEFT" (397:2507): 100ms + 70ms.
+   The prototype spends it on a hover swell; here it carries the flight. */
+@keyframes arrow-fly {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: var(--fly-x) var(--fly-y);
+  }
+}
+
+.about__arrow,
+.references__arrow {
+  /* arrow-left.svg points down and to the left. */
+  --fly-x: -21px;
+  --fly-y: 21px;
+}
+
+.skills__arrow {
+  /* arrow-right.svg points down and to the right. */
+  --fly-x: 21px;
+  --fly-y: 21px;
+}
+
+.is-in-view.about__arrow,
+.is-in-view.skills__arrow,
+.is-in-view.references__arrow {
+  animation: arrow-fly var(--dur-arrow) var(--ease-out) both;
 }
 
 body {
