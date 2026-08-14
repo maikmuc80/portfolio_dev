@@ -50,6 +50,9 @@ const de = {
     'Hier eine Auswahl meiner Arbeiten — schau dich um und entdecke, was ich kann.',
   'portfolio.counter': 'Projekt {{n}} von {{total}}',
   'portfolio.openLabel': '{{title}} live ansehen',
+  /* Fällt an, solange ein Projekt keine Live-Adresse hat: der runde Pfeil führt
+     dann zum Quellcode statt ins Leere. */
+  'portfolio.openCodeLabel': 'Quellcode von {{title}} auf GitHub ansehen',
 
   'projects.elpolloloco.desc':
     'Ein 2D-Jump-and-Run in der mexikanischen Wüste: Pepe sammelt Münzen und Salsa-Flaschen, erledigt verrückte Hühner und stellt sich am Ende dem Boss. Objektorientiert mit der Canvas-API gebaut — ganz ohne Framework.',
@@ -182,6 +185,7 @@ const en: Record<TranslationKey, string> = {
     'Explore a selection of my work here — interact with projects to see my skills in action.',
   'portfolio.counter': 'Project {{n}} of {{total}}',
   'portfolio.openLabel': 'View {{title}} live',
+  'portfolio.openCodeLabel': 'View the source of {{title}} on GitHub',
 
   'projects.elpolloloco.desc':
     'A 2D jump-and-run set in a Mexican desert: Pepe collects coins and salsa bottles, takes on crazy chickens and finally faces the end boss. Built with object-oriented JavaScript and the Canvas API — no frameworks.',

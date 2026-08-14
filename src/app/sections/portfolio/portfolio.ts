@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { PROJECTS } from '../../core/portfolio-data';
+import { PROJECTS, Project } from '../../core/portfolio-data';
 import { TranslationKey } from '../../core/i18n';
 import { TranslationService } from '../../core/translation-service';
 
@@ -23,5 +23,14 @@ export class Portfolio {
 
   protected descKey(key: string): TranslationKey {
     return `projects.${key}.desc` as TranslationKey;
+  }
+
+  /**
+   * Where the round arrow leads. The live demo when there is one, otherwise the
+   * repository — the design puts the button on every card, and a project whose
+   * demo is not published yet still has something to show.
+   */
+  protected openUrl(project: Project): string {
+    return project.liveUrl || project.githubUrl;
   }
 }

@@ -28,12 +28,19 @@
                 loading="lazy"
               />
             }
-            <!-- Round arrow button from the design, overlapping the image edge. -->
-            @if (project.liveUrl) {
+            <!-- Round arrow button from the design, overlapping the image edge.
+                 Every card in Figma carries it, so it must not depend on a live
+                 demo existing: without one it opens the repository instead, and
+                 says so. It only disappears when a project has neither. -->
+            @if (openUrl(project)) {
               <a
                 class="project__open"
-                [href]="project.liveUrl"
-                [attr.aria-label]="tp('portfolio.openLabel', { title: project.title })"
+                [href]="openUrl(project)"
+                [attr.aria-label]="
+                  tp(project.liveUrl ? 'portfolio.openLabel' : 'portfolio.openCodeLabel', {
+                    title: project.title,
+                  })
+                "
                 rel="noopener"
                 target="_blank"
               >
