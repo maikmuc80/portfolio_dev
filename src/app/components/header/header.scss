@@ -162,20 +162,31 @@
 }
 
 /* Closing is the same chain backwards — but only after the first toggle, so
-   nothing animates on first paint. */
+   nothing animates on first paint.
+ *
+ * The name has to differ from the opening one, hence the -close suffix. Sharing
+ * a name means a class change only *updates* the running animation instead of
+ * starting a new one: its currentTime stays at the end of the chain, and adding
+ * `reverse` there resolves to the start value immediately. The bars then jump
+ * rather than move. That is not theory — with a shared name only the very first
+ * open animated, and every toggle after it was instant in both directions.
+ * A different name forces a fresh animation, so both ways play every time. */
 .burger--used:not(.burger--open) .burger__bar:nth-child(1) {
-  animation: burger-top var(--dur-burger) reverse both;
+  animation: burger-top-close var(--dur-burger) reverse both;
 }
 
 .burger--used:not(.burger--open) .burger__bar:nth-child(2) {
-  animation: burger-mid var(--dur-burger) reverse both;
+  animation: burger-mid-close var(--dur-burger) reverse both;
 }
 
 .burger--used:not(.burger--open) .burger__bar:nth-child(3) {
-  animation: burger-bot var(--dur-burger) reverse both;
+  animation: burger-bot-close var(--dur-burger) reverse both;
 }
 
-@keyframes burger-top {
+/* One set of steps per bar, emitted under two names. The chain itself is
+   identical in both directions — only `animation-direction` differs on the
+   rules above — so the steps live in a mixin and are never written twice. */
+@mixin burger-top-steps {
   0% {
     transform: translate(0, 0) rotate(0deg) scaleX(1);
     animation-timing-function: var(--ease-out);
@@ -197,7 +208,7 @@
   }
 }
 
-@keyframes burger-mid {
+@mixin burger-mid-steps {
   0%,
   50% {
     transform: translate(0, 0) rotate(0deg) scaleX(1);
@@ -212,7 +223,7 @@
   }
 }
 
-@keyframes burger-bot {
+@mixin burger-bot-steps {
   0% {
     transform: translate(0, 0) rotate(0deg) scaleX(1);
     animation-timing-function: var(--ease-out);
@@ -232,6 +243,30 @@
   100% {
     transform: translate(-7.5px, -10.5px) rotate(-40deg) scaleX(0.5);
   }
+}
+
+@keyframes burger-top {
+  @include burger-top-steps;
+}
+
+@keyframes burger-top-close {
+  @include burger-top-steps;
+}
+
+@keyframes burger-mid {
+  @include burger-mid-steps;
+}
+
+@keyframes burger-mid-close {
+  @include burger-mid-steps;
+}
+
+@keyframes burger-bot {
+  @include burger-bot-steps;
+}
+
+@keyframes burger-bot-close {
+  @include burger-bot-steps;
 }
 
 /* ---------------------------------------------------------------------------
@@ -278,7 +313,12 @@
 
 .menu__link {
   position: relative;
+  /* Hugs its text instead of filling the row: the marker below travels to the
+     right edge of the link, and that edge has to be the end of the word rather
+     than the end of the panel. */
   display: block;
+  width: max-content;
+  max-width: 100%;
   padding: 36px 0 35px 39px;
   font-family: var(--font-display);
   font-weight: 700;
@@ -288,36 +328,55 @@
   text-decoration: none;
 }
 
-/* Resting marker: Figma "Rectangle 7", a 39x52 bracket at the bottom left. */
+/* Resting marker: Figma "Rectangle 7", a 39x52 bracket at the bottom left.
+ *
+ * Hovering plays it in two beats, and the order is what makes it read as one
+ * gesture instead of a jump:
+ *   1. the upright folds away and the foot runs out to the full width of the
+ *      word, so the whole heading is underlined;
+ *   2. the left two thirds retract, leaving the short rule on the right
+ *      ("Rectangle 6", x 336 w 244 of a 580 wide item — hence 58% / 42%).
+ * The right edge stays put during the second beat: only `left` moves while
+ * `width` gives way by the same amount.
+ *
+ * The transition on the base rule is not for the way in — it carries the way
+ * back out, once the hover ends and the animation is dropped. */
 .menu__mark {
   position: absolute;
-  left: 0;
   bottom: 0;
-  width: 39px;
+  /* Both edges are given, so the width follows from them: 39px at rest, 42% on
+     hover. That is what lets the two beats be plain transitions — each edge
+     moves to exactly one target, and a delay decides which goes first. An
+     animation could do it too, but only on the way in: dropping a keyframe
+     animation when the hover ends snaps the element back with no transition. */
+  left: 0;
+  right: calc(100% - 39px);
   height: 52px;
   border-left: 4px solid currentcolor;
   border-bottom: 4px solid currentcolor;
-}
-
-/* Hover swaps the bracket for a full box that wipes in from the right:
-   "Rectangle 6" goes from x 336 w 244 to x 0 w 580. */
-.menu__link::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 4px solid currentcolor;
-  clip-path: inset(0 0 0 100%);
-  transition: clip-path var(--dur-100) var(--ease-in);
-}
-
-.menu__link:hover::after,
-.menu__link:focus-visible::after {
-  clip-path: inset(0);
+  /* Leaving, in reverse order: the rule grows back to the left edge first,
+     then the foot pulls in and the upright rises again. */
+  transition:
+    left var(--dur-100) var(--ease-out),
+    right var(--dur-100) var(--ease-out) var(--dur-100),
+    height var(--dur-100) var(--ease-out) var(--dur-100),
+    border-left-width var(--dur-100) var(--ease-out) var(--dur-100);
 }
 
 .menu__link:hover .menu__mark,
 .menu__link:focus-visible .menu__mark {
-  opacity: 0;
+  left: 58%;
+  right: 0;
+  height: 0;
+  border-left-width: 0;
+  /* Entering: first the upright folds away and the foot runs out under the
+     whole word, then the left two thirds retract to Figma's "Rectangle 6"
+     (x 336 w 244 of a 580 wide item — hence 58%, with the right edge parked). */
+  transition:
+    right var(--dur-100) var(--ease-out),
+    height var(--dur-100) var(--ease-out),
+    border-left-width var(--dur-100) var(--ease-out),
+    left var(--dur-100) var(--ease-out) var(--dur-100);
 }
 
 .menu__foot {
