@@ -57,51 +57,115 @@
   text-align: left;
 }
 
-/* Fields as in the design: an underline only, the label sits inside the field
-   and slides up on focus or input. */
+/* Figma "36.Name" (314:965) carries five states, and only the first is a bare
+   underline — that is what this used to implement in full:
+     Default   underline 2px, label inside the field
+     Hover     the underline closes into a box, 4px
+     Focus     box 2px, the label rises onto the top edge
+     Error     box 2px, label up, red mark right, message underneath
+     Done      box 1px, label up, green tick right
+   All measurements below are that component's: 50px tall, text inset 25px,
+   label inset 19px, mark 25px square, 25px from the right edge. */
 .field {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* Room for the label to slide up into on focus. */
-  padding-top: 22px;
+  /* Room above for the label to sit on the box edge without being clipped. */
+  padding-top: 12px;
 }
 
-/* Resting state: the label sits inside the field as in the design. */
 .field__label {
   position: absolute;
-  top: 22px;
-  left: 0;
+  /* Vertically centred inside the field while it rests there. */
+  top: calc(12px + 25px);
+  left: 25px;
+  padding: 0 6px;
+  transform: translateY(-50%);
+  /* The label straddles the box edge once it rises, so it has to carry the
+     panel's own background to cut the line — a notch, not a strike-through. */
+  background: var(--ink);
   font-size: var(--fs-label);
   line-height: 1.2;
   pointer-events: none;
   transition:
-    transform var(--dur-100) var(--ease-in-out),
+    top var(--dur-100) var(--ease-in-out),
+    left var(--dur-100) var(--ease-in-out),
     color var(--dur-100) var(--ease-in-out);
-  transform-origin: left top;
 }
 
 .field__input {
   width: 100%;
-  padding: 0 0 10px;
+  height: 50px;
+  /* Right side leaves room for the 25px mark plus its 25px inset. */
+  padding: 0 62px 0 25px;
   border: none;
-  border-bottom: 2px solid var(--on-dark);
   background: none;
   color: inherit;
   font: inherit;
   font-size: var(--fs-label);
-  /* The label right next to it animates; without this the underline snapped. */
-  transition: border-bottom-color var(--dur-100) var(--ease-in-out);
+  /* The frame is drawn with an inset shadow rather than a border: the widths
+     differ per state (4 / 2 / 1px) and a border would resize the field with
+     every change, nudging the text sideways. A shadow costs no layout.
+     It goes through a variable so the autofill rule further down can repaint
+     whichever frame is currently in force without repeating all four. */
+  --frame: inset 0 -2px 0 0 var(--on-dark);
+
+  box-shadow: var(--frame);
+  transition: box-shadow var(--dur-100) var(--ease-in-out);
 }
 
 .field__input--area {
-  resize: vertical;
+  height: auto;
   min-height: 160px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  resize: vertical;
+}
+
+/* Hover closes the underline into the full box. */
+.field__input:hover {
+  --frame: inset 0 0 0 4px var(--on-dark);
 }
 
 .field__input:focus {
+  --frame: inset 0 0 0 2px var(--on-dark);
+
   outline: none;
-  border-bottom-color: var(--accent);
+}
+
+/* Label up on the edge as soon as the field is in use or carries a value. */
+.field:focus-within .field__label,
+.field:has(.field__input:not(:placeholder-shown)) .field__label,
+.field--invalid .field__label,
+.field--valid .field__label {
+  top: 12px;
+  left: 19px;
+}
+
+.field--invalid .field__input {
+  --frame: inset 0 0 0 2px var(--on-dark);
+}
+
+/* Done is the quietest frame of the five — the tick carries the message. */
+.field--valid .field__input {
+  --frame: inset 0 0 0 1px var(--on-dark);
+}
+
+/* The mark sits on the first line, so on the message box it stays at the top
+   instead of drifting to the middle of an empty area. */
+.field__icon {
+  position: absolute;
+  top: calc(12px + 25px);
+  right: 25px;
+  width: 25px;
+  height: 25px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.field__input--area ~ .field__icon {
+  top: calc(12px + 16px);
+  transform: none;
 }
 
 /* Chrome and Safari paint autofilled fields pale blue with dark text, which is
@@ -111,35 +175,33 @@
 .field__input:-webkit-autofill:hover,
 .field__input:-webkit-autofill:focus,
 .field__input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--ink) inset;
+  /* The cover has to be repainted together with the frame, because both live on
+     box-shadow and this rule wins over the state rules above. --frame still
+     holds whichever of the five is in force, so nothing is duplicated here. */
+  -webkit-box-shadow:
+    inset 0 0 0 1000px var(--ink),
+    var(--frame);
   -webkit-text-fill-color: var(--on-dark);
   caret-color: var(--on-dark);
   transition: background-color 600000s 0s;
 }
 
-/* The label precedes the field in the markup, hence :has() over a sibling selector. */
-.field:focus-within .field__label,
-.field:has(.field__input:not(:placeholder-shown)) .field__label {
-  transform: translateY(-22px) scale(0.8);
-}
-
-.field:focus-within .field__label {
-  color: var(--accent);
-}
-
-/* The focus ring belongs on the field, not on the invisible wrapper. */
+/* The focus ring belongs on the field, not on the invisible wrapper. The cream
+   frame already marks focus, but it is the same colour as the resting state on
+   a neighbouring field — keyboard users get the accent ring on top. */
 .field__input:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 4px;
 }
 
 /* The line is always present, even when empty — otherwise everything below it
-   jumps down as soon as the first error appears. */
+   jumps down as soon as the first error appears. 12px is the component's own
+   size, smaller than --fs-small. */
 .field__error {
   min-height: 1.2em;
-  margin-top: var(--space-xs);
+  margin-top: 10px;
   color: var(--error);
-  font-size: var(--fs-small);
+  font-size: 12px;
   line-height: 1.2;
 }
 
