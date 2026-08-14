@@ -20,13 +20,10 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/mcp.json
+# Visual Studio Code — all of it. The Angular CLI ships this list with the
+# four files below un-ignored again; editor setup is nobody else's business and
+# has no place in a public repository.
+.vscode/
 .history/*
 
 # Secrets
