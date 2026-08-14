@@ -28,6 +28,14 @@
 .skills__head .section-title {
   flex-shrink: 0;
   text-align: center;
+  /* The one heading that can outgrow the line. `flex-shrink: 0` keeps it from
+     giving way and, as a flex item, from wrapping either, so below the 390px
+     Figma drew for, German "Meine Skills" pushes the row past the right edge —
+     8px of horizontal scroll on a 360px phone, with "Skills" cut off. English
+     "My skills" is 100px shorter and never shows it.
+     The cap only bites under about 379px: at 390 it computes to 37px, so the
+     section scale's 36px still wins and the design width is untouched. */
+  font-size: min(var(--fs-section), 9.5vw);
 }
 
 .skills__rule {
