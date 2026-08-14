@@ -35,6 +35,16 @@
   padding: var(--space-lg) var(--space-md);
   border: 2px solid var(--ink);
   text-align: center;
+  transition: border-color var(--dur-100) var(--ease-in-out);
+}
+
+/* Figma "34. References card" (105203:2069) has exactly two variants, and the
+   only difference between them is the stroke: #000000 at rest, #00BC8F on
+   hover. Nothing else moves. Focus-within is ours — the card holds no link
+   today, but if a quote ever gains one the keyboard should see the same. */
+.reference:hover,
+.reference:focus-within {
+  border-color: var(--accent);
 }
 
 .reference__quote {
