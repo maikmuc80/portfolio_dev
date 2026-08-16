@@ -71,10 +71,10 @@ export const PROJECTS: Project[] = [
 /**
  * Name here, role and quote in i18n.ts under `references.<key>.*`.
  *
- * Placeholders, and named so that nobody can mistake them for real people: the
- * section is only rendered in local development (see home.ts) because invented
- * testimonials on a public portfolio read as genuine endorsements. Replacing
- * these three names with real ones is what turns the section live.
+ * Still placeholders, and deliberately named so that nobody can mistake them
+ * for real people — the quotes say so themselves. Swap in real names only
+ * together with real quotes: invented testimonials under a plausible name read
+ * as genuine endorsements on a public portfolio.
  */
 export const REFERENCES: Reference[] = [
   { key: 'ref1', name: 'Beispiel A' },
@@ -92,8 +92,11 @@ export const SOCIALS: SocialLink[] = [
   },
 ];
 
-/**
- * Navigation anchor targets, in page order. 'references' is left out while
- * that section is hidden — see home.html.
- */
-export const SECTIONS = ['about', 'skills', 'portfolio', 'contact'] as const;
+/** Navigation anchor targets, in page order. */
+export const SECTIONS = [
+  'about',
+  'skills',
+  'portfolio',
+  'references',
+  'contact',
+] as const;
