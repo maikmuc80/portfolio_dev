@@ -323,6 +323,8 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(36px, 6.667vw, 96px);
+  /* "Referenzen" is one word at 36px and fills the panel on a small phone. */
+  overflow-wrap: break-word;
   line-height: 1;
   letter-spacing: var(--ls-wide);
   text-decoration: none;
@@ -421,8 +423,11 @@
   display: inline-block;
   margin-top: var(--space-xs);
   font-weight: 300;
-  font-size: var(--fs-btn);
+  /* The address is 21 characters with no space in it, so it can neither wrap
+     nor shrink on its own — hence the cap, and a break as the last resort. */
+  font-size: min(var(--fs-btn), 6.4vw);
   line-height: 1.2;
+  overflow-wrap: anywhere;
   text-decoration: none;
 }
 

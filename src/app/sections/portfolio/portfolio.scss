@@ -287,9 +287,14 @@ $in-dur: var(--dur-card);
 }
 
 @include from-tablet {
-  /* In the design image and text swap sides from project to project. */
+  /* In the design image and text swap sides from project to project.
+     The picture is 620px in the 1440px frame, but the two columns and the 98px
+     between them only add up below about 1066px — at 768 the copy was left
+     with 2px and was hidden behind its own `overflow: hidden`. The copy gets a
+     floor and the picture gives way instead; from 1066px up both are back at
+     their drawn widths. */
   .project {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 620px);
+    grid-template-columns: minmax(280px, 1fr) minmax(0, 620px);
     align-items: center;
     column-gap: calc(var(--space-xl) + 34px);
   }
@@ -311,7 +316,7 @@ $in-dur: var(--dur-card);
   }
 
   .project--flipped {
-    grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 620px) minmax(280px, 1fr);
   }
 
   .project--flipped .project__counter,

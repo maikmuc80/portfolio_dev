@@ -27,6 +27,14 @@ $bp-design: 1440px;
   }
 }
 
+// Below the mobile frame Figma was drawn at. Everything in here is a step down
+// from the design, not part of it.
+@mixin until-mobile {
+  @media (max-width: #{$bp-mobile - 0.02px}) {
+    @content;
+  }
+}
+
 // Content column: 1240px wide, otherwise a 24px gutter — exactly as in the
 // Figma frames: (1440 - 1240) / 2 = 100px margin on desktop, 24px on mobile.
 @mixin container {

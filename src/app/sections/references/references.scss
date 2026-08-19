@@ -12,6 +12,15 @@
   text-align: center;
 }
 
+/* "Referenzen" and "References" are single words about 9.4 times the font size
+   and have nothing to break on, so below the 390px the design was drawn at
+   they run out of the column. Capped at the line width the same way the hero
+   caps "Developer"; at 390px the cap computes to 36px and the section scale
+   still wins, so the design width is untouched. */
+.references__head .section-title {
+  font-size: min(var(--fs-section), (100vw - 2 * var(--gutter)) / 9.5);
+}
+
 .references__intro {
   max-width: 620px;
   margin: var(--space-md) auto 0;

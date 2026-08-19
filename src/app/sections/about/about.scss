@@ -84,6 +84,15 @@
   margin-right: max(var(--gutter), (100% - var(--container)) / 2);
 }
 
+@include until-tablet {
+  /* The 20px offset is a desktop measurement. On a phone the photo is as wide
+     as the column, so the frame would reach past the gutter and out of the
+     window — the project card drops to 8px for the same reason. */
+  .about__figure::after {
+    inset: 8px -8px -8px 8px;
+  }
+}
+
 @include from-tablet {
   .about__inner {
     grid-template-columns: minmax(0, 619fr) minmax(0, 533fr);

@@ -122,6 +122,15 @@
   );
 }
 
+/* Figma draws the mobile frame at 390px. Below that the 24px gutter leaves
+   272px of content — narrower than a single button with its padding — so it
+   steps down. The design width itself is untouched. */
+@include until-mobile {
+  :root {
+    --gutter: 16px;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Reset & base
    --------------------------------------------------------------------------- */
@@ -214,7 +223,6 @@ body {
   /* Dot pattern: 3x3px dots on a 104x126px grid (Figma node 368:1998). */
   background-image: radial-gradient(circle at 1.5px 1.5px, var(--pattern) 1.5px, transparent 1.6px);
   background-size: 104px 126px;
-  overflow-x: hidden;
 }
 
 img,
@@ -274,6 +282,8 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 68px;
+  /* Never wider than the column it stands in. */
+  max-width: 100%;
   padding: 0 60px;
   border: 4px solid var(--btn-ink);
   background: none;
@@ -293,6 +303,15 @@ a {
   }
 }
 
+/* Below the design width the mobile pair alone outgrows the column: "Nachricht
+   senden" is about 180px, and 2 x 60px of hover padding plus the border puts
+   the button at 308px against 288px of room. */
+@include until-mobile {
+  .btn {
+    padding: 0 24px;
+  }
+}
+
 /* Hover widens the button; it does not fill. */
 .btn:hover:not(:disabled),
 .btn:focus-visible:not(:disabled) {
@@ -303,6 +322,13 @@ a {
   .btn:hover:not(:disabled),
   .btn:focus-visible:not(:disabled) {
     padding: 0 60px;
+  }
+}
+
+@include until-mobile {
+  .btn:hover:not(:disabled),
+  .btn:focus-visible:not(:disabled) {
+    padding: 0 32px;
   }
 }
 

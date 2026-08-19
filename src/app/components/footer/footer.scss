@@ -108,6 +108,22 @@
   transform: translateY(-4px);
 }
 
+/* One column below the tablet breakpoint, and grid items default to `stretch`,
+   which left-aligns all three rows against the full content width. The Figma
+   mobile frame centres the whole block on one axis instead. */
+@include until-tablet {
+  .footer__inner {
+    justify-items: center;
+    text-align: center;
+  }
+
+  /* Otherwise the socials and the two legal links stretch to the full width
+     again and sit on the left inside their own column. */
+  .footer__right {
+    align-items: center;
+  }
+}
+
 @include from-tablet {
   .footer__inner {
     grid-template-columns: 1fr auto auto;

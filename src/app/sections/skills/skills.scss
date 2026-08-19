@@ -81,8 +81,12 @@
 
 .skill__icon {
   display: block;
-  width: 75px;
-  height: 75px;
+  /* A hard 75px was wider than the column on a narrow phone, and the window
+     above clips rather than scales — the icon simply lost its right edge. As a
+     mask it scales cleanly, so it may give way. */
+  width: min(75px, 100%);
+  height: auto;
+  aspect-ratio: 1;
   margin: 0 auto;
   background-color: var(--ink);
   -webkit-mask: var(--skill-icon) center / contain no-repeat;
@@ -128,6 +132,10 @@
   font-weight: 700;
   font-size: var(--fs-label);
   line-height: 1.2;
+  /* "TypeScript", "JavaScript" and "WordPress" are single words about 85px
+     wide and have nothing to break on. Last resort, so none of them can leave
+     the column however narrow it gets. */
+  overflow-wrap: break-word;
   transition: color var(--dur-50) var(--ease-in-back);
 }
 
@@ -167,6 +175,15 @@
   /* flush left, but still inside the content column */
   margin-left: max(var(--gutter), (100% - var(--container)) / 2);
   margin-right: auto;
+}
+
+/* Three columns need about 80px each to hold the longest label. Below Figma's
+   390px frame there are only 57px to go round, so the row drops to two and the
+   design width keeps its three. */
+@include until-mobile {
+  .skills__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @include from-tablet {
