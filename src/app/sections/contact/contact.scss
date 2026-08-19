@@ -215,7 +215,6 @@
   gap: var(--space-sm);
   font-size: var(--fs-small);
   line-height: 1.22;
-  cursor: pointer;
 }
 
 .check__input {
@@ -227,23 +226,78 @@
 }
 
 .check__box {
+  position: relative;
   flex-shrink: 0;
   width: 20px;
   height: 20px;
   border: 2px solid var(--on-dark);
+  cursor: pointer;
   transition:
     background-color var(--dur-100) var(--ease-in-out),
     border-color var(--dur-100) var(--ease-in-out);
 }
 
-.check__input:checked + .check__box {
+/* The drawn box is 20px, which is under the 24px a pointer target should be.
+   Growing the border would change the design, so the hit area is grown on its
+   own and stays invisible. */
+.check__box::before {
+  content: '';
+  position: absolute;
+  /* Measured against the 16px inside the border, so -4px is what makes 24. */
+  inset: -4px;
+}
+
+/* The tick is drawn as the corner of a rotated border rather than shipped as an
+   SVG: that way it takes its colour from a custom property, which an <img>
+   cannot — the same reason the skill icons are masks. */
+.check__box::after {
+  content: '';
+  position: absolute;
+  /* Half pixels because the shape is turned 45 degrees: these two put the
+     turned bounding box in the middle of the 20px square, 5.1px clear on
+     every side. */
+  left: 5.5px;
+  top: 3.5px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity var(--dur-50) var(--ease-out);
+}
+
+/* Figma leaves the box without a hover state, but every other control in this
+   form answers the pointer, and one that does not reads as disabled. */
+.check__input:not(:checked) + .check__box:hover {
   border-color: var(--accent);
   background: var(--accent);
+}
+
+/* Set: black box, cream frame, accent tick. The frame is what carries it — a
+   black box on the black panel would otherwise disappear entirely. */
+.check__input:checked + .check__box {
+  border-color: var(--on-dark);
+  background: var(--ink);
+}
+
+.check__input:checked + .check__box:hover {
+  border-color: var(--accent);
+}
+
+.check__input:checked + .check__box::after {
+  opacity: 1;
 }
 
 .check__input:focus-visible + .check__box {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
+}
+
+/* Hovering while tabbed onto it fills the box with the very colour the focus
+   ring is drawn in, which would leave no ring at all. */
+.check__input:focus-visible:not(:checked) + .check__box:hover {
+  outline-color: var(--on-dark);
 }
 
 .check__text a {
@@ -252,7 +306,9 @@
 
 .form__submit {
   align-self: center;
-  min-width: 269px;
+  /* Figma's width, but it may not outgrow the form — at 320px the column is
+     narrower than the 269px the design asks for. */
+  min-width: min(269px, 100%);
 }
 
 /* Both children share one grid cell: the hidden sizer sets the height, the

@@ -154,24 +154,32 @@
           </p>
         </div>
 
+        <!-- The consent text carries a link to the privacy policy, so it cannot
+             sit inside the label: a click would then follow the link and set
+             the consent at the same time. Only the box is the label; the
+             sentence names the checkbox through aria-labelledby instead. -->
         <div class="field field--check">
-          <label class="check">
+          <div class="check">
             <input
               class="check__input"
+              id="contact-privacy"
               type="checkbox"
               name="privacy"
               required
+              [attr.aria-invalid]="privacyCtrl.invalid && privacyCtrl.touched"
+              aria-labelledby="contact-privacy-text"
+              aria-describedby="contact-privacy-error"
               [(ngModel)]="model.privacy"
               #privacyCtrl="ngModel"
             />
-            <span class="check__box" aria-hidden="true"></span>
-            <span class="check__text">
+            <label class="check__box" for="contact-privacy"></label>
+            <span class="check__text" id="contact-privacy-text">
               {{ t('contact.privacyPre') }}
               <a routerLink="/datenschutz">{{ t('contact.privacyLink') }}</a>
               {{ t('contact.privacyPost') }}
             </span>
-          </label>
-          <p class="field__error">
+          </div>
+          <p class="field__error" id="contact-privacy-error">
             @if (privacyCtrl.invalid && privacyCtrl.touched) {
               {{ t('contact.errorPrivacy') }}
             }
