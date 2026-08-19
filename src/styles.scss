@@ -138,7 +138,9 @@
    In-page anchors run through that directive with the prototype's own
    SCROLL_ANIMATE timings instead. */
 html {
-  /* Otherwise anchors end up hidden underneath the fixed header. */
+  /* For the browser's own jumps — the skip link, sequential keyboard focus.
+     Anchor links in the page do not read this: they run through the router's
+     ViewportScroller, which is given a matching offset in app.config.ts. */
   scroll-padding-top: var(--header-h);
 }
 

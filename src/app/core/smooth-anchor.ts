@@ -1,4 +1,5 @@
 import { DOCUMENT, Directive, inject, input } from '@angular/core';
+import { anchorOffset } from './anchor-offset';
 
 /**
  * In-page anchor that scrolls with the duration and easing the Figma prototype
@@ -42,10 +43,10 @@ export class SmoothAnchor {
 
   private scrollTo(target: HTMLElement): void {
     const view = this.document.defaultView;
-    const header = parseFloat(
-      getComputedStyle(this.document.documentElement).getPropertyValue('--header-h'),
-    );
-    const to = target.getBoundingClientRect().top + (view?.scrollY ?? 0) - (header || 0);
+    // Same target the menu entries aim at — they go through the router's
+    // ViewportScroller, which is given this offset in app.config.ts.
+    const offset = anchorOffset(this.document, this.appSmoothAnchor());
+    const to = target.getBoundingClientRect().top + (view?.scrollY ?? 0) - offset;
 
     // Reduced motion means no travel animation at all, in line with the
     // blanket rule in styles.scss.
