@@ -1,0 +1,22 @@
+/* The shell is a flex column so the footer can be pushed to the bottom of the
+   window. Custom elements default to `display: inline`, so app-root has to be
+   told, otherwise nothing below it can claim a share of the height.
+
+   Without this the legal pages gave it away: Impressum is six lines long, and
+   the black footer stopped halfway down the screen with the cream dot pattern
+   showing underneath it.
+
+   svh rather than vh for the same reason as .hero — the mobile address bar
+   sliding in and out must not move the bottom edge. */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+/* The header is fixed and therefore out of the flow, so main alone takes up the
+   slack. It may grow past the window (`flex-shrink: 0`) — the home page is far
+   longer than one screen. */
+main {
+  flex: 1 0 auto;
+}
