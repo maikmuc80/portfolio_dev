@@ -244,7 +244,13 @@ $in-dur: var(--dur-card);
   color: var(--ink);
 }
 
-.project__github {
+/* Live demo and source side by side. Wrapping is load-bearing: one .btn alone
+   carries 88px of padding on a phone and 128px while it is hovered, so on a
+   narrow screen the pair has to be free to stack. */
+.project__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
   margin-top: var(--space-lg);
 }
 
@@ -333,6 +339,10 @@ $in-dur: var(--dur-card);
 
   .project--flipped .project__reveal {
     --reveal-from: -119.4%;
+  }
+
+  .project--flipped .project__actions {
+    justify-content: flex-end;
   }
 }
 

@@ -53,6 +53,8 @@ const de = {
   /* Fällt an, solange ein Projekt keine Live-Adresse hat: der runde Pfeil führt
      dann zum Quellcode statt ins Leere. */
   'portfolio.openCodeLabel': 'Quellcode von {{title}} auf GitHub ansehen',
+  'portfolio.live': 'Live Test',
+  'portfolio.code': 'Github',
 
   'projects.elpolloloco.desc':
     'Ein 2D-Jump-and-Run in der mexikanischen Wüste: Pepe sammelt Münzen und Salsa-Flaschen, erledigt verrückte Hühner und stellt sich am Ende dem Boss. Objektorientiert mit der Canvas-API gebaut — ganz ohne Framework.',
@@ -186,6 +188,8 @@ const en: Record<TranslationKey, string> = {
   'portfolio.counter': 'Project {{n}} of {{total}}',
   'portfolio.openLabel': 'View {{title}} live',
   'portfolio.openCodeLabel': 'View the source of {{title}} on GitHub',
+  'portfolio.live': 'Live test',
+  'portfolio.code': 'Github',
 
   'projects.elpolloloco.desc':
     'A 2D jump-and-run set in a Mexican desert: Pepe collects coins and salsa bottles, takes on crazy chickens and finally faces the end boss. Built with object-oriented JavaScript and the Canvas API — no frameworks.',

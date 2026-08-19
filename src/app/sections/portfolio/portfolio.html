@@ -66,15 +66,29 @@
 
               <p class="project__desc">{{ t(descKey(project.key)) }}</p>
 
-              @if (project.githubUrl) {
-                <a
-                  class="btn project__github"
-                  [href]="project.githubUrl"
-                  rel="noopener"
-                  target="_blank"
-                  >Github</a
-                >
-              }
+              <!-- The round arrow above leads to the demo, but only while the
+                   pointer rests on the card. These two are the standing links:
+                   the running project and the source it was built from. -->
+              <div class="project__actions">
+                @if (project.liveUrl) {
+                  <a
+                    class="btn project__live"
+                    [href]="project.liveUrl"
+                    rel="noopener"
+                    target="_blank"
+                    >{{ t('portfolio.live') }}</a
+                  >
+                }
+                @if (project.githubUrl) {
+                  <a
+                    class="btn project__github"
+                    [href]="project.githubUrl"
+                    rel="noopener"
+                    target="_blank"
+                    >{{ t('portfolio.code') }}</a
+                  >
+                }
+              </div>
             </div>
           </div>
 

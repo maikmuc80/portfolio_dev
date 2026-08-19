@@ -62,7 +62,9 @@ export const PROJECTS: Project[] = [
     title: 'El Pollo Loco',
     tags: ['JavaScript', 'HTML', 'CSS', 'Canvas'],
     image: 'elpolloloco',
-    /* No live URL yet — GitHub Pages is switched off for the repository. */
+    /* No live URL yet — GitHub Pages is switched off for the repository.
+       While it is empty the Live button stays hidden and the round arrow on the
+       card falls back to the source, see openUrl() in portfolio.ts. */
     liveUrl: '',
     githubUrl: 'https://github.com/maikmuc80/elpolloloco',
   },
